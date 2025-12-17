@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+:root {
+  /* Retro 90s Color Palette */
+  --retro-bg: #ADD8E6;
+  --retro-bg-alt: #0000AA;
+  --retro-text: #00FF00;
+  --retro-text-alt: #8B008B;
+  --retro-accent: #FF00FF;
+  --retro-accent-alt: #4169E1;
+  --retro-border: #FFFFFF;
+  --retro-link: #00FFFF;
+  --retro-link-hover: #FF00FF;
+  --retro-card-bg: #E6E6FA;
+  --retro-shadow: rgba(0, 255, 255, 0.3);
+}
+
+@theme inline {
+  --color-background: var(--retro-bg);
+  --color-foreground: var(--retro-text);
+  --font-sans: var(--font-vt323), 'Courier New', monospace;
+  --font-mono: 'Courier New', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--retro-bg);
+  color: #000080;
+  font-family: var(--font-vt323), 'Courier New', monospace;
+  font-size: 20px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Retro Text Effects */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 0 5px #FFFFFF, 0 0 10px #FFFFFF; }
+  50% { text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF, 0 0 30px #FFFFFF; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
+
+.glow {
+  animation: glow 2s ease-in-out infinite;
+  color: #000080;
+}
+
+/* Retro Links */
+a {
+  color: #0000CD;
+  text-decoration: underline;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: #8B008B;
+  text-shadow: 0 0 5px rgba(139, 0, 139, 0.5);
+}
+
+/* Retro Buttons */
+.retro-button {
+  background: var(--retro-card-bg);
+  border: 3px solid #000080;
+  color: #000080;
+  padding: 10px 20px;
+  font-family: var(--font-vt323), monospace;
+  font-size: 24px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 128, 0.3);
+  transition: all 0.2s ease;
+}
+
+.retro-button:hover {
+  background: #DDA0DD;
+  color: #8B008B;
+  box-shadow: 0 0 20px rgba(139, 0, 139, 0.5);
+  transform: translateY(-2px);
+}
+
+.retro-button:active {
+  transform: translateY(0);
+  box-shadow: 0 0 5px rgba(0, 0, 128, 0.3);
+}
+
+/* Retro Cards */
+.retro-card {
+  background: var(--retro-card-bg);
+  border: 2px solid var(--retro-border);
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 0 15px var(--retro-shadow);
+  color: #000080;
+}
+
+/* Retro Table Styling */
+.retro-table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 2px solid var(--retro-border);
+  background: var(--retro-card-bg);
+}
+
+.retro-table th,
+.retro-table td {
+  border: 1px solid var(--retro-border);
+  padding: 10px;
+  text-align: left;
+}
+
+.retro-table th {
+  background: var(--retro-bg-alt);
+  color: var(--retro-text-alt);
+  font-weight: bold;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+  
+  .retro-button {
+    font-size: 20px;
+    padding: 8px 16px;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--retro-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--retro-accent);
+  border: 2px solid var(--retro-border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--retro-accent-alt);
+}
+
+/* Blog Post Content Styling */
+.retro-card h1,
+.retro-card h2,
+.retro-card h3,
+.retro-card h4,
+.retro-card h5,
+.retro-card h6 {
+  color: #8B008B;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-family: var(--font-vt323), monospace;
+}
+
+.retro-card h1 {
+  font-size: 36px;
+}
+
+.retro-card h2 {
+  font-size: 32px;
+}
+
+.retro-card h3 {
+  font-size: 28px;
+}
+
+.retro-card p {
+  margin-bottom: 15px;
+}
+
+.retro-card ul,
+.retro-card ol {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.retro-card li {
+  margin-bottom: 8px;
+}
+
+.retro-card code {
+  background: var(--retro-bg);
+  padding: 2px 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+}
+
+.retro-card pre {
+  background: var(--retro-bg);
+  border: 1px solid var(--retro-border);
+  padding: 15px;
+  overflow-x: auto;
+  margin-bottom: 15px;
+}
+
+.retro-card img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid var(--retro-border);
+  margin: 15px 0;
+}
