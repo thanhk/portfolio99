@@ -1,34 +1,34 @@
 export default function Home() {
   const workExperience = [
     {
-      title: "Software Developer",
-      company: "Tech Company",
-      period: "2020 - Present",
-      description: "Developed web applications using modern technologies."
+      title: "Senior Software Engineer",
+      company: "Visa Inc.",
+      period: "2022 - Present",
+      description: "Developed backend services and web applications in the Risk Authentication & Identity Services domain."
     },
     {
-      title: "Junior Developer",
-      company: "Startup Inc",
-      period: "2018 - 2020",
-      description: "Built and maintained frontend applications."
+      title: "Software Engineer Intern",
+      company: "HCL Technologies",
+      period: "2021",
+      description: "Fixed CI & CD pipelines for k8s clusters."
     },
     {
-      title: "Intern",
-      company: "Dev Agency",
-      period: "2017 - 2018",
-      description: "Learned web development fundamentals and best practices."
+      title: "Student",
+      company: "The University of Texas at Dallas",
+      period: "2018 - 2021",
+      description: "Learned the basics of computer science and programming. B.S. Computer Science."
     },
   ];
 
   return (
     <div>
       <h1 className="glow" style={{ fontSize: '48px', marginBottom: '30px', textAlign: 'center' }}>
-        YOUR NAME HERE
+        Steven Khuu
       </h1>
       
       <div className="retro-card">
         <h2 style={{ fontSize: '32px', marginBottom: '20px', color: '#8B008B' }}>
-          Work Experience
+          Experience
         </h2>
         
         <ul style={{ listStyle: 'none', padding: 0 }}>
