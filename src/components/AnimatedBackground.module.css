@@ -1,0 +1,114 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sprite {
+  position: absolute;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  transition: transform 0.1s linear;
+}
+
+/* Pixelated Shark - Simple CSS-based sprite */
+.sprite-sprite-0 {
+  background: linear-gradient(135deg, #4169E1 0%, #000080 50%, #4169E1 100%);
+  clip-path: polygon(
+    0% 30%,
+    20% 0%,
+    40% 10%,
+    50% 30%,
+    60% 50%,
+    80% 60%,
+    100% 50%,
+    90% 70%,
+    70% 80%,
+    50% 90%,
+    30% 85%,
+    10% 70%,
+    0% 50%
+  );
+  filter: drop-shadow(2px 2px 0px #000080);
+}
+
+/* Pixelated Dragon - Simple CSS-based sprite */
+.sprite-sprite-1 {
+  background: linear-gradient(135deg, #8B008B 0%, #6A006A 50%, #8B008B 100%);
+  clip-path: polygon(
+    20% 0%,
+    40% 20%,
+    50% 10%,
+    60% 30%,
+    80% 40%,
+    100% 50%,
+    90% 70%,
+    70% 80%,
+    50% 90%,
+    30% 85%,
+    10% 60%,
+    0% 40%,
+    10% 20%
+  );
+  filter: drop-shadow(2px 2px 0px #6A006A);
+}
+
+/* Pixelated Fish - Simple CSS-based sprite */
+.sprite-sprite-2 {
+  background: linear-gradient(135deg, #00CED1 0%, #008B8B 50%, #00CED1 100%);
+  clip-path: polygon(
+    0% 50%,
+    30% 0%,
+    50% 20%,
+    70% 10%,
+    100% 30%,
+    80% 50%,
+    100% 70%,
+    70% 90%,
+    50% 80%,
+    30% 100%
+  );
+  filter: drop-shadow(2px 2px 0px #008B8B);
+}
+
+/* Pixelated Bird - Simple CSS-based sprite */
+.sprite-sprite-3 {
+  background: linear-gradient(135deg, #FF69B4 0%, #DC143C 50%, #FF69B4 100%);
+  clip-path: polygon(
+    20% 20%,
+    40% 0%,
+    60% 10%,
+    80% 0%,
+    100% 20%,
+    90% 40%,
+    70% 50%,
+    50% 60%,
+    30% 50%,
+    10% 40%
+  );
+  filter: drop-shadow(2px 2px 0px #DC143C);
+}
+
+/* If you want to use actual image files instead, uncomment and add your images to public/assets/ */
+/*
+.sprite-sprite-0 {
+  background-image: url('/assets/shark.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.sprite-sprite-1 {
+  background-image: url('/assets/dragon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+*/
+

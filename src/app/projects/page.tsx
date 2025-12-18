@@ -1,23 +1,39 @@
+import ProjectCard, { Project } from '@/components/ProjectCard';
+import { igFollowCheckerSource, makeBookmarklet } from "@/lib/bookmarklets";
+
 export default function Projects() {
   // Easy to update: just add/remove items from this array
-  const projects = [
+  // Each project can have different types: 'link', 'video', 'bookmarklet', or 'blog'
+  const projects: Project[] = [
     {
       name: "Project One",
-      description: "A cool project I built",
-      url: "https://example.com/project1",
-      tech: "React, TypeScript"
+      description: "A cool project I built with a video demo",
+      tech: "React, TypeScript",
+      type: "video",
+      videoUrl: "/videos/project1-demo.mp4",
+      videoThumbnail: "/images/project1-thumb.jpg",
     },
     {
-      name: "Project Two",
-      description: "Another awesome project",
-      url: "https://example.com/project2",
-      tech: "Next.js, Tailwind"
+      name: "IG_FOLLOW_CHECKER",
+      description: "A bookmarklet to check your followers and following on Instagram",
+      tech: "JavaScript",
+      type: "bookmarklet",
+      bookmarkletCode: makeBookmarklet(igFollowCheckerSource),
+      bookmarkletName: "IG_FOLLOW_CHECKER",
     },
     {
-      name: "Project Three",
-      description: "My latest creation",
-      url: "https://example.com/project3",
-      tech: "Vue, Node.js"
+      name: "In-Depth Project",
+      description: "A detailed project with comprehensive information",
+      tech: "Next.js, Node.js",
+      type: "detail",
+      detailSlug: "in-depth-project", // The slug for the project detail page
+    },
+    {
+      name: "Simple Link Project",
+      description: "A project that links to an external site",
+      tech: "Vue, Tailwind",
+      type: "link",
+      url: "https://example.com/project",
     },
   ];
 
@@ -29,26 +45,7 @@ export default function Projects() {
       
       <div style={{ display: 'grid', gap: '20px' }}>
         {projects.map((project, index) => (
-          <div key={index} className="retro-card">
-            <h2 style={{ fontSize: '32px', marginBottom: '15px', color: '#8B008B' }}>
-              {project.name}
-            </h2>
-            <p style={{ fontSize: '22px', marginBottom: '10px', color: '#000080' }}>
-              {project.description}
-            </p>
-            <p style={{ fontSize: '20px', marginBottom: '15px', color: '#000080' }}>
-              <strong>Tech:</strong> {project.tech}
-            </p>
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="retro-button"
-              style={{ display: 'inline-block', marginTop: '10px' }}
-            >
-              View Project →
-            </a>
-          </div>
+          <ProjectCard key={index} project={project} />
         ))}
       </div>
       
@@ -60,4 +57,3 @@ export default function Projects() {
     </div>
   );
 }
-

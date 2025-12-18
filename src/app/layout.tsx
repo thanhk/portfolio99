@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { VT323 } from "next/font/google";
 import "../styles/globals.css";
 import Navigation from "@/components/Navigation";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 const vt323 = VT323({
   weight: "400",
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={vt323.variable}>
+        <AnimatedBackground />
         <Navigation />
         <main className="container">
           {children}
