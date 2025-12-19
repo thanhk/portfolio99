@@ -10,7 +10,7 @@ export default function Home() {
       title: "Software Engineer Intern",
       company: "HCL Technologies",
       period: "2021",
-      description: "Fixed CI & CD pipelines for k8s clusters."
+      description: "My first tech job. Got introduced to k8s clusters, CI/CD pipelines, and linux."
     },
     {
       title: "Student",
@@ -38,7 +38,7 @@ export default function Home() {
                 {job.title}
               </h3>
               <p style={{ fontSize: '22px', color: '#000080', marginBottom: '8px' }}>
-                {job.company} <span className="blink">|</span> {job.period}
+                {job.company} | {job.period}
               </p>
               <p style={{ fontSize: '20px', color: '#000080' }}>
                 {job.description}
