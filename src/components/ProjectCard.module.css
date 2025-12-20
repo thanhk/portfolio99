@@ -1,3 +1,45 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.topSection {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.contentWrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.mediaContainer {
+  flex-shrink: 0;
+  max-width: 300px;
+  align-self: flex-start;
+}
+
+.actionButtons {
+  width: 100%;
+  flex-basis: 100%;
+  margin-top: 10px;
+}
+
+/* Media position variations for desktop */
+.mediaPositionLeft {
+  margin-right: 40px;
+}
+
+.mediaPositionCenter {
+  margin-right: 20px;
+}
+
+.mediaPositionRight {
+  margin-right: 0;
+}
+
 .retroMedia {
   max-width: 300px;
   max-height: 300px;
@@ -77,10 +119,33 @@
     width: auto;
     height: auto;
   }
-  
+
   .bookmarkletLink {
     font-size: 18px;
     padding: 10px 20px;
   }
-}
 
+  /* In mobile, change top section to column and reorder so media appears before action buttons */
+  .topSection {
+    flex-direction: column;
+  }
+
+  .contentWrapper {
+    width: 100%;
+    order: 0;
+  }
+
+  .mediaContainer {
+    max-width: 100% !important;
+    align-self: flex-start;
+    width: 100%;
+    margin-bottom: 15px;
+    order: 1;
+  }
+
+  .actionButtons {
+    order: 2;
+    width: 100%;
+    flex-basis: 100%;
+  }
+}
