@@ -14,12 +14,11 @@ interface Sprite {
 }
 
 export default function AnimatedBackground() {
-  const [sprites, setSprites] = useState<Sprite[]>([]);
-
-  useEffect(() => {
+  // Initialize sprites directly using lazy initializer
+  const [sprites, setSprites] = useState<Sprite[]>(() => {
     // Create sprites - you can add your own images to public/assets/
     // For now, using CSS-based pixelated shapes, but you can replace with images
-    const initialSprites: Sprite[] = Array.from({ length: 8 }, (_, i) => ({
+    return Array.from({ length: 8 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -28,9 +27,9 @@ export default function AnimatedBackground() {
       size: 40 + Math.random() * 40, // 40-80px
       image: `sprite-${i % 4}`, // Cycle through different sprite types
     }));
+  });
 
-    setSprites(initialSprites);
-
+  useEffect(() => {
     // Animation loop
     const interval = setInterval(() => {
       setSprites((prev) =>
