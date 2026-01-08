@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import styles from './AnimatedBackground.module.css';
 
 interface Sprite {
@@ -14,11 +14,16 @@ interface Sprite {
 }
 
 export default function AnimatedBackground() {
-  // Initialize sprites directly using lazy initializer
-  const [sprites, setSprites] = useState<Sprite[]>(() => {
-    // Create sprites - you can add your own images to public/assets/
-    // For now, using CSS-based pixelated shapes, but you can replace with images
-    return Array.from({ length: 8 }, (_, i) => ({
+  const [sprites, setSprites] = useState<Sprite[]>([]);
+  const hasInitialized = useRef(false);
+
+  useEffect(() => {
+    // Initialize sprites only once on client side to prevent hydration mismatch
+    // This is necessary because Math.random() produces different values on server vs client
+    if (hasInitialized.current) return;
+    hasInitialized.current = true;
+
+    const initialSprites: Sprite[] = Array.from({ length: 8 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -27,9 +32,15 @@ export default function AnimatedBackground() {
       size: 40 + Math.random() * 40, // 40-80px
       image: `sprite-${i % 4}`, // Cycle through different sprite types
     }));
-  });
+
+    // Necessary to set state in effect to prevent hydration mismatch with Math.random()
+     
+    setSprites(initialSprites);
+  }, []);
 
   useEffect(() => {
+    if (sprites.length === 0) return;
+
     // Animation loop
     const interval = setInterval(() => {
       setSprites((prev) =>
@@ -53,7 +64,7 @@ export default function AnimatedBackground() {
     }, 50); // Update every 50ms for smooth animation
 
     return () => clearInterval(interval);
-  }, []);
+  }, [sprites.length]);
 
   return (
     <div className={styles.background}>

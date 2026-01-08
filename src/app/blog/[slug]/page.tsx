@@ -56,7 +56,8 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
         </h1>
         {date && (
           <p style={{ fontSize: '20px', marginBottom: '20px', color: '#000080', textAlign: 'center', fontStyle: 'italic' }}>
-            📅 {parseLocalDate(date).toLocaleDateString('en-US', {
+            <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', display: 'inline-block', verticalAlign: 'middle' }}>📅</span>{' '}
+            {parseLocalDate(date).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
               day: 'numeric'
