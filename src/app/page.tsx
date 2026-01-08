@@ -25,7 +25,7 @@ export default function Home() {
     "@type": "Person",
     "name": "Steven Khuu",
     "alternateName": "thanhk",
-    "jobTitle": "Senior Software Engineer",
+    "jobTitle": "Software Engineer",
     "worksFor": {
       "@type": "Organization",
       "name": "Visa Inc."

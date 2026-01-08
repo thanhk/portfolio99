@@ -16,8 +16,8 @@ export const metadata: Metadata = {
     default: "Steven Khuu - Portfolio",
     template: "%s | Steven Khuu"
   },
-  description: "Portfolio of Steven Khuu (thanhk), Senior Software Engineer at Visa Inc. Specializing in backend services, web applications, payments, and authentication systems.",
-  keywords: ["Steven Khuu", "thanhk", "Steven Khuu portfolio", "thanhk99", "software engineer", "backend developer", "Visa Inc", "UTD", "University of Texas at Dallas"],
+  description: "Steven Khuu (thanhk), a Software Engineer. Enjoys building things for many people.",
+  keywords: ["Steven Khuu", "thanhk", "Steven Khuu portfolio", "thanhk portfolio", "thanhk99", "software engineer", "backend developer", "Visa Inc", "UTD", "University of Texas at Dallas"],
   authors: [{ name: "Steven Khuu" }],
   creator: "Steven Khuu",
   openGraph: {
@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://thanhk.com",
     siteName: "Steven Khuu Portfolio",
-    title: "Steven Khuu - Software Engineer Portfolio",
-    description: "Portfolio of Steven Khuu (thanhk), Senior Software Engineer at Visa Inc.",
+    title: "Steven Khuu - Portfolio",
+    description: "Steven Khuu (thanhk), a Software Engineer.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Steven Khuu - Software Engineer Portfolio",
-    description: "Portfolio of Steven Khuu (thanhk), Senior Software Engineer at Visa Inc.",
+    title: "Steven Khuu - Portfolio",
+    description: "Steven Khuu (thanhk), a Software Engineer.",
   },
   robots: {
     index: true,
