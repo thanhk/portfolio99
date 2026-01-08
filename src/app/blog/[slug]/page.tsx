@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     };
   }
 
-  const title = post.data.title || slug.replace(/-/g, ' ');
-  const description = post.data.description || `Blog post by Steven Khuu (thanhk): ${title}`;
+  const title = (typeof post.data.title === 'string' ? post.data.title : null) || slug.replace(/-/g, ' ');
+  const description = (typeof post.data.description === 'string' ? post.data.description : null) || `Blog post by Steven Khuu (thanhk): ${title}`;
 
   return {
     title,
@@ -35,8 +35,8 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const title = post.data.title || slug.replace(/-/g, ' ');
-  const date = post.data.date;
+  const title = (typeof post.data.title === 'string' ? post.data.title : null) || slug.replace(/-/g, ' ');
+  const date = typeof post.data.date === 'string' ? post.data.date : null;
 
   return (
     <div>

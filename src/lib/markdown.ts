@@ -5,7 +5,7 @@ import { marked } from 'marked';
 
 export interface MarkdownContent {
   content: string;
-  data: Record<string, any>;
+  data: Record<string, unknown>;
 }
 
 /**
@@ -33,25 +33,24 @@ export async function getMarkdownContent(
     const filePath = join(process.cwd(), 'public', folder, `${slug}.md`);
     const fileContents = await readFile(filePath, 'utf-8');
     const { data, content } = matter(fileContents);
-    
+
     // Configure marked to open links in new tabs
     const renderer = new marked.Renderer();
-    const originalLink = renderer.link.bind(renderer);
     renderer.link = ({ href, title, tokens }) => {
       const text = tokens ? tokens.map(token => token.raw || '').join('') : '';
       const titleAttr = title ? ` title="${title}"` : '';
       return `<a href="${href}" target="_blank" rel="noopener noreferrer"${titleAttr}>${text}</a>`;
     };
-    
+
     // Convert Markdown to HTML
     const htmlResult = marked.parse(content, { renderer });
     const html = typeof htmlResult === 'string' ? htmlResult : await htmlResult;
-    
+
     return {
       content: html,
       data,
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }
@@ -66,11 +65,11 @@ export async function getMarkdownFiles(folder: string) {
     const { readdir } = await import('fs/promises');
     const dirPath = join(process.cwd(), 'public', folder);
     const files = await readdir(dirPath);
-    
+
     const markdownFiles = files
       .filter(file => file.endsWith('.md'))
       .map(file => file.replace('.md', ''));
-    
+
     // Read frontmatter for each file to get metadata
     const filesWithData = await Promise.all(
       markdownFiles.map(async (slug) => {
@@ -81,9 +80,9 @@ export async function getMarkdownFiles(folder: string) {
         };
       })
     );
-    
+
     return filesWithData;
-  } catch (error) {
+  } catch {
     return [];
   }
 }

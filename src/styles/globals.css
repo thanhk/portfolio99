@@ -39,18 +39,38 @@ body {
 
 /* Retro Text Effects */
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes glow {
-  0%, 100% { text-shadow: 0 0 5px #FFFFFF, 0 0 10px #FFFFFF; }
-  50% { text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF, 0 0 30px #FFFFFF; }
+
+  0%,
+  100% {
+    text-shadow: 0 0 5px #FFFFFF, 0 0 10px #FFFFFF;
+  }
+
+  50% {
+    text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF, 0 0 30px #FFFFFF;
+  }
 }
 
 @keyframes scanline {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(100vh); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100vh);
+  }
 }
 
 .blink {
@@ -145,7 +165,7 @@ a:hover {
   body {
     font-size: 18px;
   }
-  
+
   .retro-button {
     font-size: 20px;
     padding: 8px 16px;
@@ -162,12 +182,12 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--retro-accent);
+  background: #00BFFF;
   border: 2px solid var(--retro-border);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--retro-accent-alt);
+  background: #0080FF;
 }
 
 /* Blog Post Content Styling */

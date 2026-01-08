@@ -13,15 +13,15 @@ export default async function Blog() {
 
   // Sort by date if available, otherwise by title
   const sortedPosts = posts.sort((a, b) => {
-    const dateA = a.data.date;
-    const dateB = b.data.date;
+    const dateA = typeof a.data.date === 'string' ? a.data.date : null;
+    const dateB = typeof b.data.date === 'string' ? b.data.date : null;
 
     if (dateA && dateB) {
       return parseLocalDate(dateB).getTime() - parseLocalDate(dateA).getTime();
     }
 
-    const titleA = a.data.title || a.slug;
-    const titleB = b.data.title || b.slug;
+    const titleA = (typeof a.data.title === 'string' ? a.data.title : null) || a.slug;
+    const titleB = (typeof b.data.title === 'string' ? b.data.title : null) || b.slug;
     return titleA.localeCompare(titleB);
   });
 
@@ -46,8 +46,9 @@ export default async function Blog() {
       ) : (
         <div style={{ display: 'grid', gap: '20px' }}>
           {sortedPosts.map((post) => {
-            const title = post.data.title || post.slug.replace(/-/g, ' ');
-            const date = post.data.date;
+            const title = (typeof post.data.title === 'string' ? post.data.title : null) || post.slug.replace(/-/g, ' ');
+            const date = typeof post.data.date === 'string' ? post.data.date : null;
+            const description = typeof post.data.description === 'string' ? post.data.description : null;
 
             return (
               <div key={post.slug} className="retro-card">
@@ -65,9 +66,9 @@ export default async function Blog() {
                     })}
                   </p>
                 )}
-                {post.data.description && (
+                {description && (
                   <p style={{ fontSize: '20px', color: '#000080', marginBottom: '10px' }}>
-                    {post.data.description}
+                    {description}
                   </p>
                 )}
                 <Link

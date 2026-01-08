@@ -17,14 +17,14 @@ export async function generateMetadata({ params }: ProjectDetailPageProps): Prom
     };
   }
 
-  const name = project.data.name || slug.replace(/-/g, ' ');
-  const description = project.data.description || `Project by Steven Khuu (thanhk): ${name}`;
-  const tech = project.data.tech;
+  const name = (typeof project.data.name === 'string' ? project.data.name : null) || slug.replace(/-/g, ' ');
+  const description = (typeof project.data.description === 'string' ? project.data.description : null) || `Project by Steven Khuu (thanhk): ${name}`;
+  const tech = typeof project.data.tech === 'string' ? project.data.tech : null;
 
   return {
     title: name,
     description,
-    keywords: ["Steven Khuu projects", "thanhk projects", name, tech, "software projects"].filter(Boolean),
+    keywords: ["Steven Khuu projects", "thanhk projects", name, tech, "software projects"].filter(Boolean) as string[],
   };
 }
 
@@ -36,9 +36,9 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
     notFound();
   }
 
-  const name = project.data.name || slug.replace(/-/g, ' ');
-  const description = project.data.description;
-  const tech = project.data.tech;
+  const name = (typeof project.data.name === 'string' ? project.data.name : null) || slug.replace(/-/g, ' ');
+  const description = typeof project.data.description === 'string' ? project.data.description : null;
+  const tech = typeof project.data.tech === 'string' ? project.data.tech : null;
 
   return (
     <div>
