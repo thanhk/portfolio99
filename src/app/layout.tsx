@@ -12,8 +12,38 @@ const vt323 = VT323({
 });
 
 export const metadata: Metadata = {
-  title: "thanhk99",
-  description: "thanhk99's Portfolio Website",
+  title: {
+    default: "Steven Khuu - Portfolio",
+    template: "%s | Steven Khuu"
+  },
+  description: "Portfolio of Steven Khuu (thanhk), Senior Software Engineer at Visa Inc. Specializing in backend services, web applications, payments, and authentication systems.",
+  keywords: ["Steven Khuu", "thanhk", "Steven Khuu portfolio", "thanhk99", "software engineer", "backend developer", "Visa Inc", "UTD", "University of Texas at Dallas"],
+  authors: [{ name: "Steven Khuu" }],
+  creator: "Steven Khuu",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://thanhk.com",
+    siteName: "Steven Khuu Portfolio",
+    title: "Steven Khuu - Software Engineer Portfolio",
+    description: "Portfolio of Steven Khuu (thanhk), Senior Software Engineer at Visa Inc.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Steven Khuu - Software Engineer Portfolio",
+    description: "Portfolio of Steven Khuu (thanhk), Senior Software Engineer at Visa Inc.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({

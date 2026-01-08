@@ -1,5 +1,12 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { getMarkdownFiles, parseLocalDate } from '@/lib/markdown';
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Blog posts by Steven Khuu (thanhk) - Software Engineer, covering technology, development, and more.",
+  keywords: ["Steven Khuu blog", "thanhk blog", "software engineering blog", "Steven Khuu articles"],
+};
 
 export default async function Blog() {
   const posts = await getMarkdownFiles('blog');
@@ -8,11 +15,11 @@ export default async function Blog() {
   const sortedPosts = posts.sort((a, b) => {
     const dateA = a.data.date;
     const dateB = b.data.date;
-    
+
     if (dateA && dateB) {
       return parseLocalDate(dateB).getTime() - parseLocalDate(dateA).getTime();
     }
-    
+
     const titleA = a.data.title || a.slug;
     const titleB = b.data.title || b.slug;
     return titleA.localeCompare(titleB);
@@ -23,7 +30,7 @@ export default async function Blog() {
       <h1 className="glow" style={{ fontSize: '48px', marginBottom: '30px', textAlign: 'center' }}>
         Blog
       </h1>
-      
+
       {sortedPosts.length === 0 ? (
         <div className="retro-card" style={{ textAlign: 'center' }}>
           <p style={{ fontSize: '24px', marginBottom: '15px' }}>
@@ -41,7 +48,7 @@ export default async function Blog() {
           {sortedPosts.map((post) => {
             const title = post.data.title || post.slug.replace(/-/g, ' ');
             const date = post.data.date;
-            
+
             return (
               <div key={post.slug} className="retro-card">
                 <h2 style={{ fontSize: '32px', marginBottom: '10px', color: '#8B008B' }}>
@@ -51,10 +58,10 @@ export default async function Blog() {
                 </h2>
                 {date && (
                   <p style={{ fontSize: '20px', color: '#000080', marginBottom: '10px' }}>
-                    📅 {parseLocalDate(date).toLocaleDateString('en-US', { 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
+                    📅 {parseLocalDate(date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
                     })}
                   </p>
                 )}

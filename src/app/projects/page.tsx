@@ -1,5 +1,12 @@
+import { Metadata } from 'next';
 import ProjectCard, { Project } from '@/components/ProjectCard';
 import { igFollowCheckerSource, makeBookmarklet } from "@/lib/bookmarklets";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "Projects by Steven Khuu (thanhk) - Software Engineer. Including IoT Anomaly Detector, Rise of the Elements, IG Follow Checker, and more.",
+  keywords: ["Steven Khuu projects", "thanhk projects", "software projects", "portfolio projects", "Steven Khuu portfolio"],
+};
 
 export default function Projects() {
   // Easy to update: just add/remove items from this array

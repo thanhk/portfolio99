@@ -1,9 +1,31 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getMarkdownContent } from '@/lib/markdown';
 
 interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: ProjectDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = await getMarkdownContent('projects', slug);
+
+  if (!project) {
+    return {
+      title: 'Project Not Found',
+    };
+  }
+
+  const name = project.data.name || slug.replace(/-/g, ' ');
+  const description = project.data.description || `Project by Steven Khuu (thanhk): ${name}`;
+  const tech = project.data.tech;
+
+  return {
+    title: name,
+    description,
+    keywords: ["Steven Khuu projects", "thanhk projects", name, tech, "software projects"].filter(Boolean),
+  };
 }
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
@@ -21,15 +43,15 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
   return (
     <div>
       <div style={{ marginBottom: '20px' }}>
-        <Link 
-          href="/projects" 
+        <Link
+          href="/projects"
           className="retro-button"
           style={{ display: 'inline-block', marginBottom: '20px' }}
         >
           ← Back to Projects
         </Link>
       </div>
-      
+
       <div className="retro-card">
         <h1 className="glow" style={{ fontSize: '48px', marginBottom: '20px', textAlign: 'center' }}>
           {name}
@@ -44,8 +66,8 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
             <strong>Tech:</strong> {tech}
           </p>
         )}
-        
-        <div 
+
+        <div
           dangerouslySetInnerHTML={{ __html: project.content }}
           style={{
             fontSize: '20px',
