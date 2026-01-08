@@ -31,6 +31,7 @@ export default function Projects() {
       description: "Live monitoring of IoT device data using AWS services",
       tech: "AWS, Python, Swift",
       videoUrl: "/assets/iot-anomaly-detector-demo.mp4",
+      videoThumbnail: "/assets/iot-anomaly-detector-thumbnail.png",
       url: "https://github.com/thanhk/IoT-Anomaly-Detector",
       mediaPosition: "center",
     },
@@ -41,13 +42,13 @@ export default function Projects() {
       <h1 className="glow" style={{ fontSize: '48px', marginBottom: '30px', textAlign: 'center' }}>
         My Projects
       </h1>
-      
+
       <div style={{ display: 'grid', gap: '20px' }}>
         {projects.map((project, index) => (
           <ProjectCard key={index} project={project} />
         ))}
       </div>
-      
+
       {projects.length === 0 && (
         <div className="retro-card" style={{ textAlign: 'center' }}>
           <p style={{ fontSize: '24px' }}>No projects yet. Check back soon!</p>
