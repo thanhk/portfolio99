@@ -3,7 +3,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: "Links",
   description: "Connect with Steven Khuu (thanhk) - GitHub, LinkedIn, and contact information.",
-  keywords: ["Steven Khuu contact", "thanhk contact", "Steven Khuu links", "thanhk links", "Steven Khuu social media"],
+  alternates: {
+    canonical: "/links",
+  },
 };
 
 export default function Links() {

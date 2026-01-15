@@ -23,7 +23,9 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title,
     description,
-    keywords: ["Steven Khuu blog", "thanhk blog", title, "software engineering"],
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
   };
 }
 

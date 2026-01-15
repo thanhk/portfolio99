@@ -12,11 +12,15 @@ const vt323 = VT323({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://thanhk.com"),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: "Steven Khuu - Portfolio",
     template: "%s | Steven Khuu"
   },
-  description: "Steven Khuu (thanhk), a Software Engineer. Enjoys building things for many people.",
+  description: "Steven Khuu (thanhk), a Software Engineer. Enjoys building and learning.",
   keywords: ["Steven Khuu", "thanhk", "Steven Khuu portfolio", "thanhk portfolio", "thanhk99", "software engineer", "backend developer", "Visa Inc", "UTD", "University of Texas at Dallas"],
   authors: [{ name: "Steven Khuu" }],
   creator: "Steven Khuu",

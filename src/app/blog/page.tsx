@@ -5,7 +5,9 @@ import { getMarkdownFiles, parseLocalDate } from '@/lib/markdown';
 export const metadata: Metadata = {
   title: "Blog",
   description: "Blog posts by Steven Khuu (thanhk) - Software Engineer, covering technology, development, and more.",
-  keywords: ["Steven Khuu blog", "thanhk blog", "software engineering blog", "Steven Khuu articles"],
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default async function Blog() {
