@@ -19,6 +19,22 @@ However, it is not easy for a non-technical person to run these scripts. I thoug
 - Copy list as JSON, string list
 - Export to CSV
 
+
+### Demo
+
+**Step 1: Login to Instagram and click on the bookmarklet**
+
+![Picture of the bookmarklet in bookmark bar](/assets/ig-follow-checker-demo-1.png)
+
+**Step 2: The script runs...**
+
+![Picture of the bookmarklet retrieving followers](/assets/ig-follow-checker-demo-2.png)
+
+**Step 3: Done!**
+
+![Picture of the results, tabs, and export options](/assets/ig-follow-checker-demo-3.png)
+
+
 ## How to Use
 
 1. Drag the bookmarklet to your bookmarks bar.
@@ -26,6 +42,7 @@ However, it is not easy for a non-technical person to run these scripts. I thoug
 3. Click on the bookmarklet, and the UI will pop up.
 4. View results.
 5. Click `Run again` or `Change user` and input an Instagram handle.
+
 
 ## Technical Details
 
