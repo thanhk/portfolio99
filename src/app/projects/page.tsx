@@ -19,6 +19,7 @@ export default function Projects() {
       tech: "JavaScript",
       bookmarkletCode: makeBookmarklet(igFollowCheckerSource),
       bookmarkletName: "IG_FOLLOW_CHECKER",
+      bookmarkletSource: igFollowCheckerSource,
       detailSlug: "ig-follow-checker",
     },
     {
