@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import ProjectCard, { Project } from '@/components/ProjectCard';
-import { igFollowCheckerSource, makeBookmarklet } from "@/lib/bookmarklets";
+import { igFollowCheckerSource, makeBookmarklet } from "@/lib/bookmarklets.generated";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -20,6 +20,7 @@ export default function Projects() {
       bookmarkletCode: makeBookmarklet(igFollowCheckerSource),
       bookmarkletName: "IG_FOLLOW_CHECKER",
       detailSlug: "ig-follow-checker",
+      url: "https://github.com/thanhk/ig-follow-checker",
     },
     {
       name: "Target Stock Discord Hook",

@@ -6,13 +6,19 @@
 .topSection {
   display: flex;
   gap: 20px;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  align-items: stretch;
 }
 
 .contentWrapper {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contentText {
+  flex: 0 0 auto;
 }
 
 .mediaContainer {
@@ -22,9 +28,8 @@
 }
 
 .actionButtons {
-  width: 100%;
-  flex-basis: 100%;
-  margin-top: 10px;
+  margin-top: auto;
+  padding-top: 15px;
 }
 
 /* Media position variations for desktop */
@@ -132,7 +137,12 @@
 
   .contentWrapper {
     width: 100%;
+    display: contents; /* Flatten so children can be reordered */
+  }
+
+  .contentText {
     order: 0;
+    width: 100%;
   }
 
   .mediaContainer {
@@ -146,6 +156,6 @@
   .actionButtons {
     order: 2;
     width: 100%;
-    flex-basis: 100%;
+    margin-top: 0;
   }
 }

@@ -15,7 +15,7 @@ export interface Project {
   bookmarkletCode?: string;
   bookmarkletName?: string;
   detailSlug?: string;
-  url?: string; // External link
+  url?: string; // External link (e.g., GitHub repo)
   mediaPosition?: 'left' | 'center' | 'right'; // Horizontal position of media on the right side
 }
 
@@ -55,38 +55,65 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <div className={styles.topSection}>
           {/* Content - Always on left */}
           <div className={styles.contentWrapper}>
-            <h2 style={{ fontSize: '32px', marginBottom: '15px', color: '#8B008B' }}>
-              {project.name}
-            </h2>
-            <p style={{ fontSize: '22px', marginBottom: '10px', color: '#000080' }}>
-              {project.description}
-            </p>
-            <p style={{ fontSize: '20px', marginBottom: '15px', color: '#000080' }}>
-              <strong>Tech:</strong> {project.tech}
-            </p>
+            <div className={styles.contentText}>
+              <h2 style={{ fontSize: '32px', marginBottom: '15px', color: '#8B008B' }}>
+                {project.name}
+              </h2>
+              <p style={{ fontSize: '22px', marginBottom: '10px', color: '#000080' }}>
+                {project.description}
+              </p>
+              <p style={{ fontSize: '20px', marginBottom: '15px', color: '#000080' }}>
+                <strong>Tech:</strong> {project.tech}
+              </p>
 
-            {/* Bookmarklet */}
-            {project.bookmarkletCode && (
-              <div className={styles.bookmarkletContainer} style={{ marginBottom: '20px' }}>
-                <p style={{ fontSize: '18px', marginBottom: '15px', color: '#000080' }}>
-                  Drag this button to your bookmarks bar to use it:
-                </p>
-                <a
-                  ref={bookmarkletRef}
-                  className={styles.bookmarkletLink}
-                  draggable={true}
-                  onDragStart={(e) => {
-                    e.dataTransfer.setData('text/plain', project.bookmarkletCode || '');
-                    e.dataTransfer.effectAllowed = 'copy';
-                  }}
+              {/* Bookmarklet */}
+              {project.bookmarkletCode && (
+                <div className={styles.bookmarkletContainer} style={{ marginBottom: '20px' }}>
+                  <p style={{ fontSize: '18px', marginBottom: '15px', color: '#000080' }}>
+                    Drag this button to your bookmarks bar to use it:
+                  </p>
+                  <a
+                    ref={bookmarkletRef}
+                    className={styles.bookmarkletLink}
+                    draggable={true}
+                    onDragStart={(e) => {
+                      e.dataTransfer.setData('text/plain', project.bookmarkletCode || '');
+                      e.dataTransfer.effectAllowed = 'copy';
+                    }}
+                  >
+                    🔖 {project.bookmarkletName || project.name}
+                  </a>
+                  <p style={{ fontSize: '16px', marginTop: '10px', color: '#000080', fontStyle: 'italic', opacity: 0.7 }}>
+                    (Drag to bookmarks bar, then click to use)
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Action Buttons - Inside content wrapper to fill dead space */}
+            <div className={styles.actionButtons} style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: hasAnyFeature ? '10px' : '0' }}>
+              {project.detailSlug && (
+                <Link
+                  href={`/projects/${project.detailSlug}`}
+                  className="retro-button"
+                  style={{ display: 'inline-block' }}
                 >
-                  🔖 {project.bookmarkletName || project.name}
+                  📝 View Details →
+                </Link>
+              )}
+
+              {project.url && (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="retro-button"
+                  style={{ display: 'inline-block' }}
+                >
+                  🔗 View Project →
                 </a>
-                <p style={{ fontSize: '16px', marginTop: '10px', color: '#000080', fontStyle: 'italic', opacity: 0.7 }}>
-                  (Drag to bookmarks bar, then click to use)
-                </p>
-              </div>
-            )}
+              )}
+            </div>
           </div>
 
           {/* Media - On right for desktop, before action buttons for mobile */}
@@ -115,31 +142,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               )}
             </div>
           )}
-
-          {/* Action Buttons */}
-          <div className={styles.actionButtons} style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: hasAnyFeature ? '10px' : '0' }}>
-            {project.detailSlug && (
-              <Link
-                href={`/projects/${project.detailSlug}`}
-                className="retro-button"
-                style={{ display: 'inline-block' }}
-              >
-                📝 View Details →
-              </Link>
-            )}
-
-            {project.url && (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="retro-button"
-                style={{ display: 'inline-block' }}
-              >
-                🔗 View Project →
-              </a>
-            )}
-          </div>
         </div>
       </div>
     </div>
