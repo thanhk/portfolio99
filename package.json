@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "fetch-bookmarklets": "node scripts/fetch-bookmarklets.mjs",
+    "prebuild": "npm run fetch-bookmarklets",
+    "predev": "npm run fetch-bookmarklets",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
