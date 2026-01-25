@@ -1,15 +1,6 @@
-# Portfolio 99 - Retro 90s Portfolio Website
+# portfolio99 - thanhk's personal portfolio website
 
-A retro/90s-themed portfolio website built with Next.js, featuring a nostalgic aesthetic with modern functionality.
-
-## Features
-
-- 🎨 Retro 90s styling with neon colors, pixel fonts, and animated effects
-- 📄 Simple home page with name and work experience
-- 🚀 Projects page for showcasing your work
-- 🔗 Links page for social media and resume
-- 📝 Blog system that reads HTML files from `public/blog/`
-- 🎯 Easy to customize and update
+My personal portfolio themed after older/retro websites with modern elements for ease of access.
 
 ## Getting Started
 
@@ -74,41 +65,17 @@ The retro styling is defined in `src/styles/globals.css`. You can customize:
 - Animations and effects
 - Component styles
 
-## Project Structure
+### Updating Bookmarklets
 
-```
-portfolio99/
-├── public/
-│   ├── assets/          # Your images, GIFs, icons
-│   └── blog/            # HTML blog post files
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx   # Root layout with Navigation
-│   │   ├── page.tsx     # Home page
-│   │   ├── projects/    # Projects page
-│   │   ├── links/       # Socials & Resume page
-│   │   └── blog/        # Blog pages
-│   ├── components/
-│   │   ├── Navigation.tsx
-│   │   └── RetroButton.tsx
-│   └── styles/
-│       └── globals.css   # Retro styling
-└── package.json
-```
+The ig-follow-checker bookmarklet is fetched from its [GitHub repo](https://github.com/thanhk/ig-follow-checker) at build time. To update:
+
+1. Push changes to the repo and tag a new version
+2. Update the version in `scripts/fetch-bookmarklets.mjs`
+3. Run `npm run fetch-bookmarklets`
+
 
 ## Tech Stack
 
-- **Next.js 16** - React framework with App Router
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Utility-first CSS (minimal usage, mostly custom CSS)
-- **Custom CSS** - Retro 90s styling
-
-## Inspiration
-
-This portfolio is inspired by classic 90s websites like:
-- [The Library of Dead and Abandoned Malls](https://deadmalls-library.neocities.org/)
-- [Berkshire Hathaway](https://www.berkshirehathaway.com/)
-
-## License
-
-Feel free to use this template for your own portfolio!
+- **Next.js 16**
+- **TypeScript**
+- **Tailwind CSS**
