@@ -4,7 +4,7 @@ import { igFollowCheckerSource, makeBookmarklet } from "@/lib/bookmarklets.gener
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Projects by Steven Khuu (thanhk) - Software Engineer. Including IoT Anomaly Detector, Rise of the Elements, IG Follow Checker, and more.",
+  description: "Projects by Steven Khuu (thanhk) - Software Engineer. Including Mise, Turnip Bakes, IoT Anomaly Detector, Rise of the Elements, IG Follow Checker, and more.",
   alternates: {
     canonical: "/projects",
   },
@@ -13,6 +13,24 @@ export const metadata: Metadata = {
 export default function Projects() {
   // Easy to update: just add/remove items from this array
   const projects: Project[] = [
+    {
+      name: "Mise",
+      description: "AI planning co-pilot for makers who sell at farmers markets and pop-ups. Describe an event by voice, get a full batch and pricing plan back.",
+      tech: "React Native (Expo), TypeScript, Supabase, Anthropic API",
+      imageUrl: "/assets/mise-lockup.png",
+      detailSlug: "mise",
+      // TODO: waitlist landing page URL (mise-web deployment)
+      mediaPosition: "center",
+    },
+    {
+      name: "Turnip Bakes",
+      description: "Storefront and ordering site for a home bakery - menu, cart, custom cake requests, and order emails",
+      tech: "Next.js 16, React 19, TypeScript, Tailwind CSS 4",
+      imageUrl: "/assets/turnip-bakes-cake.png",
+      detailSlug: "turnip-bakes",
+      url: "https://turnipbakes.com",
+      mediaPosition: "center",
+    },
     {
       name: "IG_FOLLOW_CHECKER",
       description: "A bookmarklet to check your followers and following on Instagram",

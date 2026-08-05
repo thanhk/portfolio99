@@ -257,7 +257,36 @@ a:hover {
 
 .retro-card img {
   max-width: 100%;
+  /* Cap the height too, so a portrait photo doesn't take over the page */
+  max-height: 520px;
+  width: auto;
   height: auto;
   border: 2px solid var(--retro-border);
   margin: 15px 0;
+}
+
+/* Markdown tables. Wrapped in a scroll container so a wide table never
+   forces the page itself to scroll sideways on a phone. */
+.retro-card .table-scroll {
+  overflow-x: auto;
+  margin-bottom: 15px;
+}
+
+.retro-card table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 2px solid var(--retro-border);
+}
+
+.retro-card th,
+.retro-card td {
+  border: 1px solid var(--retro-border);
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.retro-card th {
+  background: var(--retro-bg);
+  font-weight: bold;
 }
