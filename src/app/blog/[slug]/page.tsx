@@ -42,13 +42,18 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
 
   return (
     <div>
+      <p className="breadcrumb">
+        you are here:{' '}
+        <Link href="/">home</Link>
+        <span className="sep">&gt;</span>
+        <Link href="/blog">blog</Link>
+        <span className="sep">&gt;</span>
+        {title}
+      </p>
+
       <div style={{ marginBottom: '20px' }}>
-        <Link
-          href="/blog"
-          className="retro-button"
-          style={{ display: 'inline-block', marginBottom: '20px' }}
-        >
-          ← Back to Blog
+        <Link href="/blog" className="retro-button" style={{ display: 'inline-block' }}>
+          ← back to blog
         </Link>
       </div>
 
@@ -57,7 +62,7 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           {title}
         </h1>
         {date && (
-          <p style={{ fontSize: '20px', marginBottom: '20px', color: 'var(--ink)', textAlign: 'center', fontStyle: 'italic' }}>
+          <p className="meta" style={{ marginBottom: '20px', textAlign: 'center' }}>
             <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', display: 'inline-block', verticalAlign: 'middle' }}>📅</span>{' '}
             {parseLocalDate(date).toLocaleDateString('en-US', {
               year: 'numeric',

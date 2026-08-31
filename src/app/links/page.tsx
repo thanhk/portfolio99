@@ -35,24 +35,34 @@ export default function Links() {
       </h1>
 
       <div className="retro-card" style={{ marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '32px', marginBottom: '20px', color: 'var(--magenta)' }}>
-          Social Links
-        </h2>
-        <ul style={{ listStyle: 'none', padding: 0 }}>
-          {socialLinks.map((link, index) => (
-            <li key={index} style={{ marginBottom: '15px' }}>
-              <a
-                href={link.url}
-                target={link.url.startsWith('mailto:') ? undefined : '_blank'}
-                rel={link.url.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-                style={{ fontSize: '24px', display: 'inline-flex', alignItems: 'center', gap: '10px' }}
-              >
-                <span>{link.icon}</span>
-                <span>{link.name}</span>
-              </a>
-            </li>
-          ))}
+        <div className="panel-head">
+          elsewhere
+          <span className="right">{socialLinks.length} links</span>
+        </div>
+        <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '10px' }}>
+          {socialLinks.map((link) => {
+            const isMail = link.url.startsWith('mailto:');
+            return (
+              <li key={link.name}>
+                <a
+                  className="link-row"
+                  href={link.url}
+                  target={isMail ? undefined : '_blank'}
+                  rel={isMail ? undefined : 'noopener noreferrer'}
+                >
+                  <span aria-hidden="true">{link.icon}</span>
+                  <span>{link.name}</span>
+                  <span className="arrow" aria-hidden="true">
+                    {isMail ? 'send mail »' : 'visit »'}
+                  </span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
+        <p style={{ marginTop: '18px', marginBottom: 0, color: 'var(--ink-dim)', fontSize: '18px' }}>
+          say hi — i read everything, i reply to most of it.
+        </p>
       </div>
     </div>
   );

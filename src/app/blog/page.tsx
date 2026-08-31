@@ -36,7 +36,7 @@ export default async function Blog() {
       {sortedPosts.length === 0 ? (
         <div className="retro-card" style={{ textAlign: 'center' }}>
           <p style={{ fontSize: '24px', marginBottom: '15px' }}>
-            No blog posts yet.
+            nothing here yet. check back!
           </p>
           <p style={{ fontSize: '20px', color: 'var(--ink)' }}>
             Add Markdown files to the <code style={{ background: 'var(--panel-alt)', padding: '2px 6px' }}>public/blog/</code> folder to create posts.
@@ -54,22 +54,24 @@ export default async function Blog() {
 
             return (
               <div key={post.slug} className="retro-card">
-                <h2 style={{ fontSize: '32px', marginBottom: '10px', color: 'var(--magenta)' }}>
-                  <Link href={`/blog/${post.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    {title}
-                  </Link>
-                </h2>
+                <div className="panel-head">
+                  <h2 style={{ fontSize: '22px', margin: 0, color: 'inherit', letterSpacing: 'inherit', fontFamily: 'inherit' }}>
+                    <Link href={`/blog/${post.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                      {title}
+                    </Link>
+                  </h2>
+                </div>
                 {date && (
-                  <p style={{ fontSize: '20px', color: 'var(--ink)', marginBottom: '10px' }}>
-                    📅 {parseLocalDate(date).toLocaleDateString('en-US', {
+                  <p className="meta" style={{ marginBottom: '10px' }}>
+                    [{parseLocalDate(date).toLocaleDateString('en-US', {
                       year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
+                      month: 'short',
+                      day: '2-digit',
+                    }).toLowerCase()}]
                   </p>
                 )}
                 {description && (
-                  <p style={{ fontSize: '20px', color: 'var(--ink)', marginBottom: '10px' }}>
+                  <p style={{ marginBottom: '10px' }}>
                     {description}
                   </p>
                 )}
@@ -78,7 +80,7 @@ export default async function Blog() {
                   className="retro-button"
                   style={{ display: 'inline-block', marginTop: '10px' }}
                 >
-                  Read More →
+                  &gt;&gt; read post
                 </Link>
               </div>
             );

@@ -19,6 +19,7 @@ export default function Projects() {
       tech: "React Native (Expo), TypeScript, Supabase, Anthropic API",
       imageUrl: "/assets/mise-lockup.png",
       detailSlug: "mise",
+      tag: "new!",
       // TODO: waitlist landing page URL (mise-web deployment)
       mediaPosition: "center",
     },
@@ -28,6 +29,7 @@ export default function Projects() {
       tech: "Next.js 16, React 19, TypeScript, Tailwind CSS 4",
       imageUrl: "/assets/turnip-bakes-cake.png",
       detailSlug: "turnip-bakes",
+      tag: "new!",
       url: "https://turnipbakes.com",
       mediaPosition: "center",
     },

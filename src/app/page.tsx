@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   const workExperience = [
     {
@@ -55,20 +57,45 @@ export default function Home() {
       </h1>
 
       <div className="retro-card">
-        <h2 style={{ fontSize: '32px', marginBottom: '20px', color: 'var(--magenta)' }}>
-          Experience
-        </h2>
+        <div className="panel-head">
+          welcome.txt
+          <span className="right">200% hand-tuned</span>
+        </div>
+        <p>
+          hi, i&apos;m steven. i build backend services by day and small useful
+          things the rest of the time. this is where i keep my projects, my
+          links, and the occasional write-up.
+        </p>
+        <p style={{ marginBottom: 0 }}>
+          currently deep in <Link href="/projects/mise">mise</Link>, an ai
+          planning co-pilot for people who sell at farmers markets.
+        </p>
+      </div>
 
-        <ul style={{ listStyle: 'none', padding: 0 }}>
+      <div className="retro-card">
+        <div className="panel-head">
+          experience
+          <span className="right">{workExperience.length} entries</span>
+        </div>
+
+        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
           {workExperience.map((job, index) => (
-            <li key={index} style={{ marginBottom: '25px', paddingBottom: '20px', borderBottom: '1px dashed var(--border-dim)' }}>
-              <h3 style={{ fontSize: '28px', color: 'var(--magenta)', marginBottom: '10px' }}>
-                {job.title}
+            <li
+              key={index}
+              style={{
+                marginBottom: '20px',
+                paddingBottom: '18px',
+                borderBottom: index === workExperience.length - 1 ? 'none' : '1px dashed var(--border-dim)',
+              }}
+            >
+              <h3 style={{ fontSize: '28px', color: 'var(--magenta)', margin: '0 0 6px' }}>
+                <span style={{ color: 'var(--cyan)' }}>&gt;</span> {job.title}
               </h3>
-              <p style={{ fontSize: '22px', color: 'var(--ink)', marginBottom: '8px' }}>
-                {job.company} | {job.period}
+              <p style={{ marginBottom: '8px' }}>
+                <span style={{ color: 'var(--cyan)' }}>{job.company}</span>
+                <span className="meta"> [{job.period}]</span>
               </p>
-              <p style={{ fontSize: '20px', color: 'var(--ink)' }}>
+              <p style={{ marginBottom: 0 }}>
                 {job.description}
               </p>
             </li>

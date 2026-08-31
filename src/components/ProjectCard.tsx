@@ -15,6 +15,8 @@ export interface Project {
   bookmarkletCode?: string;
   bookmarkletName?: string;
   detailSlug?: string;
+  /** Short tag shown in the card's title bar, e.g. "new". Blinks, on purpose. */
+  tag?: string;
   url?: string; // External link (e.g., GitHub repo)
   mediaPosition?: 'left' | 'center' | 'right'; // Horizontal position of media on the right side
 }
@@ -50,15 +52,20 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <div className="retro-card">
+      <div className="panel-head">
+        <h2 style={{ fontSize: '22px', margin: 0, color: 'inherit', letterSpacing: 'inherit', fontFamily: 'inherit' }}>{project.name}</h2>
+        {project.tag && (
+          <span className="right">
+            <span className="tag-new blink">{project.tag}</span>
+          </span>
+        )}
+      </div>
       <div className={styles.cardContainer}>
         {/* Top section: Content and Media side by side on desktop */}
         <div className={styles.topSection}>
           {/* Content - Always on left */}
           <div className={styles.contentWrapper}>
             <div className={styles.contentText}>
-              <h2 style={{ fontSize: '32px', marginBottom: '15px', color: 'var(--magenta)' }}>
-                {project.name}
-              </h2>
               <p style={{ fontSize: '22px', marginBottom: '10px', color: 'var(--ink)' }}>
                 {project.description}
               </p>
@@ -70,7 +77,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {project.bookmarkletCode && (
                 <div className={styles.bookmarkletContainer} style={{ marginBottom: '20px' }}>
                   <p style={{ fontSize: '18px', marginBottom: '15px', color: 'var(--ink)' }}>
-                    Drag this button to your bookmarks bar to use it:
+                    drag this button to your bookmarks bar to use it:
                   </p>
                   <a
                     ref={bookmarkletRef}
@@ -81,7 +88,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                       e.dataTransfer.effectAllowed = 'copy';
                     }}
                   >
-                    🔖 {project.bookmarkletName || project.name}
+                    &#9660; {project.bookmarkletName || project.name}
                   </a>
                   <p style={{ fontSize: '16px', marginTop: '10px', color: 'var(--ink)', fontStyle: 'italic', opacity: 0.7 }}>
                     (Drag to bookmarks bar, then click to use)
@@ -98,7 +105,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                   className="retro-button"
                   style={{ display: 'inline-block' }}
                 >
-                  📝 View Details →
+                  &gt;&gt; view details
                 </Link>
               )}
 
@@ -110,7 +117,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                   className="retro-button"
                   style={{ display: 'inline-block' }}
                 >
-                  🔗 View Project →
+                  &gt;&gt; visit site
                 </a>
               )}
             </div>

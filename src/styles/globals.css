@@ -15,6 +15,7 @@
   --magenta: #FF00FF;
   --lime: #39FF14;
   --amber: #FFD700;
+  --violet: #C08CFF;
   --border: #00FFFF;
   --border-dim: #2E4A6E;
   --shadow: rgba(255, 0, 255, 0.45);
@@ -106,9 +107,18 @@ a {
   text-decoration: underline;
 }
 
+a:visited {
+  color: var(--violet);
+}
+
 a:hover {
   color: var(--magenta);
   background: rgba(255, 0, 255, 0.12);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--magenta);
+  outline-offset: 2px;
 }
 
 /* ---------- Buttons ---------- */
@@ -150,15 +160,126 @@ a:hover {
   color: var(--ink);
 }
 
-/* Optional title bar for a panel: <div class="panel-head">PROJECTS</div> */
+/* Title bar for a panel: <div class="panel-head">projects <span>tag</span></div>
+   The negative margin pulls it out to the panel's own border. */
 .panel-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   background: var(--panel-alt);
   border-bottom: 2px solid var(--border);
   margin: -20px -20px 20px;
   padding: 6px 14px;
   color: var(--magenta);
+  font-size: 22px;
   letter-spacing: 3px;
   text-transform: uppercase;
+}
+
+.panel-head .right {
+  margin-left: auto;
+  letter-spacing: 1px;
+}
+
+/* ---------- Marquee ticker ---------- */
+
+.ticker {
+  border-bottom: 2px solid var(--border-dim);
+  background: var(--panel);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-track {
+  display: inline-block;
+  padding: 4px 0;
+  color: var(--amber);
+  font-size: 18px;
+  letter-spacing: 1px;
+  /* Two identical copies scroll past, so the loop has no visible seam. */
+  animation: ticker 26s linear infinite;
+}
+
+.ticker-track span {
+  padding: 0 16px;
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+
+  .glow,
+  .blink {
+    animation: none;
+  }
+}
+
+/* ---------- Breadcrumb ---------- */
+
+.breadcrumb {
+  color: var(--ink-dim);
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.breadcrumb a {
+  color: var(--cyan);
+}
+
+.breadcrumb .sep {
+  color: var(--magenta);
+  margin: 0 6px;
+}
+
+/* ---------- Small parts ---------- */
+
+/* Date / meta line: amber, bracketed, monospace-aligned. */
+.meta {
+  color: var(--amber);
+  font-size: 18px;
+}
+
+.tag-new {
+  color: #000;
+  background: var(--magenta);
+  padding: 0 6px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  vertical-align: middle;
+}
+
+/* Block link rows — the link-directory look, one target per row. */
+.link-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-dim);
+  background: var(--panel-alt);
+  color: var(--cyan);
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.link-row:hover {
+  background: var(--cyan);
+  border-color: var(--magenta);
+  color: #000;
+}
+
+.link-row .arrow {
+  margin-left: auto;
+  color: var(--magenta);
+}
+
+.link-row:hover .arrow {
+  color: #000;
 }
 
 /* ---------- Layout ---------- */

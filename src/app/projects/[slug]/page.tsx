@@ -43,13 +43,18 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
   return (
     <div>
+      <p className="breadcrumb">
+        you are here:{' '}
+        <Link href="/">home</Link>
+        <span className="sep">&gt;</span>
+        <Link href="/projects">projects</Link>
+        <span className="sep">&gt;</span>
+        {name}
+      </p>
+
       <div style={{ marginBottom: '20px' }}>
-        <Link
-          href="/projects"
-          className="retro-button"
-          style={{ display: 'inline-block', marginBottom: '20px' }}
-        >
-          ← Back to Projects
+        <Link href="/projects" className="retro-button" style={{ display: 'inline-block' }}>
+          ← back to projects
         </Link>
       </div>
 

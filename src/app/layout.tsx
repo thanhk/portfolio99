@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { VT323 } from "next/font/google";
 import "../styles/globals.css";
 import Sidebar from "@/components/Sidebar";
+import Ticker from "@/components/Ticker";
 import AnimatedBackground from "@/components/AnimatedBackground";
 
 const vt323 = VT323({
@@ -59,6 +60,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={vt323.variable}>
         <AnimatedBackground />
+        <Ticker />
         <div className="layout">
           <Sidebar />
           <main>
