@@ -1,0 +1,195 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 24px;
+}
+
+/* Below the two-column breakpoint the sidebar sits above the content, so it is
+   packed into a compact header instead of four full-width boxes the reader has
+   to scroll past to reach the page. */
+@media (max-width: 900px) {
+  .sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .identity,
+  .navBox {
+    grid-column: 1 / -1;
+  }
+
+  .navList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 10px;
+  }
+
+  .tagline {
+    margin-top: 6px;
+    padding-top: 6px;
+  }
+}
+
+.box {
+  background: var(--panel);
+  border: 2px solid var(--border);
+  box-shadow: 4px 4px 0 var(--shadow);
+}
+
+.boxHead {
+  background: var(--panel-alt);
+  border-bottom: 2px solid var(--border);
+  padding: 4px 10px;
+  color: var(--magenta);
+  font-size: 18px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.boxBody {
+  padding: 12px;
+}
+
+/* ---------- Identity ---------- */
+
+.name {
+  display: block;
+  color: var(--cyan);
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+}
+
+.handle {
+  color: var(--magenta);
+  font-size: 20px;
+}
+
+.tagline {
+  color: var(--ink-dim);
+  font-size: 18px;
+  margin-top: 8px;
+  border-top: 1px dashed var(--border-dim);
+  padding-top: 8px;
+}
+
+/* ---------- Nav ---------- */
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  display: block;
+  padding: 4px 8px;
+  color: var(--cyan);
+  font-size: 22px;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+/* The caret is the hover/active affordance, so it occupies space at all times
+   and the label never shifts sideways. */
+.navLink::before {
+  content: '>';
+  color: var(--magenta);
+  margin-right: 8px;
+  opacity: 0;
+}
+
+.navLink:hover {
+  background: rgba(0, 255, 255, 0.1);
+  border-color: var(--border-dim);
+  color: var(--magenta);
+}
+
+.navLink:hover::before,
+.active::before {
+  opacity: 1;
+}
+
+.active {
+  background: var(--panel-alt);
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+
+/* ---------- Status ---------- */
+
+.statusList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+.statusList li {
+  margin-bottom: 6px;
+}
+
+.key {
+  color: var(--ink-dim);
+}
+
+.online {
+  color: var(--lime);
+}
+
+.dot {
+  color: var(--lime);
+  margin-right: 4px;
+}
+
+/* ---------- 88x31 buttons ---------- */
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+/* Real 88x31 dimensions — the web-1.0 badge size. Drawn in CSS rather than
+   loaded as GIFs so there is nothing to host and nothing to go stale. */
+.badge {
+  width: 88px;
+  height: 31px;
+  border: 1px solid var(--cyan);
+  background: var(--panel-alt);
+  color: var(--cyan);
+  font-size: 14px;
+  line-height: 1.05;
+  letter-spacing: 0;
+  word-break: keep-all;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 2px;
+}
+
+.badge:hover {
+  background: var(--cyan);
+  color: #000;
+}
+
+.badgeAlt {
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+
+.badgeAlt:hover {
+  background: var(--magenta);
+  color: #000;
+}

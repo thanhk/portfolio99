@@ -54,16 +54,16 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
       </div>
 
       <div className="retro-card">
-        <h1 className="glow" style={{ fontSize: '48px', marginBottom: '20px', textAlign: 'center' }}>
+        <h1 className="glow page-title">
           {name}
         </h1>
         {description && (
-          <p style={{ fontSize: '24px', marginBottom: '15px', color: '#000080' }}>
+          <p style={{ fontSize: '24px', marginBottom: '15px', color: 'var(--ink)' }}>
             {description}
           </p>
         )}
         {tech && (
-          <p style={{ fontSize: '20px', marginBottom: '20px', color: '#000080' }}>
+          <p style={{ fontSize: '20px', marginBottom: '20px', color: 'var(--ink)' }}>
             <strong>Tech:</strong> {tech}
           </p>
         )}

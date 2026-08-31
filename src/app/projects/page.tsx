@@ -67,7 +67,7 @@ export default function Projects() {
 
   return (
     <div>
-      <h1 className="glow" style={{ fontSize: '48px', marginBottom: '30px', textAlign: 'center' }}>
+      <h1 className="glow page-title">
         My Projects
       </h1>
 

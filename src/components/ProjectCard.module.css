@@ -51,7 +51,7 @@
   width: auto;
   height: auto;
   object-fit: contain;
-  border: 3px solid #000080;
+  border: 2px solid var(--border);
   display: block;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
@@ -87,29 +87,28 @@
 .bookmarkletContainer {
   margin: 20px 0;
   padding: 15px;
-  background: #DDA0DD;
-  border: 2px solid #000080;
+  background: var(--panel-alt);
+  border: 2px solid var(--border-dim);
   border-radius: 0;
 }
 
 .bookmarkletLink {
   display: inline-block;
   padding: 12px 24px;
-  background: #000080;
-  color: #FFFFFF;
+  background: var(--magenta);
+  color: #000;
   text-decoration: none;
   font-size: 20px;
   font-family: var(--font-vt323), monospace;
-  border: 3px solid #FFFFFF;
+  border: 2px solid var(--cyan);
   cursor: grab;
   transition: all 0.2s ease;
   user-select: none;
 }
 
 .bookmarkletLink:hover {
-  background: #4169E1;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 128, 0.3);
+  background: var(--cyan);
+  box-shadow: 3px 3px 0 var(--magenta);
 }
 
 .bookmarkletLink:active {

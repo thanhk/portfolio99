@@ -1,23 +1,28 @@
 @import "tailwindcss";
 
+/*
+ * Dark web-1.0 / Y2K palette. Everything is a flat color on a dark ground:
+ * no gradients, no soft shadows — borders are hard, shadows are offset blocks.
+ */
 :root {
-  /* Retro 90s Color Palette */
-  --retro-bg: #ADD8E6;
-  --retro-bg-alt: #0000AA;
-  --retro-text: #00FF00;
-  --retro-text-alt: #8B008B;
-  --retro-accent: #FF00FF;
-  --retro-accent-alt: #4169E1;
-  --retro-border: #FFFFFF;
-  --retro-link: #00FFFF;
-  --retro-link-hover: #FF00FF;
-  --retro-card-bg: #E6E6FA;
-  --retro-shadow: rgba(0, 255, 255, 0.3);
+  --bg: #0A0A1F;
+  --bg-tile: #101028;
+  --panel: #14142E;
+  --panel-alt: #1D1D3E;
+  --ink: #C9D2FF;
+  --ink-dim: #8189BE;
+  --cyan: #00FFFF;
+  --magenta: #FF00FF;
+  --lime: #39FF14;
+  --amber: #FFD700;
+  --border: #00FFFF;
+  --border-dim: #2E4A6E;
+  --shadow: rgba(255, 0, 255, 0.45);
 }
 
 @theme inline {
-  --color-background: var(--retro-bg);
-  --color-foreground: var(--retro-text);
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
   --font-sans: var(--font-vt323), 'Courier New', monospace;
   --font-mono: 'Courier New', monospace;
 }
@@ -29,194 +34,201 @@
 }
 
 body {
-  background: var(--retro-bg);
-  color: #000080;
+  /* Starfield: three sparse dot layers over the dark ground, plus a faint grid.
+     All CSS — no image request, and it tiles cleanly at any viewport size. */
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.85) 50%, transparent 50%),
+    radial-gradient(1px 1px at 90px 120px, rgba(0, 255, 255, 0.75) 50%, transparent 50%),
+    radial-gradient(2px 2px at 160px 60px, rgba(255, 0, 255, 0.55) 50%, transparent 50%),
+    linear-gradient(var(--bg-tile) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-tile) 1px, transparent 1px);
+  background-size: 200px 200px, 220px 180px, 260px 240px, 40px 40px, 40px 40px;
+  background-attachment: fixed;
+  color: var(--ink);
   font-family: var(--font-vt323), 'Courier New', monospace;
   font-size: 20px;
   line-height: 1.6;
   min-height: 100vh;
 }
 
-/* Retro Text Effects */
+::selection {
+  background: var(--magenta);
+  color: #000;
+}
+
+/* ---------- Text effects ---------- */
+
 @keyframes blink {
-
-  0%,
-  50% {
-    opacity: 1;
-  }
-
-  51%,
-  100% {
-    opacity: 0;
-  }
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
 @keyframes glow {
-
-  0%,
-  100% {
-    text-shadow: 0 0 5px #FFFFFF, 0 0 10px #FFFFFF;
-  }
-
-  50% {
-    text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF, 0 0 30px #FFFFFF;
-  }
-}
-
-@keyframes scanline {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(100vh);
-  }
+  0%, 100% { text-shadow: 0 0 4px var(--cyan), 0 0 12px rgba(0, 255, 255, 0.6); }
+  50% { text-shadow: 0 0 8px var(--cyan), 0 0 22px rgba(0, 255, 255, 0.9), 0 0 34px rgba(255, 0, 255, 0.5); }
 }
 
 .blink {
-  animation: blink 1s infinite;
+  animation: blink 1s steps(1, end) infinite;
 }
 
 .glow {
-  animation: glow 2s ease-in-out infinite;
-  color: #000080;
+  animation: glow 2.4s ease-in-out infinite;
+  color: var(--cyan);
+  letter-spacing: 2px;
 }
 
-/* Retro Links */
+/* Page heading: the marks are decoration, so they are hidden from screen
+   readers rather than read out as punctuation. */
+.page-title {
+  font-size: 44px;
+  text-align: center;
+  margin-bottom: 26px;
+  padding-bottom: 14px;
+  border-bottom: 2px dashed var(--border-dim);
+}
+
+.page-title::before,
+.page-title::after {
+  content: '\25AA\25AA';
+  color: var(--magenta);
+  font-size: 26px;
+  vertical-align: middle;
+  margin: 0 14px;
+  animation: none;
+}
+
+/* ---------- Links ---------- */
+
 a {
-  color: #0000CD;
+  color: var(--cyan);
   text-decoration: underline;
-  transition: all 0.2s ease;
 }
 
 a:hover {
-  color: #8B008B;
-  text-shadow: 0 0 5px rgba(139, 0, 139, 0.5);
+  color: var(--magenta);
+  background: rgba(255, 0, 255, 0.12);
 }
 
-/* Retro Buttons */
+/* ---------- Buttons ---------- */
+
 .retro-button {
-  background: var(--retro-card-bg);
-  border: 3px solid #000080;
-  color: #000080;
-  padding: 10px 20px;
+  background: var(--panel-alt);
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+  padding: 8px 18px;
   font-family: var(--font-vt323), monospace;
-  font-size: 24px;
+  font-size: 22px;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  position: relative;
-  box-shadow: 0 0 10px rgba(0, 0, 128, 0.3);
-  transition: all 0.2s ease;
+  box-shadow: 3px 3px 0 var(--shadow);
 }
 
 .retro-button:hover {
-  background: #DDA0DD;
-  color: #8B008B;
-  box-shadow: 0 0 20px rgba(139, 0, 139, 0.5);
-  transform: translateY(-2px);
+  background: var(--cyan);
+  color: #000;
+  border-color: var(--magenta);
+  box-shadow: 3px 3px 0 var(--magenta);
 }
 
 .retro-button:active {
-  transform: translateY(0);
-  box-shadow: 0 0 5px rgba(0, 0, 128, 0.3);
+  /* Press the button into its own shadow */
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--magenta);
 }
 
-/* Retro Cards */
+/* ---------- Panels ---------- */
+
 .retro-card {
-  background: var(--retro-card-bg);
-  border: 2px solid var(--retro-border);
+  background: var(--panel);
+  border: 2px solid var(--border);
   padding: 20px;
   margin: 20px 0;
-  box-shadow: 0 0 15px var(--retro-shadow);
-  color: #000080;
+  box-shadow: 4px 4px 0 var(--shadow);
+  color: var(--ink);
 }
 
-/* Retro Table Styling */
-.retro-table {
-  border-collapse: collapse;
-  width: 100%;
-  border: 2px solid var(--retro-border);
-  background: var(--retro-card-bg);
+/* Optional title bar for a panel: <div class="panel-head">PROJECTS</div> */
+.panel-head {
+  background: var(--panel-alt);
+  border-bottom: 2px solid var(--border);
+  margin: -20px -20px 20px;
+  padding: 6px 14px;
+  color: var(--magenta);
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
-.retro-table th,
-.retro-table td {
-  border: 1px solid var(--retro-border);
-  padding: 10px;
-  text-align: left;
-}
+/* ---------- Layout ---------- */
 
-.retro-table th {
-  background: var(--retro-bg-alt);
-  color: var(--retro-text-alt);
-  font-weight: bold;
-}
-
-/* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  body {
-    font-size: 18px;
-  }
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
 
-  .retro-button {
-    font-size: 20px;
-    padding: 8px 16px;
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
-/* Scrollbar Styling */
+/* ---------- Scrollbar ---------- */
+
 ::-webkit-scrollbar {
   width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--retro-bg);
+  background: var(--bg-tile);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00BFFF;
-  border: 2px solid var(--retro-border);
+  background: var(--panel-alt);
+  border: 2px solid var(--cyan);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0080FF;
+  background: var(--cyan);
 }
 
-/* Blog Post Content Styling */
+/* ---------- Markdown content inside panels ---------- */
+
 .retro-card h1,
 .retro-card h2,
 .retro-card h3,
 .retro-card h4,
 .retro-card h5,
 .retro-card h6 {
-  color: #8B008B;
+  color: var(--magenta);
   margin-top: 20px;
   margin-bottom: 15px;
   font-family: var(--font-vt323), monospace;
+  letter-spacing: 1px;
 }
 
-.retro-card h1 {
-  font-size: 36px;
-}
-
-.retro-card h2 {
-  font-size: 32px;
-}
-
-.retro-card h3 {
-  font-size: 28px;
-}
+.retro-card h1 { font-size: 36px; }
+.retro-card h2 { font-size: 32px; }
+.retro-card h3 { font-size: 28px; }
 
 .retro-card p {
   margin-bottom: 15px;
+}
+
+.retro-card strong {
+  color: var(--cyan);
 }
 
 .retro-card ul,
@@ -227,32 +239,51 @@ a:hover {
   padding-left: 20px;
 }
 
-.retro-card ul {
-  list-style-type: disc;
-}
-
-.retro-card ol {
-  list-style-type: decimal;
-}
+.retro-card ul { list-style-type: square; }
+.retro-card ol { list-style-type: decimal; }
 
 .retro-card li {
   margin-bottom: 8px;
   display: list-item;
 }
 
+.retro-card li::marker {
+  color: var(--magenta);
+}
+
+.retro-card hr {
+  border: 0;
+  border-top: 1px dashed var(--border-dim);
+  margin: 20px 0;
+}
+
+.retro-card blockquote {
+  border-left: 3px solid var(--magenta);
+  padding-left: 15px;
+  margin-bottom: 15px;
+  color: var(--ink-dim);
+}
+
 .retro-card code {
-  background: var(--retro-bg);
-  padding: 2px 6px;
+  background: var(--panel-alt);
+  border: 1px solid var(--border-dim);
+  padding: 1px 6px;
   font-family: 'Courier New', monospace;
-  font-size: 18px;
+  font-size: 17px;
+  color: var(--lime);
 }
 
 .retro-card pre {
-  background: var(--retro-bg);
-  border: 1px solid var(--retro-border);
+  background: var(--panel-alt);
+  border: 1px solid var(--border-dim);
   padding: 15px;
   overflow-x: auto;
   margin-bottom: 15px;
+}
+
+.retro-card pre code {
+  border: 0;
+  padding: 0;
 }
 
 .retro-card img {
@@ -261,7 +292,7 @@ a:hover {
   max-height: 520px;
   width: auto;
   height: auto;
-  border: 2px solid var(--retro-border);
+  border: 2px solid var(--border);
   margin: 15px 0;
 }
 
@@ -275,18 +306,34 @@ a:hover {
 .retro-card table {
   border-collapse: collapse;
   width: 100%;
-  border: 2px solid var(--retro-border);
+  border: 2px solid var(--border);
 }
 
 .retro-card th,
 .retro-card td {
-  border: 1px solid var(--retro-border);
+  border: 1px solid var(--border-dim);
   padding: 8px 12px;
   text-align: left;
   vertical-align: top;
 }
 
 .retro-card th {
-  background: var(--retro-bg);
-  font-weight: bold;
+  background: var(--panel-alt);
+  color: var(--magenta);
+  font-weight: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+
+  .retro-button {
+    font-size: 20px;
+    padding: 8px 14px;
+  }
 }

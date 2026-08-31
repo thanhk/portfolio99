@@ -50,25 +50,25 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <div>
-      <h1 className="glow" style={{ fontSize: '48px', marginBottom: '30px', textAlign: 'center' }}>
+      <h1 className="glow page-title">
         Steven Khuu
       </h1>
 
       <div className="retro-card">
-        <h2 style={{ fontSize: '32px', marginBottom: '20px', color: '#8B008B' }}>
+        <h2 style={{ fontSize: '32px', marginBottom: '20px', color: 'var(--magenta)' }}>
           Experience
         </h2>
 
         <ul style={{ listStyle: 'none', padding: 0 }}>
           {workExperience.map((job, index) => (
-            <li key={index} style={{ marginBottom: '25px', paddingBottom: '20px', borderBottom: '1px dashed #000080' }}>
-              <h3 style={{ fontSize: '28px', color: '#8B008B', marginBottom: '10px' }}>
+            <li key={index} style={{ marginBottom: '25px', paddingBottom: '20px', borderBottom: '1px dashed var(--border-dim)' }}>
+              <h3 style={{ fontSize: '28px', color: 'var(--magenta)', marginBottom: '10px' }}>
                 {job.title}
               </h3>
-              <p style={{ fontSize: '22px', color: '#000080', marginBottom: '8px' }}>
+              <p style={{ fontSize: '22px', color: 'var(--ink)', marginBottom: '8px' }}>
                 {job.company} | {job.period}
               </p>
-              <p style={{ fontSize: '20px', color: '#000080' }}>
+              <p style={{ fontSize: '20px', color: 'var(--ink)' }}>
                 {job.description}
               </p>
             </li>

@@ -30,12 +30,12 @@ export default function Links() {
 
   return (
     <div>
-      <h1 className="glow" style={{ fontSize: '48px', marginBottom: '30px', textAlign: 'center' }}>
+      <h1 className="glow page-title">
         Links
       </h1>
 
       <div className="retro-card" style={{ marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '32px', marginBottom: '20px', color: '#8B008B' }}>
+        <h2 style={{ fontSize: '32px', marginBottom: '20px', color: 'var(--magenta)' }}>
           Social Links
         </h2>
         <ul style={{ listStyle: 'none', padding: 0 }}>

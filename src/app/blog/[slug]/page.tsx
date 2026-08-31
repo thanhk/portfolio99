@@ -53,11 +53,11 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
       </div>
 
       <div className="retro-card">
-        <h1 className="glow" style={{ fontSize: '48px', marginBottom: '20px', textAlign: 'center' }}>
+        <h1 className="glow page-title">
           {title}
         </h1>
         {date && (
-          <p style={{ fontSize: '20px', marginBottom: '20px', color: '#000080', textAlign: 'center', fontStyle: 'italic' }}>
+          <p style={{ fontSize: '20px', marginBottom: '20px', color: 'var(--ink)', textAlign: 'center', fontStyle: 'italic' }}>
             <span style={{ fontFamily: 'system-ui, -apple-system, sans-serif', display: 'inline-block', verticalAlign: 'middle' }}>📅</span>{' '}
             {parseLocalDate(date).toLocaleDateString('en-US', {
               year: 'numeric',

@@ -29,7 +29,7 @@ export default async function Blog() {
 
   return (
     <div>
-      <h1 className="glow" style={{ fontSize: '48px', marginBottom: '30px', textAlign: 'center' }}>
+      <h1 className="glow page-title">
         Blog
       </h1>
 
@@ -38,11 +38,11 @@ export default async function Blog() {
           <p style={{ fontSize: '24px', marginBottom: '15px' }}>
             No blog posts yet.
           </p>
-          <p style={{ fontSize: '20px', color: '#000080' }}>
-            Add Markdown files to the <code style={{ background: '#DDA0DD', padding: '2px 6px' }}>public/blog/</code> folder to create posts.
+          <p style={{ fontSize: '20px', color: 'var(--ink)' }}>
+            Add Markdown files to the <code style={{ background: 'var(--panel-alt)', padding: '2px 6px' }}>public/blog/</code> folder to create posts.
           </p>
-          <p style={{ fontSize: '18px', marginTop: '15px', color: '#000080', fontStyle: 'italic' }}>
-            Filename format: <code style={{ background: '#DDA0DD', padding: '2px 6px' }}>YYYY-MM-DD-title.md</code> or just <code style={{ background: '#DDA0DD', padding: '2px 6px' }}>title.md</code>
+          <p style={{ fontSize: '18px', marginTop: '15px', color: 'var(--ink)', fontStyle: 'italic' }}>
+            Filename format: <code style={{ background: 'var(--panel-alt)', padding: '2px 6px' }}>YYYY-MM-DD-title.md</code> or just <code style={{ background: 'var(--panel-alt)', padding: '2px 6px' }}>title.md</code>
           </p>
         </div>
       ) : (
@@ -54,13 +54,13 @@ export default async function Blog() {
 
             return (
               <div key={post.slug} className="retro-card">
-                <h2 style={{ fontSize: '32px', marginBottom: '10px', color: '#8B008B' }}>
+                <h2 style={{ fontSize: '32px', marginBottom: '10px', color: 'var(--magenta)' }}>
                   <Link href={`/blog/${post.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     {title}
                   </Link>
                 </h2>
                 {date && (
-                  <p style={{ fontSize: '20px', color: '#000080', marginBottom: '10px' }}>
+                  <p style={{ fontSize: '20px', color: 'var(--ink)', marginBottom: '10px' }}>
                     📅 {parseLocalDate(date).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
@@ -69,7 +69,7 @@ export default async function Blog() {
                   </p>
                 )}
                 {description && (
-                  <p style={{ fontSize: '20px', color: '#000080', marginBottom: '10px' }}>
+                  <p style={{ fontSize: '20px', color: 'var(--ink)', marginBottom: '10px' }}>
                     {description}
                   </p>
                 )}

@@ -56,20 +56,20 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {/* Content - Always on left */}
           <div className={styles.contentWrapper}>
             <div className={styles.contentText}>
-              <h2 style={{ fontSize: '32px', marginBottom: '15px', color: '#8B008B' }}>
+              <h2 style={{ fontSize: '32px', marginBottom: '15px', color: 'var(--magenta)' }}>
                 {project.name}
               </h2>
-              <p style={{ fontSize: '22px', marginBottom: '10px', color: '#000080' }}>
+              <p style={{ fontSize: '22px', marginBottom: '10px', color: 'var(--ink)' }}>
                 {project.description}
               </p>
-              <p style={{ fontSize: '20px', marginBottom: '15px', color: '#000080' }}>
+              <p style={{ fontSize: '20px', marginBottom: '15px', color: 'var(--ink)' }}>
                 <strong>Tech:</strong> {project.tech}
               </p>
 
               {/* Bookmarklet */}
               {project.bookmarkletCode && (
                 <div className={styles.bookmarkletContainer} style={{ marginBottom: '20px' }}>
-                  <p style={{ fontSize: '18px', marginBottom: '15px', color: '#000080' }}>
+                  <p style={{ fontSize: '18px', marginBottom: '15px', color: 'var(--ink)' }}>
                     Drag this button to your bookmarks bar to use it:
                   </p>
                   <a
@@ -83,7 +83,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                   >
                     🔖 {project.bookmarkletName || project.name}
                   </a>
-                  <p style={{ fontSize: '16px', marginTop: '10px', color: '#000080', fontStyle: 'italic', opacity: 0.7 }}>
+                  <p style={{ fontSize: '16px', marginTop: '10px', color: 'var(--ink)', fontStyle: 'italic', opacity: 0.7 }}>
                     (Drag to bookmarks bar, then click to use)
                   </p>
                 </div>
