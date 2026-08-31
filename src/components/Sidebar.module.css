@@ -57,18 +57,40 @@
 
 /* ---------- Identity ---------- */
 
-.name {
-  display: block;
+.profileRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Stand-in avatar: initials in a framed square, no asset to load. */
+.avatar {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--cyan);
+  background: var(--panel-alt);
   color: var(--cyan);
-  font-size: 30px;
-  line-height: 1.1;
+  font-size: 24px;
   letter-spacing: 2px;
   text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
 }
 
+.name {
+  display: block;
+  color: var(--cyan);
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: 1px;
+}
+
 .handle {
+  display: block;
   color: var(--magenta);
-  font-size: 20px;
+  font-size: 19px;
 }
 
 .tagline {

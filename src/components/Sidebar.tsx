@@ -20,11 +20,15 @@ export default function Sidebar() {
   return (
     <aside className={styles.sidebar}>
       <div className={`${styles.box} ${styles.identity}`}>
+        <div className={styles.boxHead}>profile</div>
         <div className={styles.boxBody}>
-          <Link href="/" className={styles.name} style={{ textDecoration: 'none' }}>
-            STEVEN KHUU
-          </Link>
-          <span className={styles.handle}>@thanhk</span>
+          <div className={styles.profileRow}>
+            <span className={styles.avatar} aria-hidden="true">SK</span>
+            <span>
+              <span className={styles.name}>steven khuu</span>
+              <span className={styles.handle}>@thanhk</span>
+            </span>
+          </div>
           <p className={styles.tagline}>
             software engineer. builds things, breaks things, writes them down.
           </p>

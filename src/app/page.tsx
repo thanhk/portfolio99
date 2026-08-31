@@ -22,6 +22,20 @@ export default function Home() {
     },
   ];
 
+  const featured = [
+    { slug: 'mise', name: 'Mise', blurb: 'ai planning co-pilot for market bakers' },
+    { slug: 'turnip-bakes', name: 'Turnip Bakes', blurb: 'storefront + ordering site for a home bakery' },
+  ];
+
+  /** Site changelog. Newest first; add a line whenever the site changes. */
+  const changelog = [
+    { date: 'aug 31, 2026', text: 'rebuilt the site in a dark web-1.0 layout' },
+    { date: 'aug 05, 2026', text: 'added mise and turnip bakes to projects' },
+    { date: 'jan 24, 2026', text: 'fixed the project card layout' },
+    { date: 'jan 18, 2026', text: 'wrote up ig follow checker' },
+    { date: 'jan 07, 2026', text: 'blog + markdown pipeline' },
+  ];
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -56,51 +70,96 @@ export default function Home() {
         Steven Khuu
       </h1>
 
-      <div className="retro-card">
-        <div className="panel-head">
-          welcome.txt
-          <span className="right">200% hand-tuned</span>
-        </div>
-        <p>
-          hi, i&apos;m steven. i build backend services by day and small useful
-          things the rest of the time. this is where i keep my projects, my
-          links, and the occasional write-up.
-        </p>
-        <p style={{ marginBottom: 0 }}>
-          currently deep in <Link href="/projects/mise">mise</Link>, an ai
-          planning co-pilot for people who sell at farmers markets.
-        </p>
-      </div>
-
-      <div className="retro-card">
-        <div className="panel-head">
-          experience
-          <span className="right">{workExperience.length} entries</span>
+      <div className="grid">
+        <div className="retro-card col-full">
+          <div className="panel-head">
+            welcome.txt
+            <span className="right">200% hand-tuned</span>
+          </div>
+          <p>
+            hi, i&apos;m steven. i build backend services by day and small useful
+            things the rest of the time. this is where i keep my projects, my
+            links, and the occasional write-up.
+          </p>
+          <p style={{ marginBottom: 0 }}>
+            currently deep in <Link href="/projects/mise">mise</Link>, an ai
+            planning co-pilot for people who sell at farmers markets.
+          </p>
         </div>
 
-        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-          {workExperience.map((job, index) => (
-            <li
-              key={index}
-              style={{
-                marginBottom: '20px',
-                paddingBottom: '18px',
-                borderBottom: index === workExperience.length - 1 ? 'none' : '1px dashed var(--border-dim)',
-              }}
-            >
-              <h3 style={{ fontSize: '28px', color: 'var(--magenta)', margin: '0 0 6px' }}>
-                <span style={{ color: 'var(--cyan)' }}>&gt;</span> {job.title}
-              </h3>
-              <p style={{ marginBottom: '8px' }}>
-                <span style={{ color: 'var(--cyan)' }}>{job.company}</span>
-                <span className="meta"> [{job.period}]</span>
-              </p>
-              <p style={{ marginBottom: 0 }}>
-                {job.description}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <div className="retro-card col-half">
+          <div className="panel-head">
+            latest projects
+            <span className="right">2 new</span>
+          </div>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {featured.map((item, index) => (
+              <li
+                key={item.slug}
+                style={{
+                  marginBottom: '12px',
+                  paddingBottom: '12px',
+                  borderBottom: index === featured.length - 1 ? 'none' : '1px dashed var(--border-dim)',
+                }}
+              >
+                <Link href={`/projects/${item.slug}`}>{item.name}</Link>{' '}
+                <span className="tag-new blink">new!</span>
+                <br />
+                <span style={{ color: 'var(--ink-dim)', fontSize: '18px' }}>{item.blurb}</span>
+              </li>
+            ))}
+          </ul>
+          <Link href="/projects" className="retro-button" style={{ marginTop: '6px' }}>
+            &gt;&gt; all projects
+          </Link>
+        </div>
+
+        <div className="retro-card col-half">
+          <div className="panel-head">
+            changelog
+            <span className="right">{changelog.length} entries</span>
+          </div>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {changelog.map((entry) => (
+              <li key={entry.date} style={{ marginBottom: '8px' }}>
+                <span className="meta">[{entry.date}]</span>
+                <br />
+                {entry.text}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="retro-card col-full">
+          <div className="panel-head">
+            experience
+            <span className="right">{workExperience.length} entries</span>
+          </div>
+
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {workExperience.map((job, index) => (
+              <li
+                key={index}
+                style={{
+                  marginBottom: '20px',
+                  paddingBottom: '18px',
+                  borderBottom: index === workExperience.length - 1 ? 'none' : '1px dashed var(--border-dim)',
+                }}
+              >
+                <h3 style={{ fontSize: '28px', color: 'var(--magenta)', margin: '0 0 6px' }}>
+                  <span style={{ color: 'var(--cyan)' }}>&gt;</span> {job.title}
+                </h3>
+                <p style={{ marginBottom: '8px' }}>
+                  <span style={{ color: 'var(--cyan)' }}>{job.company}</span>
+                  <span className="meta"> [{job.period}]</span>
+                </p>
+                <p style={{ marginBottom: 0 }}>
+                  {job.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
     </>

@@ -3,6 +3,8 @@ import { VT323 } from "next/font/google";
 import "../styles/globals.css";
 import Sidebar from "@/components/Sidebar";
 import Ticker from "@/components/Ticker";
+import SiteFooter from "@/components/SiteFooter";
+import Link from "next/link";
 import AnimatedBackground from "@/components/AnimatedBackground";
 
 const vt323 = VT323({
@@ -60,12 +62,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={vt323.variable}>
         <AnimatedBackground />
-        <Ticker />
-        <div className="layout">
-          <Sidebar />
-          <main>
-            {children}
-          </main>
+        <div className="screen">
+          <header className="masthead">
+            <Link href="/" className="wordmark">thanhk.com</Link>
+            <div className="sub">the personal site of steven khuu</div>
+          </header>
+          <Ticker />
+          <div className="layout">
+            <Sidebar />
+            <main>
+              {children}
+            </main>
+          </div>
+          <SiteFooter />
         </div>
       </body>
     </html>
