@@ -276,6 +276,101 @@ a:focus-visible {
   vertical-align: middle;
 }
 
+/* Tech chips — a bracketed tag row reads denser than a "Tech:" sentence. */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.chip {
+  border: 1px solid var(--border-dim);
+  background: var(--panel-alt);
+  color: var(--ink-dim);
+  font-size: 16px;
+  padding: 0 7px;
+  letter-spacing: 1px;
+}
+
+/* Index table: the contents listing at the top of a section. */
+.index-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+}
+
+.index-table th {
+  text-align: left;
+  padding: 4px 10px;
+  border-bottom: 1px solid var(--border-dim);
+  color: var(--magenta);
+  font-weight: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.index-table td {
+  padding: 4px 10px;
+  border-bottom: 1px dashed var(--border-dim);
+  vertical-align: top;
+}
+
+.index-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.index-table tr:hover td {
+  background: rgba(0, 255, 255, 0.06);
+}
+
+.index-table td.num {
+  color: var(--ink-dim);
+  width: 1%;
+  white-space: nowrap;
+}
+
+.index-table td.year {
+  color: var(--amber);
+  width: 1%;
+  white-space: nowrap;
+}
+
+.index-table td.status {
+  color: var(--lime);
+  width: 1%;
+  white-space: nowrap;
+  text-transform: lowercase;
+}
+
+/* Copy-paste snippet box, for the link-back button. */
+.snippet {
+  width: 100%;
+  min-height: 78px;
+  resize: vertical;
+  background: var(--panel-alt);
+  border: 1px solid var(--border-dim);
+  color: var(--lime);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.button-shelf {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.button-shelf img {
+  image-rendering: pixelated;
+  border: 0;
+  margin: 0;
+}
+
 /* Block link rows — the link-directory look, one target per row. */
 .link-row {
   display: flex;
