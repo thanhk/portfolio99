@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import ProjectCard, { Project } from '@/components/ProjectCard';
 import { igFollowCheckerSource, makeBookmarklet } from "@/lib/bookmarklets.generated";
 
@@ -15,6 +16,8 @@ export default function Projects() {
   const projects: Project[] = [
     {
       name: "Mise",
+      year: "2026",
+      status: "beta",
       description: "AI planning co-pilot for makers who sell at farmers markets and pop-ups. Describe an event by voice, get a full batch and pricing plan back.",
       tech: "React Native (Expo), TypeScript, Supabase, Anthropic API",
       imageUrl: "/assets/mise-lockup.png",
@@ -25,6 +28,8 @@ export default function Projects() {
     },
     {
       name: "Turnip Bakes",
+      year: "2026",
+      status: "live",
       description: "Storefront and ordering site for a home bakery - menu, cart, custom cake requests, and order emails",
       tech: "Next.js 16, React 19, TypeScript, Tailwind CSS 4",
       imageUrl: "/assets/turnip-bakes-cake.png",
@@ -35,6 +40,8 @@ export default function Projects() {
     },
     {
       name: "IG_FOLLOW_CHECKER",
+      year: "2026",
+      status: "live",
       description: "A bookmarklet to check your followers and following on Instagram",
       tech: "JavaScript",
       bookmarkletCode: makeBookmarklet(igFollowCheckerSource),
@@ -44,12 +51,16 @@ export default function Projects() {
     },
     {
       name: "Target Stock Discord Hook",
+      year: "2025",
+      status: "done",
       description: "Using Target's RedSky API to get stock updates and send to a Discord channel",
       tech: "Python",
       url: "https://github.com/thanhk/redsky_discordhook",
     },
     {
       name: "Rise of the Elements",
+      year: "2022",
+      status: "game jam",
       description: "Top-down RPG game built with friends for a game jam",
       tech: "C#, Unity",
       imageUrl: "/assets/rise-of-the-elements-demo.gif",
@@ -58,6 +69,8 @@ export default function Projects() {
     },
     {
       name: "IoT Anomaly Detector",
+      year: "2021",
+      status: "done",
       description: "Live monitoring of IoT device data using AWS services",
       tech: "AWS, Python, Swift",
       videoUrl: "/assets/iot-anomaly-detector-demo.mp4",
@@ -72,6 +85,41 @@ export default function Projects() {
       <h1 className="glow page-title">
         My Projects
       </h1>
+
+      <div className="retro-card">
+        <div className="panel-head">
+          index
+          <span className="right">{projects.length} entries</span>
+        </div>
+        <div className="table-scroll">
+          <table className="index-table">
+            <thead>
+              <tr>
+                <th className="num">#</th>
+                <th>project</th>
+                <th className="year">year</th>
+                <th className="status">status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {projects.map((project, index) => (
+                <tr key={project.name}>
+                  <td className="num">{String(index + 1).padStart(2, '0')}</td>
+                  <td>
+                    {project.detailSlug ? (
+                      <Link href={`/projects/${project.detailSlug}`}>{project.name}</Link>
+                    ) : (
+                      project.name
+                    )}
+                  </td>
+                  <td className="year">{project.year}</td>
+                  <td className="status">{project.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <div style={{ display: 'grid', gap: '20px' }}>
         {projects.map((project, index) => (

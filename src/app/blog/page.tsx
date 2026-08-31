@@ -46,45 +46,55 @@ export default async function Blog() {
           </p>
         </div>
       ) : (
-        <div style={{ display: 'grid', gap: '20px' }}>
-          {sortedPosts.map((post) => {
-            const title = (typeof post.data.title === 'string' ? post.data.title : null) || post.slug.replace(/-/g, ' ');
-            const date = typeof post.data.date === 'string' ? post.data.date : null;
-            const description = typeof post.data.description === 'string' ? post.data.description : null;
+        <div className="retro-card">
+          <div className="panel-head">
+            archive
+            <span className="right">{sortedPosts.length} {sortedPosts.length === 1 ? 'post' : 'posts'}</span>
+          </div>
+          <div className="table-scroll">
+            <table className="index-table">
+              <thead>
+                <tr>
+                  <th className="year">date</th>
+                  <th>post</th>
+                  <th className="status">read</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedPosts.map((post) => {
+                  const title = (typeof post.data.title === 'string' ? post.data.title : null) || post.slug.replace(/-/g, ' ');
+                  const date = typeof post.data.date === 'string' ? post.data.date : null;
+                  const description = typeof post.data.description === 'string' ? post.data.description : null;
 
-            return (
-              <div key={post.slug} className="retro-card">
-                <div className="panel-head">
-                  <h2 style={{ fontSize: '22px', margin: 0, color: 'inherit', letterSpacing: 'inherit', fontFamily: 'inherit' }}>
-                    <Link href={`/blog/${post.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                      {title}
-                    </Link>
-                  </h2>
-                </div>
-                {date && (
-                  <p className="meta" style={{ marginBottom: '10px' }}>
-                    [{parseLocalDate(date).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: '2-digit',
-                    }).toLowerCase()}]
-                  </p>
-                )}
-                {description && (
-                  <p style={{ marginBottom: '10px' }}>
-                    {description}
-                  </p>
-                )}
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="retro-button"
-                  style={{ display: 'inline-block', marginTop: '10px' }}
-                >
-                  &gt;&gt; read post
-                </Link>
-              </div>
-            );
-          })}
+                  return (
+                    <tr key={post.slug}>
+                      <td className="year">
+                        {date
+                          ? parseLocalDate(date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: '2-digit',
+                            }).toLowerCase()
+                          : '—'}
+                      </td>
+                      <td>
+                        <Link href={`/blog/${post.slug}`}>{title}</Link>
+                        {description && (
+                          <>
+                            <br />
+                            <span style={{ color: 'var(--ink-dim)', fontSize: '18px' }}>{description}</span>
+                          </>
+                        )}
+                      </td>
+                      <td className="status">
+                        <Link href={`/blog/${post.slug}`}>&gt;&gt;</Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

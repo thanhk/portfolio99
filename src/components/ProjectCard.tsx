@@ -17,6 +17,10 @@ export interface Project {
   detailSlug?: string;
   /** Short tag shown in the card's title bar, e.g. "new". Blinks, on purpose. */
   tag?: string;
+  /** Year the project was started. */
+  year?: string;
+  /** Where it stands now — "live", "beta", "done". */
+  status?: string;
   url?: string; // External link (e.g., GitHub repo)
   mediaPosition?: 'left' | 'center' | 'right'; // Horizontal position of media on the right side
 }
@@ -54,11 +58,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     <div className="retro-card">
       <div className="panel-head">
         <h2 style={{ fontSize: '22px', margin: 0, color: 'inherit', letterSpacing: 'inherit', fontFamily: 'inherit' }}>{project.name}</h2>
-        {project.tag && (
-          <span className="right">
-            <span className="tag-new blink">{project.tag}</span>
-          </span>
-        )}
+        <span className="right">
+          {project.year && <span className="meta">[{project.year}]</span>}
+          {project.status && <span style={{ marginLeft: '8px' }}>{project.status}</span>}
+          {project.tag && (
+            <span className="tag-new blink" style={{ marginLeft: '8px' }}>{project.tag}</span>
+          )}
+        </span>
       </div>
       <div className={styles.cardContainer}>
         {/* Top section: Content and Media side by side on desktop */}
@@ -69,9 +75,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               <p style={{ fontSize: '22px', marginBottom: '10px', color: 'var(--ink)' }}>
                 {project.description}
               </p>
-              <p style={{ fontSize: '20px', marginBottom: '15px', color: 'var(--ink)' }}>
-                <strong>Tech:</strong> {project.tech}
-              </p>
+              <div className="chips">
+                {project.tech.split(',').map((item) => (
+                  <span key={item} className="chip">{item.trim()}</span>
+                ))}
+              </div>
 
               {/* Bookmarklet */}
               {project.bookmarkletCode && (
