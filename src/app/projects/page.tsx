@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import ProjectCard, { Project } from '@/components/ProjectCard';
 import { igFollowCheckerSource, makeBookmarklet } from "@/lib/bookmarklets.generated";
 
@@ -24,7 +23,6 @@ export default function Projects() {
       detailSlug: "mise",
       tag: "new!",
       // TODO: waitlist landing page URL (mise-web deployment)
-      mediaPosition: "center",
     },
     {
       name: "Turnip Bakes",
@@ -36,7 +34,6 @@ export default function Projects() {
       detailSlug: "turnip-bakes",
       tag: "new!",
       url: "https://turnipbakes.com",
-      mediaPosition: "center",
     },
     {
       name: "IG_FOLLOW_CHECKER",
@@ -65,7 +62,6 @@ export default function Projects() {
       tech: "C#, Unity",
       imageUrl: "/assets/rise-of-the-elements-demo.gif",
       url: "https://github.com/thanhk/Rise-of-the-Elements",
-      mediaPosition: "left",
     },
     {
       name: "IoT Anomaly Detector",
@@ -76,7 +72,6 @@ export default function Projects() {
       videoUrl: "/assets/iot-anomaly-detector-demo.mp4",
       videoThumbnail: "/assets/iot-anomaly-detector-thumbnail.png",
       url: "https://github.com/thanhk/IoT-Anomaly-Detector",
-      mediaPosition: "center",
     },
   ];
 
@@ -85,41 +80,6 @@ export default function Projects() {
       <h1 className="glow page-title">
         My Projects
       </h1>
-
-      <div className="retro-card">
-        <div className="panel-head">
-          index
-          <span className="right">{projects.length} entries</span>
-        </div>
-        <div className="table-scroll">
-          <table className="index-table">
-            <thead>
-              <tr>
-                <th className="num">#</th>
-                <th>project</th>
-                <th className="year">year</th>
-                <th className="status">status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {projects.map((project, index) => (
-                <tr key={project.name}>
-                  <td className="num">{String(index + 1).padStart(2, '0')}</td>
-                  <td>
-                    {project.detailSlug ? (
-                      <Link href={`/projects/${project.detailSlug}`}>{project.name}</Link>
-                    ) : (
-                      project.name
-                    )}
-                  </td>
-                  <td className="year">{project.year}</td>
-                  <td className="status">{project.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
 
       <div style={{ display: 'grid', gap: '20px' }}>
         {projects.map((project, index) => (

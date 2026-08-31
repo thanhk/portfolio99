@@ -137,6 +137,11 @@ a:focus-visible {
   box-shadow: 3px 3px 0 var(--shadow);
 }
 
+.retro-button.sm {
+  font-size: 19px;
+  padding: 4px 12px;
+}
+
 .retro-button:hover {
   background: var(--cyan);
   color: #000;
@@ -345,30 +350,74 @@ a:focus-visible {
   text-transform: lowercase;
 }
 
-/* Copy-paste snippet box, for the link-back button. */
-.snippet {
-  width: 100%;
-  min-height: 78px;
-  resize: vertical;
-  background: var(--panel-alt);
-  border: 1px solid var(--border-dim);
-  color: var(--lime);
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
-  padding: 8px;
-}
-
-.button-shelf {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-}
-
-.button-shelf img {
-  image-rendering: pixelated;
-  border: 0;
+/* Dotted-leader rows: name, leader dots, value, action. */
+.retro-card ul.leader-list,
+.leader-list {
+  list-style: none;
   margin: 0;
+  padding: 0;
+}
+
+.leader-list li {
+  margin-bottom: 4px;
+  list-style: none;
+}
+
+.leader-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 8px;
+  color: var(--cyan);
+  text-decoration: none;
+  font-size: 21px;
+  border: 1px solid transparent;
+}
+
+.leader-row::before {
+  content: '>';
+  color: var(--magenta);
+}
+
+.leader-row:hover {
+  background: rgba(0, 255, 255, 0.08);
+  border-color: var(--border-dim);
+}
+
+.leader-name {
+  text-decoration: underline;
+}
+
+/* The dots fill whatever space is left between the name and the value. */
+.leader-dots {
+  flex: 1 1 auto;
+  min-width: 20px;
+  align-self: center;
+  border-bottom: 2px dotted var(--border-dim);
+  transform: translateY(-3px);
+}
+
+.leader-value {
+  color: var(--ink-dim);
+  font-size: 19px;
+}
+
+.leader-go {
+  color: var(--magenta);
+  font-size: 18px;
+  min-width: 58px;
+  text-align: right;
+}
+
+.leader-row:hover .leader-value,
+.leader-row:hover .leader-go {
+  color: var(--cyan);
+}
+
+@media (max-width: 560px) {
+  .leader-value {
+    display: none;
+  }
 }
 
 /* Block link rows — the link-directory look, one target per row. */

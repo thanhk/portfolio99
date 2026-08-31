@@ -14,7 +14,7 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .contentText {
@@ -23,31 +23,18 @@
 
 .mediaContainer {
   flex-shrink: 0;
-  max-width: 300px;
+  max-width: 200px;
   align-self: flex-start;
 }
 
 .actionButtons {
-  margin-top: auto;
-  padding-top: 15px;
+  padding-top: 5px;
 }
 
-/* Media position variations for desktop */
-.mediaPositionLeft {
-  margin-right: 40px;
-}
-
-.mediaPositionCenter {
-  margin-right: 20px;
-}
-
-.mediaPositionRight {
-  margin-right: 0;
-}
-
+.mediaContainer .retroMedia,
 .retroMedia {
-  max-width: 300px;
-  max-height: 300px;
+  max-width: 200px;
+  max-height: 200px;
   width: auto;
   height: auto;
   object-fit: contain;
