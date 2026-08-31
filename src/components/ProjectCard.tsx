@@ -22,7 +22,6 @@ export interface Project {
   /** Where it stands now — "live", "beta", "done". */
   status?: string;
   url?: string; // External link (e.g., GitHub repo)
-  mediaPosition?: 'left' | 'center' | 'right'; // Horizontal position of media on the right side
 }
 
 interface ProjectCardProps {
@@ -45,15 +44,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   const hasMedia = project.imageUrl || project.videoUrl;
 
-  // Get media container class based on position
-  const getMediaContainerClass = (): string => {
-    const position = project.mediaPosition || 'right';
-    const positionClass = position === 'left' ? styles.mediaPositionLeft :
-                         position === 'center' ? styles.mediaPositionCenter :
-                         styles.mediaPositionRight;
-    return `${styles.mediaContainer} ${positionClass}`;
-  };
-
   return (
     <div className="retro-card">
       <div className="panel-head">
@@ -72,7 +62,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {/* Content - Always on left */}
           <div className={styles.contentWrapper}>
             <div className={styles.contentText}>
-              <p style={{ fontSize: '22px', marginBottom: '10px', color: 'var(--ink)' }}>
+              <p style={{ fontSize: '20px', marginBottom: '10px', color: 'var(--ink)' }}>
                 {project.description}
               </p>
               <div className="chips">
@@ -84,8 +74,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {/* Bookmarklet */}
               {project.bookmarkletCode && (
                 <div className={styles.bookmarkletContainer} style={{ marginBottom: '20px' }}>
-                  <p style={{ fontSize: '18px', marginBottom: '15px', color: 'var(--ink)' }}>
-                    drag this button to your bookmarks bar to use it:
+                  <p style={{ fontSize: '18px', marginBottom: '12px', color: 'var(--ink-dim)' }}>
+                    drag to your bookmarks bar, then click it on instagram:
                   </p>
                   <a
                     ref={bookmarkletRef}
@@ -98,9 +88,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                   >
                     &#9660; {project.bookmarkletName || project.name}
                   </a>
-                  <p style={{ fontSize: '16px', marginTop: '10px', color: 'var(--ink)', fontStyle: 'italic', opacity: 0.7 }}>
-                    (Drag to bookmarks bar, then click to use)
-                  </p>
                 </div>
               )}
             </div>
@@ -110,8 +97,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {project.detailSlug && (
                 <Link
                   href={`/projects/${project.detailSlug}`}
-                  className="retro-button"
-                  style={{ display: 'inline-block' }}
+                  className="retro-button sm"
                 >
                   &gt;&gt; view details
                 </Link>
@@ -122,8 +108,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="retro-button"
-                  style={{ display: 'inline-block' }}
+                  className="retro-button sm"
                 >
                   &gt;&gt; visit site
                 </a>
@@ -133,7 +118,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
           {/* Media - On right for desktop, before action buttons for mobile */}
           {hasMedia && (
-            <div className={getMediaContainerClass()}>
+            <div className={styles.mediaContainer}>
               {/* Image/GIF Demo */}
               {project.imageUrl && (
                 <img
