@@ -123,7 +123,7 @@
   color: var(--on-accent);
   text-decoration: none;
   font-size: 20px;
-  font-family: var(--font-vt323), monospace;
+  font-family: var(--font-display);
   border: 2px solid var(--cyan);
   cursor: grab;
   transition: all 0.2s ease;
