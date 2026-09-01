@@ -711,6 +711,20 @@ a:focus-visible {
 
 /* ---------- Box grid ---------- */
 
+/* A stack of full-width panels. Like .grid, it zeroes the cards' own margins so
+   the spacing is the gap alone — otherwise each card adds its 20px top and
+   bottom on top of it, and a list of cards sits three times further apart than
+   the boxes on the home page. */
+.card-list {
+  display: grid;
+  gap: 20px;
+}
+
+.card-list > * {
+  margin: 0;
+}
+
+
 /* Fractional boxes, so a page can be a dashboard instead of a single column.
    Each row wraps on its own once the columns no longer fit. */
 .grid {

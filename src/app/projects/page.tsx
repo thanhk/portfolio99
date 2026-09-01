@@ -17,7 +17,7 @@ export default function Projects() {
         My Projects
       </h1>
 
-      <div style={{ display: 'grid', gap: '20px' }}>
+      <div className="card-list">
         {projects.map((project, index) => (
           <ProjectCard key={index} project={project} />
         ))}
