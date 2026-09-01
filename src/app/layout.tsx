@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { VT323 } from "next/font/google";
 import "../styles/globals.css";
-import Navigation from "@/components/Navigation";
+import Sidebar from "@/components/Sidebar";
+import Ticker from "@/components/Ticker";
+import SiteFooter from "@/components/SiteFooter";
+import Link from "next/link";
 import AnimatedBackground from "@/components/AnimatedBackground";
 
 const vt323 = VT323({
@@ -9,7 +12,15 @@ const vt323 = VT323({
   subsets: ["latin"],
   variable: "--font-vt323",
   display: "swap",
+  // Times is the chosen stand-in while VT323 loads, or if it never does.
+  fallback: ["Times New Roman", "Times", "serif"],
 });
+
+// These classes must sit on <html>, not <body>: the palette blocks declare
+// --font-body on :root, and a custom property's var() references resolve on the
+// element that declares it. On <body> the families would be invisible to :root
+// and every font would fall back.
+const fontVars = vt323.variable;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thanhk.com"),
@@ -56,13 +67,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={vt323.variable}>
+    <html lang="en" className={fontVars}>
+      <body>
         <AnimatedBackground />
-        <Navigation />
-        <main className="container">
-          {children}
-        </main>
+        <div className="screen">
+          <header className="masthead">
+            <Link href="/" className="wordmark">thanhk.com</Link>
+          </header>
+          <Ticker />
+          <div className="layout">
+            <Sidebar />
+            <main>
+              {children}
+            </main>
+          </div>
+          <SiteFooter />
+        </div>
       </body>
     </html>
   );

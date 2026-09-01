@@ -1,23 +1,9 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import styles from './ProjectCard.module.css';
-
-export interface Project {
-  name: string;
-  description: string;
-  tech: string;
-  // Optional features - can combine multiple
-  videoUrl?: string;
-  videoThumbnail?: string;
-  imageUrl?: string; // For GIFs or static images
-  bookmarkletCode?: string;
-  bookmarkletName?: string;
-  detailSlug?: string;
-  url?: string; // External link (e.g., GitHub repo)
-  mediaPosition?: 'left' | 'center' | 'right'; // Horizontal position of media on the right side
-}
+import type { Project } from '@/lib/projects';
 
 interface ProjectCardProps {
   project: Project;
@@ -25,6 +11,23 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const bookmarkletRef = useRef<HTMLAnchorElement | null>(null);
+  const codeRef = useRef<HTMLTextAreaElement | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const copyCode = async () => {
+    const code = project.bookmarkletCode;
+    if (!code) return;
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch {
+      // No clipboard permission (or an insecure origin) — select it instead so
+      // the reader can copy by hand.
+      codeRef.current?.select();
+      return;
+    }
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1500);
+  };
 
   useEffect(() => {
     if (!project.bookmarkletCode) return;
@@ -35,82 +38,104 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     bookmarkletRef.current.setAttribute('href', project.bookmarkletCode);
   }, [project.bookmarkletCode]);
 
-  const hasAnyFeature = project.videoUrl || project.imageUrl || project.bookmarkletCode || project.detailSlug || project.url;
-
   const hasMedia = project.imageUrl || project.videoUrl;
-
-  // Get media container class based on position
-  const getMediaContainerClass = (): string => {
-    const position = project.mediaPosition || 'right';
-    const positionClass = position === 'left' ? styles.mediaPositionLeft :
-                         position === 'center' ? styles.mediaPositionCenter :
-                         styles.mediaPositionRight;
-    return `${styles.mediaContainer} ${positionClass}`;
-  };
 
   return (
     <div className="retro-card">
+      <div className="panel-head">
+        <h2 style={{ fontSize: '1.375rem', margin: 0, color: 'inherit', letterSpacing: 'inherit', fontFamily: 'inherit' }}>{project.name}</h2>
+        <span className="right">
+          {project.year && <span className="meta">[{project.year}]</span>}
+          {project.status && <span style={{ marginLeft: '8px' }}>{project.status}</span>}
+          {project.tag && (
+            <span className="tag-new blink" style={{ marginLeft: '8px' }}>{project.tag}</span>
+          )}
+        </span>
+      </div>
       <div className={styles.cardContainer}>
         {/* Top section: Content and Media side by side on desktop */}
         <div className={styles.topSection}>
           {/* Content - Always on left */}
           <div className={styles.contentWrapper}>
             <div className={styles.contentText}>
-              <h2 style={{ fontSize: '32px', marginBottom: '15px', color: '#8B008B' }}>
-                {project.name}
-              </h2>
-              <p style={{ fontSize: '22px', marginBottom: '10px', color: '#000080' }}>
+              <p style={{ fontSize: '1.25rem', marginBottom: '12px', color: 'var(--ink)' }}>
                 {project.description}
               </p>
-              <p style={{ fontSize: '20px', marginBottom: '15px', color: '#000080' }}>
-                <strong>Tech:</strong> {project.tech}
-              </p>
+              <div className="chips">
+                {project.tech.split(',').map((item) => (
+                  <span key={item} className="chip">{item.trim()}</span>
+                ))}
+              </div>
 
-              {/* Bookmarklet */}
+              {/* Bookmarklet: a little source window, the way these were
+                  handed out — the code is right there to read and copy, and
+                  the tag beside it is the drag-to-install path. */}
               {project.bookmarkletCode && (
-                <div className={styles.bookmarkletContainer} style={{ marginBottom: '20px' }}>
-                  <p style={{ fontSize: '18px', marginBottom: '15px', color: '#000080' }}>
-                    Drag this button to your bookmarks bar to use it:
-                  </p>
-                  <a
-                    ref={bookmarkletRef}
-                    className={styles.bookmarkletLink}
-                    draggable={true}
-                    onDragStart={(e) => {
-                      e.dataTransfer.setData('text/plain', project.bookmarkletCode || '');
-                      e.dataTransfer.effectAllowed = 'copy';
-                    }}
-                  >
-                    🔖 {project.bookmarkletName || project.name}
-                  </a>
-                  <p style={{ fontSize: '16px', marginTop: '10px', color: '#000080', fontStyle: 'italic', opacity: 0.7 }}>
-                    (Drag to bookmarks bar, then click to use)
-                  </p>
+                <div className={styles.win}>
+                  <div className={styles.winBar}>
+                    <span>{(project.bookmarkletName || project.name).toLowerCase()}.js</span>
+                    <span className={styles.winBytes}>
+                      {(project.bookmarkletCode.length / 1024).toFixed(1)} kb
+                    </span>
+                  </div>
+                  <textarea
+                    ref={codeRef}
+                    className={styles.winCode}
+                    readOnly
+                    spellCheck={false}
+                    value={project.bookmarkletCode}
+                    onFocus={(e) => e.currentTarget.select()}
+                    aria-label={`${project.bookmarkletName || project.name} source`}
+                  />
+                  <div className={styles.winFoot}>
+                    <a
+                      ref={bookmarkletRef}
+                      className={styles.bookmarkletTag}
+                      draggable={true}
+                      onDragStart={(e) => {
+                        e.dataTransfer.setData('text/plain', project.bookmarkletCode || '');
+                        e.dataTransfer.effectAllowed = 'copy';
+                      }}
+                    >
+                      {project.bookmarkletName || project.name}
+                    </a>
+                    <button type="button" className={styles.winCopy} onClick={copyCode}>
+                      {copied ? 'copied!' : 'copy'}
+                    </button>
+                    <span className={styles.winHint}>drag the tag up to your bookmarks bar</span>
+                  </div>
                 </div>
               )}
             </div>
 
-            {/* Action Buttons - Inside content wrapper to fill dead space */}
-            <div className={styles.actionButtons} style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: hasAnyFeature ? '10px' : '0' }}>
+            {/* Actions read as links, not buttons — this is a page of entries,
+                not an app. */}
+            <div className={styles.cardLinks}>
               {project.detailSlug && (
-                <Link
-                  href={`/projects/${project.detailSlug}`}
-                  className="retro-button"
-                  style={{ display: 'inline-block' }}
-                >
-                  📝 View Details →
+                <Link href={`/projects/${project.detailSlug}`} className={styles.cardLink}>
+                  view details
                 </Link>
               )}
 
-              {project.url && (
+              {project.siteUrl && (
                 <a
-                  href={project.url}
+                  href={project.siteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="retro-button"
-                  style={{ display: 'inline-block' }}
+                  className={styles.cardLink}
                 >
-                  🔗 View Project →
+                  visit site
+                </a>
+              )}
+
+              {project.repoUrl && (
+                <a
+                  href={project.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.cardLink}
+                >
+                  source
                 </a>
               )}
             </div>
@@ -118,7 +143,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
           {/* Media - On right for desktop, before action buttons for mobile */}
           {hasMedia && (
-            <div className={getMediaContainerClass()}>
+            <div className={styles.mediaContainer}>
               {/* Image/GIF Demo */}
               {project.imageUrl && (
                 <img

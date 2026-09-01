@@ -1,0 +1,210 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 24px;
+}
+
+/* Below the two-column breakpoint the sidebar sits above the content, so it is
+   packed into a compact header instead of four full-width boxes the reader has
+   to scroll past to reach the page. */
+/* Below the two-column breakpoint the boxes join the page column directly, so
+   profile and nav sit above the content and status drops below it — the reader
+   reaches the page without scrolling past the whole sidebar. */
+@media (max-width: 900px) {
+  .sidebar {
+    display: contents;
+  }
+
+  .identity,
+  .navBox,
+  .statusBox {
+    margin: 0;
+  }
+
+  .identity {
+    order: 1;
+  }
+
+  .navBox {
+    order: 2;
+  }
+
+  .statusBox {
+    order: 4;
+  }
+
+  /* Nav becomes a row of real tap targets. */
+  .navList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .navList li {
+    flex: 1 1 auto;
+    margin: 0;
+  }
+
+  .navLink {
+    padding: 11px 10px;
+    text-align: center;
+    border-color: var(--border-dim);
+  }
+
+  /* The caret is dropped for inactive items to keep the row even, but the
+     active one keeps it — it's how the current page reads at a glance. */
+  .navLink::before {
+    display: none;
+  }
+
+  .active::before {
+    display: inline;
+    opacity: 1;
+  }
+
+  .tagline {
+    margin-top: 6px;
+    padding-top: 6px;
+  }
+}
+
+.box {
+  background: var(--panel);
+  border: 2px solid var(--border);
+  box-shadow: 4px 4px 0 var(--shadow);
+}
+
+.boxHead {
+  font-family: var(--font-display);
+  background: var(--panel-alt);
+  border-bottom: 2px solid var(--border);
+  padding: 4px 10px;
+  color: var(--magenta);
+  font-size: 1.125rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.boxBody {
+  padding: 12px;
+}
+
+/* ---------- Identity ---------- */
+
+.profileRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Stand-in avatar: initials in a framed square, no asset to load. */
+.avatar {
+  font-family: var(--font-display);
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--cyan);
+  background: var(--panel-alt);
+  color: var(--cyan);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px var(--glow-a);
+}
+
+.name {
+  font-family: var(--font-display);
+  display: block;
+  color: var(--cyan);
+  font-size: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: 1px;
+}
+
+.handle {
+  display: block;
+  color: var(--magenta);
+  font-size: 1.1875rem;
+}
+
+.tagline {
+  color: var(--ink-dim);
+  font-size: 1.125rem;
+  margin-top: 8px;
+  border-top: 1px dashed var(--border-dim);
+  padding-top: 8px;
+}
+
+/* ---------- Nav ---------- */
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  font-family: var(--font-display);
+  display: block;
+  padding: 4px 8px;
+  color: var(--cyan);
+  font-size: 1.375rem;
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+/* The caret is the hover/active affordance, so it occupies space at all times
+   and the label never shifts sideways. */
+.navLink::before {
+  content: '>';
+  color: var(--magenta);
+  margin-right: 8px;
+  opacity: 0;
+}
+
+.navLink:hover {
+  background: var(--tint-1);
+  border-color: var(--border-dim);
+  color: var(--magenta);
+}
+
+.navLink:hover::before,
+.active::before {
+  opacity: 1;
+}
+
+.active {
+  background: var(--panel-alt);
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+
+/* ---------- Status ---------- */
+
+.statusList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.125rem;
+}
+
+.statusList li {
+  margin-bottom: 6px;
+}
+
+.key {
+  color: var(--ink-dim);
+}
+
+.online {
+  color: var(--lime);
+}
+
+.dot {
+  color: var(--lime);
+  margin-right: 4px;
+}

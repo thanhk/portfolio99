@@ -15,11 +15,13 @@
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
   transition: transform 0.1s linear;
+  /* Background texture, not decoration the eye should land on. */
+  opacity: 0.32;
 }
 
 /* Pixelated Shark - Simple CSS-based sprite */
 .sprite-sprite-0 {
-  background: linear-gradient(135deg, #4169E1 0%, #000080 50%, #4169E1 100%);
+  background: var(--cyan);
   clip-path: polygon(
     0% 30%,
     20% 0%,
@@ -35,12 +37,12 @@
     10% 70%,
     0% 50%
   );
-  filter: drop-shadow(2px 2px 0px #000080);
+  filter: drop-shadow(0 0 6px var(--cyan));
 }
 
 /* Pixelated Dragon - Simple CSS-based sprite */
 .sprite-sprite-1 {
-  background: linear-gradient(135deg, #8B008B 0%, #6A006A 50%, #8B008B 100%);
+  background: var(--magenta);
   clip-path: polygon(
     20% 0%,
     40% 20%,
@@ -56,12 +58,12 @@
     0% 40%,
     10% 20%
   );
-  filter: drop-shadow(2px 2px 0px #6A006A);
+  filter: drop-shadow(0 0 6px var(--magenta));
 }
 
 /* Pixelated Fish - Simple CSS-based sprite */
 .sprite-sprite-2 {
-  background: linear-gradient(135deg, #00CED1 0%, #008B8B 50%, #00CED1 100%);
+  background: var(--lime);
   clip-path: polygon(
     0% 50%,
     30% 0%,
@@ -74,12 +76,12 @@
     50% 80%,
     30% 100%
   );
-  filter: drop-shadow(2px 2px 0px #008B8B);
+  filter: drop-shadow(0 0 6px var(--lime));
 }
 
 /* Pixelated Bird - Simple CSS-based sprite */
 .sprite-sprite-3 {
-  background: linear-gradient(135deg, #FF69B4 0%, #DC143C 50%, #FF69B4 100%);
+  background: var(--amber);
   clip-path: polygon(
     20% 20%,
     40% 0%,
@@ -92,7 +94,7 @@
     30% 50%,
     10% 40%
   );
-  filter: drop-shadow(2px 2px 0px #DC143C);
+  filter: drop-shadow(0 0 6px var(--amber));
 }
 
 /* If you want to use actual image files instead, uncomment and add your images to public/assets/ */

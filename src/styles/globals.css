@@ -1,25 +1,205 @@
 @import "tailwindcss";
 
+/*
+ * Web-1.0 styling: flat colors, hard borders, offset block shadows — no
+ * gradients and no soft shadows anywhere.
+ *
+ * Palettes. Every color the site uses lives here; nothing downstream hardcodes
+ * one. :root carries the live palette; the other blocks are alternates that
+ * can be switched on by setting data-theme on <html>.
+ *
+ * --on-accent is the text color that sits ON an accent fill (inverted buttons).
+ * --tint-1/2 are translucent accent washes for hovers.
+ *
+ * Type is chosen the same way, on data-font. Pixel faces carry far less ink
+ * per em than a serif, so each set also sets --font-scale to keep the body
+ * text at a comparable reading size.
+ */
+
 :root {
-  /* Retro 90s Color Palette */
-  --retro-bg: #ADD8E6;
-  --retro-bg-alt: #0000AA;
-  --retro-text: #00FF00;
-  --retro-text-alt: #8B008B;
-  --retro-accent: #FF00FF;
-  --retro-accent-alt: #4169E1;
-  --retro-border: #FFFFFF;
-  --retro-link: #00FFFF;
-  --retro-link-hover: #FF00FF;
-  --retro-card-bg: #E6E6FA;
-  --retro-shadow: rgba(0, 255, 255, 0.3);
+  --card-pad: 20px;
+}
+
+:root,
+:root[data-font="terminal"] {
+  --font-display: var(--font-vt323);
+  --font-body: var(--font-vt323);
+  --font-mono: var(--font-vt323), 'Courier New', monospace;
+  --font-scale: 1;
+}
+
+/* eggseed: Times at 16px, top to bottom. */
+:root[data-font="eggseed"] {
+  --font-display: 'Times New Roman', Times, serif;
+  --font-body: 'Times New Roman', Times, serif;
+  --font-mono: 'Courier New', monospace;
+  --font-scale: 0.8;
+}
+
+/* false dawn: a plain sans for reading, Times for headings. */
+:root[data-font="falsedawn"] {
+  --font-display: 'Times New Roman', Times, serif;
+  --font-body: Calibri, Candara, 'Segoe UI', Optima, sans-serif;
+  --font-mono: 'Courier New', monospace;
+  --font-scale: 0.8;
+}
+
+/* daikonet: MS PGothic throughout, the way the site itself does it. */
+:root[data-font="daikonet"] {
+  --font-display: 'MS PGothic', 'MS Gothic', Meiryo, 'Hiragino Kaku Gothic ProN', Tahoma, Verdana, sans-serif;
+  --font-body: 'MS PGothic', 'MS Gothic', Meiryo, 'Hiragino Kaku Gothic ProN', Tahoma, Verdana, sans-serif;
+  --font-mono: 'Courier New', monospace;
+  --font-scale: 0.8;
+}
+
+/* Pixel chrome over a serif body — the mix, kept from the last round. */
+:root[data-font="broadsheet"] {
+  --font-display: var(--font-vt323), 'Courier New', monospace;
+  --font-body: Georgia, 'Times New Roman', serif;
+  --font-mono: 'Courier New', monospace;
+  --font-scale: 0.8;
+}
+
+:root[data-theme="midnight"] {
+  --bg: #0A0A1F;
+  --bg-tile: #101028;
+  --bg-frame: rgba(10, 10, 31, 0.82);
+  --panel: #14142E;
+  --panel-alt: #1D1D3E;
+  --ink: #C9D2FF;
+  --ink-dim: #8189BE;
+  --cyan: #00FFFF;
+  --magenta: #FF00FF;
+  --lime: #39FF14;
+  --amber: #FFD700;
+  --violet: #C08CFF;
+  --border: #00FFFF;
+  --border-dim: #2E4A6E;
+  --shadow: rgba(255, 0, 255, 0.45);
+  --on-accent: #000000;
+  --tint-1: rgba(0, 255, 255, 0.08);
+  --tint-2: rgba(255, 0, 255, 0.12);
+  --glow-a: rgba(0, 255, 255, 0.75);
+  --glow-b: rgba(255, 0, 255, 0.6);
+  --star-a: rgba(255, 255, 255, 0.85);
+  --star-b: rgba(0, 255, 255, 0.75);
+  --star-c: rgba(255, 0, 255, 0.55);
+}
+
+/* Cream paper, ink text, cherry accents — the site's palette. The blocks below
+   are alternates: set data-theme on <html> to try one. */
+:root,
+:root[data-theme="parchment"] {
+  --bg: #F2E8D5;
+  --bg-tile: #E7D9BE;
+  --bg-frame: rgba(253, 249, 240, 0.88);
+  --panel: #FDF9F0;
+  --panel-alt: #EFE2CA;
+  --ink: #3A2E22;
+  --ink-dim: #7C6A55;
+  --cyan: #1F6F6B;
+  --magenta: #B3325A;
+  --lime: #3E7D32;
+  --amber: #A9741A;
+  --violet: #7A4E9B;
+  --border: #3A2E22;
+  --border-dim: #C2AE8C;
+  --shadow: rgba(179, 50, 90, 0.35);
+  --on-accent: #FDF9F0;
+  --tint-1: rgba(31, 111, 107, 0.10);
+  --tint-2: rgba(179, 50, 90, 0.12);
+  --glow-a: rgba(179, 50, 90, 0.30);
+  --glow-b: rgba(169, 116, 26, 0.30);
+  --star-a: rgba(58, 46, 34, 0.28);
+  --star-b: rgba(31, 111, 107, 0.30);
+  --star-c: rgba(179, 50, 90, 0.22);
+}
+
+/* Pale sky and clouds, navy ink — closest to the eggseed end of neocities. */
+:root[data-theme="skyline"] {
+  --bg: #E3F1FB;
+  --bg-tile: #D2E6F6;
+  --bg-frame: rgba(255, 255, 255, 0.86);
+  --panel: #FFFFFF;
+  --panel-alt: #DCEBF8;
+  --ink: #1F3A5F;
+  --ink-dim: #6A87A8;
+  --cyan: #0F7BAE;
+  --magenta: #D4488E;
+  --lime: #2E8B57;
+  --amber: #C98A00;
+  --violet: #7C6BD6;
+  --border: #7FB4D9;
+  --border-dim: #B7D4EA;
+  --shadow: rgba(15, 123, 174, 0.28);
+  --on-accent: #FFFFFF;
+  --tint-1: rgba(15, 123, 174, 0.09);
+  --tint-2: rgba(212, 72, 142, 0.10);
+  --glow-a: rgba(15, 123, 174, 0.30);
+  --glow-b: rgba(212, 72, 142, 0.28);
+  --star-a: rgba(255, 255, 255, 0.95);
+  --star-b: rgba(15, 123, 174, 0.22);
+  --star-c: rgba(212, 72, 142, 0.18);
+}
+
+/* Soft pink and lavender, plum ink — the webcore/kawaii corner. */
+:root[data-theme="blossom"] {
+  --bg: #FBE9F3;
+  --bg-tile: #F5D9EA;
+  --bg-frame: rgba(255, 252, 254, 0.88);
+  --panel: #FFFCFE;
+  --panel-alt: #F7E2EF;
+  --ink: #4A2740;
+  --ink-dim: #8C6A85;
+  --cyan: #2F8F86;
+  --magenta: #D6308C;
+  --lime: #4E9B4A;
+  --amber: #C2851C;
+  --violet: #8A5CD1;
+  --border: #E2A7CC;
+  --border-dim: #EFCEE2;
+  --shadow: rgba(214, 48, 140, 0.28);
+  --on-accent: #FFFCFE;
+  --tint-1: rgba(47, 143, 134, 0.09);
+  --tint-2: rgba(214, 48, 140, 0.10);
+  --glow-a: rgba(214, 48, 140, 0.30);
+  --glow-b: rgba(138, 92, 209, 0.28);
+  --star-a: rgba(255, 255, 255, 0.95);
+  --star-b: rgba(214, 48, 140, 0.20);
+  --star-c: rgba(138, 92, 209, 0.18);
+}
+
+/* Grey system chrome, blue links, purple visited — literally 1999. */
+:root[data-theme="system"] {
+  --bg: #C0C0C0;
+  --bg-tile: #B4B4B4;
+  --bg-frame: rgba(240, 240, 240, 0.94);
+  --panel: #FFFFFF;
+  --panel-alt: #E4E4E4;
+  --ink: #1A1A1A;
+  --ink-dim: #5E5E5E;
+  --cyan: #0000EE;
+  --magenta: #000080;
+  --lime: #008000;
+  --amber: #7A4B00;
+  --violet: #551A8B;
+  --border: #1A1A1A;
+  --border-dim: #9A9A9A;
+  --shadow: rgba(0, 0, 0, 0.35);
+  --on-accent: #FFFFFF;
+  --tint-1: rgba(0, 0, 238, 0.07);
+  --tint-2: rgba(0, 0, 128, 0.09);
+  --glow-a: rgba(0, 0, 238, 0.22);
+  --glow-b: rgba(0, 0, 128, 0.20);
+  --star-a: rgba(255, 255, 255, 0.9);
+  --star-b: rgba(0, 0, 0, 0.16);
+  --star-c: rgba(0, 0, 128, 0.14);
 }
 
 @theme inline {
-  --color-background: var(--retro-bg);
-  --color-foreground: var(--retro-text);
-  --font-sans: var(--font-vt323), 'Courier New', monospace;
-  --font-mono: 'Courier New', monospace;
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-body);
 }
 
 * {
@@ -28,195 +208,635 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: calc(16px * var(--font-scale));
+}
+
 body {
-  background: var(--retro-bg);
-  color: #000080;
-  font-family: var(--font-vt323), 'Courier New', monospace;
-  font-size: 20px;
+  /* Starfield: three sparse dot layers over the dark ground, plus a faint grid.
+     All CSS — no image request, and it tiles cleanly at any viewport size. */
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, var(--star-a) 50%, transparent 50%),
+    radial-gradient(1px 1px at 90px 120px, var(--star-b) 50%, transparent 50%),
+    radial-gradient(2px 2px at 160px 60px, var(--star-c) 50%, transparent 50%),
+    linear-gradient(var(--bg-tile) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-tile) 1px, transparent 1px);
+  background-size: 200px 200px, 220px 180px, 260px 240px, 40px 40px, 40px 40px;
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.25rem;
   line-height: 1.6;
   min-height: 100vh;
 }
 
-/* Retro Text Effects */
+::selection {
+  background: var(--magenta);
+  color: var(--on-accent);
+}
+
+/* ---------- Text effects ---------- */
+
 @keyframes blink {
-
-  0%,
-  50% {
-    opacity: 1;
-  }
-
-  51%,
-  100% {
-    opacity: 0;
-  }
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
 @keyframes glow {
-
-  0%,
-  100% {
-    text-shadow: 0 0 5px #FFFFFF, 0 0 10px #FFFFFF;
-  }
-
-  50% {
-    text-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFFFFF, 0 0 30px #FFFFFF;
-  }
-}
-
-@keyframes scanline {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(100vh);
-  }
+  0%, 100% { text-shadow: 0 0 4px var(--glow-a), 0 0 12px var(--glow-a); }
+  50% { text-shadow: 0 0 8px var(--glow-a), 0 0 22px var(--glow-a), 0 0 34px var(--glow-b); }
 }
 
 .blink {
-  animation: blink 1s infinite;
+  animation: blink 1s steps(1, end) infinite;
 }
 
 .glow {
-  animation: glow 2s ease-in-out infinite;
-  color: #000080;
+  animation: glow 2.4s ease-in-out infinite;
+  color: var(--cyan);
+  letter-spacing: 2px;
 }
 
-/* Retro Links */
+/* Page heading: the marks are decoration, so they are hidden from screen
+   readers rather than read out as punctuation. */
+ /* The heading carries its own rule: a line out to each margin, the way False
+    Dawn sets its headings. It replaces both the flanking marks and the separate
+    underline — the title is the divider. */
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 7vw, 2.75rem);
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.page-title::before,
+.page-title::after {
+  content: '';
+  flex: 1 1 0;
+  min-width: 20px;
+  height: 0;
+  border-top: 2px solid var(--border-dim);
+  animation: none;
+}
+
+/* ---------- Links ---------- */
+
 a {
-  color: #0000CD;
+  color: var(--cyan);
   text-decoration: underline;
-  transition: all 0.2s ease;
+}
+
+a:visited {
+  color: var(--violet);
 }
 
 a:hover {
-  color: #8B008B;
-  text-shadow: 0 0 5px rgba(139, 0, 139, 0.5);
+  color: var(--magenta);
+  background: var(--tint-2);
 }
 
-/* Retro Buttons */
+a:focus-visible {
+  outline: 2px solid var(--magenta);
+  outline-offset: 2px;
+}
+
+/* ---------- Buttons ---------- */
+
 .retro-button {
-  background: var(--retro-card-bg);
-  border: 3px solid #000080;
-  color: #000080;
-  padding: 10px 20px;
-  font-family: var(--font-vt323), monospace;
-  font-size: 24px;
+  background: var(--panel-alt);
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+  padding: 8px 18px;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  position: relative;
-  box-shadow: 0 0 10px rgba(0, 0, 128, 0.3);
-  transition: all 0.2s ease;
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+.retro-button.sm {
+  font-size: 1.1875rem;
+  padding: 4px 12px;
 }
 
 .retro-button:hover {
-  background: #DDA0DD;
-  color: #8B008B;
-  box-shadow: 0 0 20px rgba(139, 0, 139, 0.5);
-  transform: translateY(-2px);
+  background: var(--cyan);
+  color: var(--on-accent);
+  border-color: var(--magenta);
+  box-shadow: 3px 3px 0 var(--magenta);
 }
 
 .retro-button:active {
-  transform: translateY(0);
-  box-shadow: 0 0 5px rgba(0, 0, 128, 0.3);
+  /* Press the button into its own shadow */
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--magenta);
 }
 
-/* Retro Cards */
+/* ---------- Panels ---------- */
+
 .retro-card {
-  background: var(--retro-card-bg);
-  border: 2px solid var(--retro-border);
-  padding: 20px;
+  background: var(--panel);
+  /* Outer border, inner hairline, offset block shadow — a frame inside a frame. */
+  border: 2px solid var(--border);
+  outline: 1px solid var(--border-dim);
+  outline-offset: -5px;
+  padding: var(--card-pad);
   margin: 20px 0;
-  box-shadow: 0 0 15px var(--retro-shadow);
-  color: #000080;
+  box-shadow: 4px 4px 0 var(--shadow);
+  color: var(--ink);
 }
 
-/* Retro Table Styling */
-.retro-table {
-  border-collapse: collapse;
+/* Title bar for a panel: <div class="panel-head">projects <span>tag</span></div>
+   The negative margin pulls it out to the panel's own border. */
+.panel-head {
+  font-family: var(--font-display);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--panel-alt);
+  border-bottom: 2px solid var(--border);
+  margin: calc(var(--card-pad) * -1) calc(var(--card-pad) * -1) var(--card-pad);
+  padding: 6px 14px;
+  color: var(--magenta);
+  font-size: 1.25rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.panel-head .right {
+  margin-left: auto;
+  letter-spacing: 1px;
+  font-size: 1.0625rem;
+  color: var(--ink-dim);
+}
+
+
+/* ---------- Marquee ticker ---------- */
+
+.ticker {
+  border-bottom: 2px solid var(--border-dim);
+  background: var(--panel);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-track {
+  font-family: var(--font-display);
+  display: inline-block;
+  padding: 4px 0;
+  color: var(--amber);
+  font-size: 1.125rem;
+  letter-spacing: 1px;
+  /* Two identical copies scroll past, so the loop has no visible seam. */
+  animation: ticker 26s linear infinite;
+}
+
+.ticker-track span {
+  padding: 0 16px;
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+
+  .glow,
+  .blink {
+    animation: none;
+  }
+}
+
+/* ---------- Breadcrumb ---------- */
+
+.breadcrumb {
+  font-family: var(--font-display);
+  color: var(--ink-dim);
+  font-size: 1.125rem;
+  margin-bottom: 16px;
+}
+
+.breadcrumb a {
+  color: var(--cyan);
+}
+
+.breadcrumb .sep {
+  color: var(--magenta);
+  margin: 0 6px;
+}
+
+/* ---------- Small parts ---------- */
+
+/* Date / meta line: amber, bracketed, monospace-aligned. */
+.meta {
+  color: var(--amber);
+  font-size: 1.125rem;
+}
+
+.tag-new {
+  color: var(--on-accent);
+  background: var(--magenta);
+  padding: 0 6px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  vertical-align: middle;
+}
+
+/* In-content action link: » prefix, underlined. Buttons are reserved for
+   back-navigation chrome. */
+.text-link {
+  color: var(--cyan);
+  font-size: 1.25rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.text-link::before {
+  content: '\00BB';
+  color: var(--magenta);
+  margin-right: 6px;
+}
+
+.text-link:hover {
+  color: var(--magenta);
+  background: none;
+}
+
+/* Tech chips — a bracketed tag row reads denser than a "Tech:" sentence. */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.chip {
+  font-family: var(--font-display);
+  border: 1px solid var(--border-dim);
+  background: var(--panel-alt);
+  color: var(--ink-dim);
+  font-size: 1rem;
+  padding: 0 7px;
+  letter-spacing: 1px;
+}
+
+/* Index table: the contents listing at the top of a section. */
+.index-table {
   width: 100%;
-  border: 2px solid var(--retro-border);
-  background: var(--retro-card-bg);
+  border-collapse: collapse;
+  font-size: 1.125rem;
 }
 
-.retro-table th,
-.retro-table td {
-  border: 1px solid var(--retro-border);
-  padding: 10px;
+.index-table th {
+  font-family: var(--font-display);
   text-align: left;
+  padding: 4px 10px;
+  border-bottom: 1px solid var(--border-dim);
+  color: var(--magenta);
+  font-weight: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 1rem;
+  white-space: nowrap;
 }
 
-.retro-table th {
-  background: var(--retro-bg-alt);
-  color: var(--retro-text-alt);
-  font-weight: bold;
+.index-table td {
+  padding: 4px 10px;
+  border-bottom: 1px dashed var(--border-dim);
+  vertical-align: top;
 }
 
-/* Container */
+.index-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.index-table tr:hover td {
+  background: var(--tint-1);
+}
+
+.index-table td.num {
+  color: var(--ink-dim);
+  width: 1%;
+  white-space: nowrap;
+}
+
+.index-table td.year {
+  color: var(--amber);
+  width: 1%;
+  white-space: nowrap;
+}
+
+.index-table td.status {
+  color: var(--lime);
+  width: 1%;
+  white-space: nowrap;
+  text-transform: lowercase;
+}
+
+/* Dotted-leader rows: name, leader dots, value, action. */
+.retro-card ul.leader-list,
+.leader-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.leader-list li {
+  margin-bottom: 4px;
+  list-style: none;
+}
+
+.leader-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 8px;
+  color: var(--cyan);
+  text-decoration: none;
+  font-size: 1.3125rem;
+  border: 1px solid transparent;
+}
+
+.leader-row::before {
+  content: '>';
+  color: var(--magenta);
+}
+
+.leader-row:hover {
+  background: var(--tint-1);
+  border-color: var(--border-dim);
+}
+
+.leader-name {
+  text-decoration: underline;
+}
+
+/* The dots fill whatever space is left between the name and the value. */
+.leader-dots {
+  flex: 1 1 auto;
+  min-width: 20px;
+  align-self: center;
+  border-bottom: 2px dotted var(--border-dim);
+  transform: translateY(-3px);
+}
+
+.leader-value {
+  color: var(--ink-dim);
+  font-size: 1.1875rem;
+}
+
+.leader-go {
+  color: var(--magenta);
+  font-size: 1.125rem;
+  min-width: 58px;
+  text-align: right;
+}
+
+.leader-row:hover .leader-value,
+.leader-row:hover .leader-go {
+  color: var(--cyan);
+}
+
+@media (max-width: 560px) {
+  .leader-value {
+    display: none;
+  }
+}
+
+/* Block link rows — the link-directory look, one target per row. */
+.link-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-dim);
+  background: var(--panel-alt);
+  color: var(--cyan);
+  text-decoration: none;
+  font-size: 1.375rem;
+}
+
+.link-row:hover {
+  background: var(--cyan);
+  border-color: var(--magenta);
+  color: var(--on-accent);
+}
+
+.link-row .arrow {
+  margin-left: auto;
+  color: var(--magenta);
+}
+
+.link-row:hover .arrow {
+  color: var(--on-accent);
+}
+
+/* ---------- The page frame ---------- */
+
+.screen {
+  max-width: 1180px;
+  margin: 24px auto 40px;
+  border: 2px solid var(--cyan);
+  background: var(--bg-frame);
+  box-shadow: 6px 6px 0 var(--shadow), 0 0 40px var(--tint-1);
+}
+
+/* Keep the frame as long as there is room for it to read as a frame; only a
+   phone gives up the side borders. */
+@media (max-width: 1240px) {
+  .screen {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .screen {
+    border-left: 0;
+    border-right: 0;
+  }
+}
+
+.masthead {
+  border-bottom: 2px solid var(--cyan);
+  background-color: var(--panel-alt);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--tint-1) 0 2px,
+    transparent 2px 6px
+  );
+  padding: 14px 20px 10px;
+  text-align: center;
+}
+
+.masthead .wordmark {
+  font-family: var(--font-display);
+  display: inline-block;
+  color: var(--cyan);
+  font-size: clamp(1.9rem, 8vw, 2.875rem);
+  line-height: 1;
+  letter-spacing: clamp(2px, 1.2vw, 8px);
+  text-decoration: none;
+  text-shadow: 0 0 10px var(--glow-a), 3px 3px 0 var(--shadow);
+}
+
+.masthead .wordmark:hover {
+  background: none;
+  color: var(--magenta);
+  text-shadow: 0 0 10px var(--glow-b), 3px 3px 0 var(--glow-a);
+}
+
+.masthead .sub {
+  font-family: var(--font-display);
+  color: var(--ink-dim);
+  font-size: 1.0625rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.site-footer {
+  font-family: var(--font-display);
+  border-top: 2px solid var(--border-dim);
+  background: var(--panel-alt);
+  padding: 10px 20px;
+  text-align: center;
+  color: var(--ink-dim);
+  font-size: 1.0625rem;
+}
+
+.site-footer .sep {
+  color: var(--magenta);
+  margin: 0 10px;
+}
+
+/* ---------- Box grid ---------- */
+
+/* A stack of full-width panels. Like .grid, it zeroes the cards' own margins so
+   the spacing is the gap alone — otherwise each card adds its 20px top and
+   bottom on top of it, and a list of cards sits three times further apart than
+   the boxes on the home page. */
+.card-list {
+  display: grid;
+  gap: 20px;
+}
+
+.card-list > * {
+  margin: 0;
+}
+
+
+/* Fractional boxes, so a page can be a dashboard instead of a single column.
+   Each row wraps on its own once the columns no longer fit. */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.grid > * {
+  margin: 0 !important;
+}
+
+.col-full { flex: 1 1 100%; }
+.col-half { flex: 1 1 calc(50% - 10px); min-width: 280px; }
+.col-third { flex: 1 1 calc(33.333% - 14px); min-width: 240px; }
+.col-twothird { flex: 1 1 calc(66.666% - 10px); min-width: 300px; }
+
+/* Pushes a box to the end once the grid has collapsed to one column — the
+   changelog is context, not something to read before the page's own content. */
+@media (max-width: 900px) {
+  .grid > .mobile-last {
+    order: 1;
+  }
+}
+
+/* ---------- Layout ---------- */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  body {
-    font-size: 18px;
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    display: flex;
+    flex-direction: column;
+    /* The desktop rule sets align-items: start for the sticky sidebar; in a
+       column that would size every box to its own content, so the nav box came
+       out narrower than the rest. */
+    align-items: stretch;
+    gap: 16px;
+    padding-top: 16px;
   }
 
-  .retro-button {
-    font-size: 20px;
-    padding: 8px 16px;
+  .layout > main {
+    order: 3;
   }
 }
 
-/* Scrollbar Styling */
+/* ---------- Scrollbar ---------- */
+
 ::-webkit-scrollbar {
   width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--retro-bg);
+  background: var(--bg-tile);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00BFFF;
-  border: 2px solid var(--retro-border);
+  background: var(--panel-alt);
+  border: 2px solid var(--cyan);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0080FF;
+  background: var(--cyan);
 }
 
-/* Blog Post Content Styling */
+/* ---------- Markdown content inside panels ---------- */
+
 .retro-card h1,
 .retro-card h2,
 .retro-card h3,
 .retro-card h4,
 .retro-card h5,
 .retro-card h6 {
-  color: #8B008B;
+  color: var(--magenta);
   margin-top: 20px;
   margin-bottom: 15px;
-  font-family: var(--font-vt323), monospace;
+  font-family: var(--font-display);
+  letter-spacing: 1px;
 }
 
-.retro-card h1 {
-  font-size: 36px;
-}
-
-.retro-card h2 {
-  font-size: 32px;
-}
-
-.retro-card h3 {
-  font-size: 28px;
-}
+.retro-card h1 { font-size: 2.25rem; }
+.retro-card h2 { font-size: 2rem; }
+.retro-card h3 { font-size: 1.75rem; }
 
 .retro-card p {
   margin-bottom: 15px;
+}
+
+.retro-card strong {
+  color: var(--cyan);
 }
 
 .retro-card ul,
@@ -227,37 +847,228 @@ a:hover {
   padding-left: 20px;
 }
 
-.retro-card ul {
-  list-style-type: disc;
-}
-
-.retro-card ol {
-  list-style-type: decimal;
-}
+.retro-card ul { list-style-type: square; }
+.retro-card ol { list-style-type: decimal; }
 
 .retro-card li {
   margin-bottom: 8px;
   display: list-item;
 }
 
+.retro-card li::marker {
+  color: var(--magenta);
+}
+
+.retro-card hr {
+  border: 0;
+  border-top: 1px dashed var(--border-dim);
+  margin: 20px 0;
+}
+
+.retro-card blockquote {
+  border-left: 3px solid var(--magenta);
+  padding-left: 15px;
+  margin-bottom: 15px;
+  color: var(--ink-dim);
+}
+
 .retro-card code {
-  background: var(--retro-bg);
-  padding: 2px 6px;
-  font-family: 'Courier New', monospace;
-  font-size: 18px;
+  background: var(--panel-alt);
+  border: 1px solid var(--border-dim);
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--lime);
 }
 
 .retro-card pre {
-  background: var(--retro-bg);
-  border: 1px solid var(--retro-border);
+  background: var(--panel-alt);
+  border: 1px solid var(--border-dim);
   padding: 15px;
   overflow-x: auto;
   margin-bottom: 15px;
 }
 
+.retro-card pre code {
+  border: 0;
+  padding: 0;
+}
+
 .retro-card img {
   max-width: 100%;
+  /* Cap the height too, so a portrait photo doesn't take over the page */
+  max-height: 520px;
+  width: auto;
   height: auto;
-  border: 2px solid var(--retro-border);
+  border: 2px solid var(--border);
   margin: 15px 0;
+}
+
+/* ---------- Entry pages (blog posts and project writeups) ---------- */
+
+.entry-header {
+  border-bottom: 2px solid var(--border-dim);
+  padding-bottom: 14px;
+  margin-bottom: 22px;
+}
+
+.entry-title {
+  font-size: clamp(1.7rem, 6vw, 2.5rem);
+  line-height: 1.1;
+  color: var(--magenta);
+  font-family: var(--font-display);
+  margin: 0 0 8px;
+}
+
+.entry-meta {
+  font-family: var(--font-display);
+  color: var(--ink-dim);
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+.entry-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+}
+
+.entry-lead {
+  color: var(--ink);
+  margin: 12px 0 12px;
+}
+
+.entry-meta .sep {
+  color: var(--magenta);
+  margin: 0 8px;
+}
+
+.entry-body {
+  line-height: 1.75;
+}
+
+/* Bare URLs are common in these posts; let them break instead of pushing the
+   column wider than its measure. */
+.entry-body a,
+.entry-body code {
+  overflow-wrap: anywhere;
+}
+
+.entry-body > h2:first-child,
+.entry-body > h3:first-child,
+.entry-body > p:first-child {
+  margin-top: 0;
+}
+
+.entry-footer {
+  margin-top: 32px;
+  border-top: 2px solid var(--border-dim);
+  padding-top: 14px;
+}
+
+.entry-end {
+  text-align: center;
+  color: var(--ink-dim);
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+ /* Three columns rather than auto margins: the side cells share the leftover
+    space equally, so "all posts" stays centred no matter how long the
+    neighbouring post titles are. */
+.entry-nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: baseline;
+  gap: 10px 16px;
+  font-size: 1.1875rem;
+}
+
+.entry-nav > :first-child {
+  justify-self: start;
+}
+
+.entry-nav > :nth-child(2) {
+  justify-self: center;
+}
+
+.entry-nav > :last-child {
+  justify-self: end;
+  text-align: right;
+}
+
+.entry-nav-empty {
+  color: var(--ink-dim);
+}
+
+/* A phone gives up some panel padding to give the text more width. */
+@media (max-width: 560px) {
+  :root {
+    --card-pad: 14px;
+  }
+
+  /* VT323 is wide for its size; a step down buys roughly six more characters
+     per line on a phone. */
+  body {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .entry-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-nav > :first-child,
+  .entry-nav > :nth-child(2),
+  .entry-nav > :last-child {
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+/* Markdown tables. Wrapped in a scroll container so a wide table never
+   forces the page itself to scroll sideways on a phone. */
+.retro-card .table-scroll {
+  overflow-x: auto;
+  margin-bottom: 15px;
+}
+
+.retro-card table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 2px solid var(--border);
+}
+
+.retro-card th,
+.retro-card td {
+  border: 1px solid var(--border-dim);
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.retro-card th {
+  background: var(--panel-alt);
+  color: var(--magenta);
+  font-weight: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  /* Inline action links get vertical padding on touch, so the tap target is
+     taller than the text itself. */
+  .text-link,
+  .entry-nav a {
+    display: inline-block;
+    padding: 6px 0;
+  }
+
+  .retro-button {
+    font-size: 1.25rem;
+    padding: 8px 14px;
+  }
 }

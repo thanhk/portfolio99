@@ -42,6 +42,10 @@ export async function getMarkdownContent(
       return `<a href="${href}" target="_blank" rel="noopener noreferrer"${titleAttr}>${text}</a>`;
     };
 
+    // Wrap tables so wide ones scroll inside the card instead of the page
+    const baseTable = renderer.table.bind(renderer);
+    renderer.table = (token) => `<div class="table-scroll">${baseTable(token)}</div>`;
+
     // Convert Markdown to HTML
     const htmlResult = marked.parse(content, { renderer });
     const html = typeof htmlResult === 'string' ? htmlResult : await htmlResult;

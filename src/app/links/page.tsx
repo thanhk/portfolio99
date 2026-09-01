@@ -10,49 +10,94 @@ export const metadata: Metadata = {
 
 export default function Links() {
 
+  /** Sites worth a visit. Add entries as { name, url, note }. */
+  const linkRoll: { name: string; url: string; note: string }[] = [];
+
   const socialLinks = [
     {
-      name: "GitHub",
+      name: "github",
       url: "https://github.com/thanhk",
-      icon: "💻"
+      handle: "@thanhk",
     },
     {
-      name: "LinkedIn",
+      name: "linkedin",
       url: "https://www.linkedin.com/in/steven-khuu/",
-      icon: "💼"
+      handle: "steven-khuu",
     },
     {
-      name: "Email",
+      name: "email",
       url: "mailto:hello@thanhk.com",
-      icon: "📧"
+      handle: "hello@thanhk.com",
     },
   ];
 
   return (
     <div>
-      <h1 className="glow" style={{ fontSize: '48px', marginBottom: '30px', textAlign: 'center' }}>
+      <h1 className="glow page-title">
         Links
       </h1>
 
-      <div className="retro-card" style={{ marginBottom: '30px' }}>
-        <h2 style={{ fontSize: '32px', marginBottom: '20px', color: '#8B008B' }}>
-          Social Links
-        </h2>
-        <ul style={{ listStyle: 'none', padding: 0 }}>
-          {socialLinks.map((link, index) => (
-            <li key={index} style={{ marginBottom: '15px' }}>
-              <a
-                href={link.url}
-                target={link.url.startsWith('mailto:') ? undefined : '_blank'}
-                rel={link.url.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-                style={{ fontSize: '24px', display: 'inline-flex', alignItems: 'center', gap: '10px' }}
-              >
-                <span>{link.icon}</span>
-                <span>{link.name}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
+      <div className="grid">
+        <div className="retro-card col-full">
+          <div className="panel-head">
+            elsewhere
+            <span className="right">{socialLinks.length} links</span>
+          </div>
+          <ul className="leader-list">
+            {socialLinks.map((link) => {
+              const isMail = link.url.startsWith('mailto:');
+              return (
+                <li key={link.name}>
+                  <a
+                    className="leader-row"
+                    href={link.url}
+                    target={isMail ? undefined : '_blank'}
+                    rel={isMail ? undefined : 'noopener noreferrer'}
+                  >
+                    <span className="leader-name">{link.name}</span>
+                    <span className="leader-dots" aria-hidden="true" />
+                    <span className="leader-value">{link.handle}</span>
+                    <span className="leader-go" aria-hidden="true">
+                      {isMail ? 'mail' : 'go'} &raquo;
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+          <p style={{ marginTop: '18px', marginBottom: 0, color: 'var(--ink-dim)', fontSize: '1.125rem' }}>
+            say hi — i love talking about my interests, giving advice, and building ideas.
+          </p>
+        </div>
+
+        <div className="retro-card col-full">
+          <div className="panel-head">
+            sites i like
+            <span className="right">{linkRoll.length}</span>
+          </div>
+          {linkRoll.length === 0 ? (
+            <p style={{ marginBottom: 0, color: 'var(--ink-dim)' }}>
+              under construction — link roll coming soon.
+            </p>
+          ) : (
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              {linkRoll.map((site, index) => (
+                <li
+                  key={site.name}
+                  style={{
+                    marginBottom: '10px',
+                    paddingBottom: '10px',
+                    borderBottom: index === linkRoll.length - 1 ? 'none' : '1px dashed var(--border-dim)',
+                  }}
+                >
+                  <a href={site.url} target="_blank" rel="noopener noreferrer">{site.name}</a>
+                  <br />
+                  <span style={{ color: 'var(--ink-dim)', fontSize: '1.125rem' }}>{site.note}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );

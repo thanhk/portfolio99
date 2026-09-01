@@ -29,60 +29,72 @@ export default async function Blog() {
 
   return (
     <div>
-      <h1 className="glow" style={{ fontSize: '48px', marginBottom: '30px', textAlign: 'center' }}>
+      <h1 className="glow page-title">
         Blog
       </h1>
 
       {sortedPosts.length === 0 ? (
         <div className="retro-card" style={{ textAlign: 'center' }}>
-          <p style={{ fontSize: '24px', marginBottom: '15px' }}>
-            No blog posts yet.
+          <p style={{ fontSize: '1.5rem', marginBottom: '15px' }}>
+            nothing here yet. check back!
           </p>
-          <p style={{ fontSize: '20px', color: '#000080' }}>
-            Add Markdown files to the <code style={{ background: '#DDA0DD', padding: '2px 6px' }}>public/blog/</code> folder to create posts.
+          <p style={{ fontSize: '1.25rem', color: 'var(--ink)' }}>
+            Add Markdown files to the <code style={{ background: 'var(--panel-alt)', padding: '2px 6px' }}>public/blog/</code> folder to create posts.
           </p>
-          <p style={{ fontSize: '18px', marginTop: '15px', color: '#000080', fontStyle: 'italic' }}>
-            Filename format: <code style={{ background: '#DDA0DD', padding: '2px 6px' }}>YYYY-MM-DD-title.md</code> or just <code style={{ background: '#DDA0DD', padding: '2px 6px' }}>title.md</code>
+          <p style={{ fontSize: '1.125rem', marginTop: '15px', color: 'var(--ink)', fontStyle: 'italic' }}>
+            Filename format: <code style={{ background: 'var(--panel-alt)', padding: '2px 6px' }}>YYYY-MM-DD-title.md</code> or just <code style={{ background: 'var(--panel-alt)', padding: '2px 6px' }}>title.md</code>
           </p>
         </div>
       ) : (
-        <div style={{ display: 'grid', gap: '20px' }}>
-          {sortedPosts.map((post) => {
-            const title = (typeof post.data.title === 'string' ? post.data.title : null) || post.slug.replace(/-/g, ' ');
-            const date = typeof post.data.date === 'string' ? post.data.date : null;
-            const description = typeof post.data.description === 'string' ? post.data.description : null;
+        <div className="retro-card">
+          <div className="panel-head">
+            archive
+            <span className="right">{sortedPosts.length} {sortedPosts.length === 1 ? 'post' : 'posts'}</span>
+          </div>
+          <div className="table-scroll">
+            <table className="index-table">
+              <thead>
+                <tr>
+                  <th className="year">date</th>
+                  <th>post</th>
+                  <th className="status">read</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedPosts.map((post) => {
+                  const title = (typeof post.data.title === 'string' ? post.data.title : null) || post.slug.replace(/-/g, ' ');
+                  const date = typeof post.data.date === 'string' ? post.data.date : null;
+                  const description = typeof post.data.description === 'string' ? post.data.description : null;
 
-            return (
-              <div key={post.slug} className="retro-card">
-                <h2 style={{ fontSize: '32px', marginBottom: '10px', color: '#8B008B' }}>
-                  <Link href={`/blog/${post.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    {title}
-                  </Link>
-                </h2>
-                {date && (
-                  <p style={{ fontSize: '20px', color: '#000080', marginBottom: '10px' }}>
-                    📅 {parseLocalDate(date).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </p>
-                )}
-                {description && (
-                  <p style={{ fontSize: '20px', color: '#000080', marginBottom: '10px' }}>
-                    {description}
-                  </p>
-                )}
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="retro-button"
-                  style={{ display: 'inline-block', marginTop: '10px' }}
-                >
-                  Read More →
-                </Link>
-              </div>
-            );
-          })}
+                  return (
+                    <tr key={post.slug}>
+                      <td className="year">
+                        {date
+                          ? parseLocalDate(date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: '2-digit',
+                            }).toLowerCase()
+                          : '—'}
+                      </td>
+                      <td>
+                        <Link href={`/blog/${post.slug}`}>{title}</Link>
+                        {description && (
+                          <>
+                            <br />
+                            <span style={{ color: 'var(--ink-dim)', fontSize: '1.125rem' }}>{description}</span>
+                          </>
+                        )}
+                      </td>
+                      <td className="status">
+                        <Link href={`/blog/${post.slug}`}>&gt;&gt;</Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

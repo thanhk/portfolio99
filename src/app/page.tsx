@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { projects } from '@/lib/projects';
+
 export default function Home() {
   const workExperience = [
     {
@@ -10,7 +13,7 @@ export default function Home() {
       title: "Software Engineer Intern",
       company: "HCL Technologies",
       period: "2021",
-      description: "My first tech job. Meddled with k8s clusters, CI/CD pipelines, and linux."
+      description: "My first tech job. Worked with k8s clusters, CI/CD pipelines, and linux."
     },
     {
       title: "Student",
@@ -18,6 +21,19 @@ export default function Home() {
       period: "2018 - 2021",
       description: "Learned the basics of computer science. B.S. Computer Science."
     },
+  ];
+
+  // Taken from the project list rather than repeated here, so this can't drift
+  // out of order with the projects page.
+  const featured = projects.slice(0, 3);
+
+  /** Site changelog. Newest first; add a line whenever the site changes. */
+  const changelog = [
+    { date: 'aug 31, 2026', text: 'rebuilt the site in a web-1.0 layout' },
+    { date: 'aug 05, 2026', text: 'added mise and turnip bakes to projects' },
+    { date: 'jan 24, 2026', text: 'fixed the project card layout' },
+    { date: 'jan 18, 2026', text: 'wrote up ig follow checker' },
+    { date: 'jan 07, 2026', text: 'blog + markdown pipeline' },
   ];
 
   const structuredData = {
@@ -50,30 +66,105 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <div>
-      <h1 className="glow" style={{ fontSize: '48px', marginBottom: '30px', textAlign: 'center' }}>
+      <h1 className="glow page-title">
         Steven Khuu
       </h1>
 
-      <div className="retro-card">
-        <h2 style={{ fontSize: '32px', marginBottom: '20px', color: '#8B008B' }}>
-          Experience
-        </h2>
+      <div className="grid">
+        <div className="retro-card col-full">
+          <div className="panel-head">
+            welcome.txt
+          </div>
+          <p>
+            hi, i&apos;m steven. i work in tech full-time, but i also love building
+            software for people outside of that.
+            this is where i share my projects, hobbies, interests, and ideas.
+          </p>
+          <p style={{ marginBottom: 0 }}>
+            currently working on raphael, a personal assistant that is tailored with
+            my personal goals.
+          </p>
+        </div>
 
-        <ul style={{ listStyle: 'none', padding: 0 }}>
-          {workExperience.map((job, index) => (
-            <li key={index} style={{ marginBottom: '25px', paddingBottom: '20px', borderBottom: '1px dashed #000080' }}>
-              <h3 style={{ fontSize: '28px', color: '#8B008B', marginBottom: '10px' }}>
-                {job.title}
-              </h3>
-              <p style={{ fontSize: '22px', color: '#000080', marginBottom: '8px' }}>
-                {job.company} | {job.period}
-              </p>
-              <p style={{ fontSize: '20px', color: '#000080' }}>
-                {job.description}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <div className="retro-card col-half">
+          <div className="panel-head">
+            latest projects
+            <span className="right">{projects.filter((item) => item.tag).length} new</span>
+          </div>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {featured.map((item, index) => (
+              <li
+                key={item.name}
+                style={{
+                  marginBottom: '12px',
+                  paddingBottom: '12px',
+                  borderBottom: index === featured.length - 1 ? 'none' : '1px dashed var(--border-dim)',
+                }}
+              >
+                {item.detailSlug ? (
+                  <Link href={`/projects/${item.detailSlug}`}>{item.name}</Link>
+                ) : (
+                  <span style={{ color: 'var(--cyan)' }}>{item.name}</span>
+                )}{' '}
+                {item.tag && <span className="tag-new blink">{item.tag}</span>}
+                <br />
+                <span style={{ color: 'var(--ink-dim)', fontSize: '1.125rem' }}>
+                  {item.blurb || item.description}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <Link href="/projects" className="text-link">
+            all projects
+          </Link>
+        </div>
+
+        <div className="retro-card col-half mobile-last">
+          <div className="panel-head">
+            changelog
+            <span className="right">{changelog.length} entries</span>
+          </div>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {changelog.map((entry) => (
+              <li key={entry.date} style={{ marginBottom: '8px' }}>
+                <span className="meta">[{entry.date}]</span>
+                <br />
+                {entry.text}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="retro-card col-full">
+          <div className="panel-head">
+            experience
+            <span className="right">{workExperience.length} entries</span>
+          </div>
+
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {workExperience.map((job, index) => (
+              <li
+                key={index}
+                style={{
+                  marginBottom: '20px',
+                  paddingBottom: '18px',
+                  borderBottom: index === workExperience.length - 1 ? 'none' : '1px dashed var(--border-dim)',
+                }}
+              >
+                <h3 style={{ fontSize: '1.75rem', color: 'var(--magenta)', margin: '0 0 6px' }}>
+                  <span style={{ color: 'var(--cyan)' }}>&gt;</span> {job.title}
+                </h3>
+                <p style={{ marginBottom: '8px' }}>
+                  <span style={{ color: 'var(--cyan)' }}>{job.company}</span>
+                  <span className="meta"> [{job.period}]</span>
+                </p>
+                <p style={{ marginBottom: 0 }}>
+                  {job.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
     </>
