@@ -74,7 +74,6 @@ export default function Home() {
         <div className="retro-card col-full">
           <div className="panel-head">
             welcome.txt
-            <span className="right">200% hand-tuned</span>
           </div>
           <p>
             hi, i&apos;m steven. i work in tech full-time, but i also love building
