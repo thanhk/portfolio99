@@ -137,17 +137,22 @@ ${exports}
  * Minifies bookmarklet source code for use in a bookmark URL
  */
 export function makeBookmarklet(code: string): string {
-  // Remove leading javascript: prefix (we'll add it back)
-  let s = code.replace(/^javascript:\\s*/i, "");
-
   // Remove /* ... */ block comments
-  s = s.replace(/\\/\\*[\\s\\S]*?\\*\\//g, "");
+  let s = code.replace(/\\/\\*[\\s\\S]*?\\*\\//g, "");
 
   // Remove // line comments (only when they're actual comments)
   s = s.replace(/(^|\\s)\\/\\/.*$/gm, "$1");
 
   // Collapse whitespace
   s = s.replace(/\\s+/g, " ").trim();
+
+  // Strip every javascript: prefix the source already carries. Comments are
+  // gone by now, so a prefix hiding behind one is exposed — and it matters:
+  // "javascript: javascript: ..." is a duplicate label, which is a SyntaxError,
+  // so the bookmarklet would not run at all.
+  while (/^javascript:/i.test(s)) {
+    s = s.slice("javascript:".length).trim();
+  }
 
   return \`javascript:\${s}\`;
 }
