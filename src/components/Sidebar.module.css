@@ -99,21 +99,16 @@
   gap: 10px;
 }
 
-/* Stand-in avatar: initials in a framed square, no asset to load. */
+/* The framed square keeps the site's border; the picture fills it. Pixelated
+   scaling suits the blocky source and avoids a soft, smeared thumbnail. */
 .avatar {
-  font-family: var(--font-display);
   flex: 0 0 auto;
   width: 46px;
   height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border: 2px solid var(--cyan);
   background: var(--panel-alt);
-  color: var(--cyan);
-  font-size: 1.5rem;
-  letter-spacing: 2px;
-  text-shadow: 0 0 8px var(--glow-a);
+  object-fit: cover;
+  image-rendering: pixelated;
 }
 
 .name {

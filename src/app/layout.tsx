@@ -42,11 +42,20 @@ export const metadata: Metadata = {
     siteName: "Steven Khuu Portfolio",
     title: "Steven Khuu - Portfolio",
     description: "Steven Khuu (thanhk), a Software Engineer.",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "thanhk.com — the personal site of Steven Khuu",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Steven Khuu - Portfolio",
     description: "Steven Khuu (thanhk), a Software Engineer.",
+    images: ["/og.png"],
   },
   robots: {
     index: true,
