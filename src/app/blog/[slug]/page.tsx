@@ -94,35 +94,35 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
           <span className="right">{slug}.md</span>
         </div>
 
-        <div className="post">
-        <header className="post-header">
-          <h1 className="post-title">{title}</h1>
-          <p className="post-meta">
+        <div className="entry">
+        <header className="entry-header">
+          <h1 className="entry-title">{title}</h1>
+          <p className="entry-meta">
             {stamp && <>posted {stamp}</>}
             {stamp && <span className="sep">·</span>}
             {words} words
           </p>
         </header>
 
-        <div className="post-body" dangerouslySetInnerHTML={{ __html: body }} />
+        <div className="entry-body" dangerouslySetInnerHTML={{ __html: body }} />
 
-        <footer className="post-footer">
-          <p className="post-end">— end of entry —</p>
-          <div className="post-nav">
+        <footer className="entry-footer">
+          <p className="entry-end">— end of entry —</p>
+          <div className="entry-nav">
             {older ? (
-              <Link href={`/blog/${older.slug}`} className="post-nav-link">
+              <Link href={`/blog/${older.slug}`} className="entry-nav-link">
                 &laquo; {titleOf(older)}
               </Link>
             ) : (
-              <span className="post-nav-empty">&laquo; oldest post</span>
+              <span className="entry-nav-empty">&laquo; oldest post</span>
             )}
-            <Link href="/blog" className="post-nav-index">all posts</Link>
+            <Link href="/blog" className="entry-nav-index">all posts</Link>
             {newer ? (
-              <Link href={`/blog/${newer.slug}`} className="post-nav-link">
+              <Link href={`/blog/${newer.slug}`} className="entry-nav-link">
                 {titleOf(newer)} &raquo;
               </Link>
             ) : (
-              <span className="post-nav-empty">newest post &raquo;</span>
+              <span className="entry-nav-empty">newest post &raquo;</span>
             )}
           </div>
         </footer>

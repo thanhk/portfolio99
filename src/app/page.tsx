@@ -12,7 +12,7 @@ export default function Home() {
       title: "Software Engineer Intern",
       company: "HCL Technologies",
       period: "2021",
-      description: "My first tech job. Meddled with k8s clusters, CI/CD pipelines, and linux."
+      description: "My first tech job. Worked with k8s clusters, CI/CD pipelines, and linux."
     },
     {
       title: "Student",
@@ -23,8 +23,8 @@ export default function Home() {
   ];
 
   const featured = [
-    { slug: 'mise', name: 'Mise', blurb: 'ai planning co-pilot for market bakers' },
     { slug: 'turnip-bakes', name: 'Turnip Bakes', blurb: 'storefront + ordering site for a home bakery' },
+    { slug: 'mise', name: 'Mise', blurb: 'ai planning co-pilot for market bakers' },
   ];
 
   /** Site changelog. Newest first; add a line whenever the site changes. */
