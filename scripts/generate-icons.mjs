@@ -30,8 +30,13 @@ const APP = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'src',
 // Drawn on a 16x16 grid rather than resampled onto one: downscaling a 256px
 // render of a pixel font lands glyph strokes between pixels and turns "SK"
 // into mush at tab size.
-const S = ['01110', '10001', '10000', '01110', '00001', '10001', '01110'];
-const K = ['10001', '10010', '10100', '11000', '10100', '10010', '10001'];
+//
+// 5x8 glyphs with a 2px gap are 12x8, which divides the 14x14 interior evenly:
+// 1px either side, 3px above and below. A 5x7 pair leaves an odd remainder and
+// sits visibly off-centre at this size.
+// A flat top bar over a left stem reads as a 5; the corners have to turn in.
+const S = ['01110', '10001', '10000', '01110', '00001', '00001', '10001', '01110'];
+const K = ['10001', '10010', '10100', '11000', '11000', '10100', '10010', '10001'];
 
 const INK = [0x1f, 0x6f, 0x6b, 255];   // --cyan, the avatar's border and face
 const GROUND = [0xef, 0xe2, 0xca, 255]; // --panel-alt
@@ -54,8 +59,8 @@ function draw(scale) {
       block(x, y, edge ? INK : GROUND);
     }
   }
-  // S at x=2, K at x=8, both starting on row 4 — centred in the 14px interior.
-  [[S, 2], [K, 8]].forEach(([glyph, ox]) => {
+  // S at x=2, K at x=9 (5 + 2 gap), both starting on row 4.
+  [[S, 2], [K, 9]].forEach(([glyph, ox]) => {
     glyph.forEach((row, ry) => {
       [...row].forEach((on, rx) => {
         if (on === '1') block(ox + rx, 4 + ry, INK);
