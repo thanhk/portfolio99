@@ -17,6 +17,8 @@ export interface Project {
   year?: string;
   /** Where it stands now — "live", "beta", "done". */
   status?: string;
+  /** Short line for the home page list; falls back to `description`. */
+  blurb?: string;
   url?: string; // External link (e.g., GitHub repo)
 }
 
@@ -27,26 +29,37 @@ export interface Project {
  */
 export const projects: Project[] = [
   {
-    name: "Mise",
+    name: "Raphael",
     year: "2026",
-    status: "beta",
-    description: "AI planning co-pilot for makers who sell at farmers markets and pop-ups. Describe an event by voice, get a full batch and pricing plan back.",
-    tech: "React Native, TypeScript, Supabase, Anthropic API",
-    imageUrl: "/assets/mise-lockup.png",
-    detailSlug: "mise",
+    status: "wip",
+    description: "A personal assistant that sends one morning brief a day, grounded in your calendar, study plan and recovery data.",
+    blurb: "one morning brief a day, from your own data",
+    tech: "Python, Postgres, Docker, Anthropic API, Telegram",
+    imageUrl: "/assets/raphael.webp",
     tag: "new!",
-    url: "https://miseprep.app/",
   },
   {
     name: "Turnip Bakes",
     year: "2026",
     status: "live",
     description: "Storefront and ordering site for a home bakery - menu, cart, custom cake requests, and order emails",
+    blurb: "storefront + ordering site for a home bakery",
     tech: "React, Tailwind CSS, Resend, PostHog",
     imageUrl: "/assets/turnip-bakes-cake.png",
     detailSlug: "turnip-bakes",
     tag: "new!",
     url: "https://turnipbakes.com",
+  },
+  {
+    name: "Mise",
+    year: "2026",
+    status: "beta",
+    description: "AI planning co-pilot for makers who sell at farmers markets and pop-ups. Describe an event by voice, get a full batch and pricing plan back.",
+    blurb: "ai planning co-pilot for market bakers",
+    tech: "React Native, TypeScript, Supabase, Anthropic API",
+    imageUrl: "/assets/mise-lockup.png",
+    detailSlug: "mise",
+    url: "https://miseprep.app/",
   },
   {
     name: "IG_FOLLOW_CHECKER",
