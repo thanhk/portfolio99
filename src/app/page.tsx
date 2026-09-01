@@ -29,7 +29,7 @@ export default function Home() {
 
   /** Site changelog. Newest first; add a line whenever the site changes. */
   const changelog = [
-    { date: 'aug 31, 2026', text: 'rebuilt the site in a dark web-1.0 layout' },
+    { date: 'aug 31, 2026', text: 'rebuilt the site in a web-1.0 layout' },
     { date: 'aug 05, 2026', text: 'added mise and turnip bakes to projects' },
     { date: 'jan 24, 2026', text: 'fixed the project card layout' },
     { date: 'jan 18, 2026', text: 'wrote up ig follow checker' },
@@ -109,8 +109,8 @@ export default function Home() {
               </li>
             ))}
           </ul>
-          <Link href="/projects" className="retro-button" style={{ marginTop: '6px' }}>
-            &gt;&gt; all projects
+          <Link href="/projects" className="text-link">
+            all projects
           </Link>
         </div>
 

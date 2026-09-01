@@ -1,18 +1,16 @@
 @import "tailwindcss";
 
 /*
- * Dark web-1.0 / Y2K palette. Everything is a flat color on a dark ground:
- * no gradients, no soft shadows — borders are hard, shadows are offset blocks.
- */
-/*
+ * Web-1.0 styling: flat colors, hard borders, offset block shadows — no
+ * gradients and no soft shadows anywhere.
+ *
  * Palettes. Every color the site uses lives here; nothing downstream hardcodes
- * one. A theme is picked by data-theme on <html> (see ThemeSwitcher); the
- * default block is the fallback when no choice has been made.
+ * one. :root carries the live palette; the other blocks are alternates that
+ * can be switched on by setting data-theme on <html>.
  *
  * --on-accent is the text color that sits ON an accent fill (inverted buttons).
  * --tint-1/2 are translucent accent washes for hovers.
  */
-:root,
 :root[data-theme="midnight"] {
   --bg: #0A0A1F;
   --bg-tile: #101028;
@@ -39,7 +37,9 @@
   --star-c: rgba(255, 0, 255, 0.55);
 }
 
-/* Cream paper, ink text, cherry accents — the warm end of the old web. */
+/* Cream paper, ink text, cherry accents — the site's palette. The blocks below
+   are alternates: set data-theme on <html> to try one. */
+:root,
 :root[data-theme="parchment"] {
   --bg: #F2E8D5;
   --bg-tile: #E7D9BE;
@@ -391,12 +391,32 @@ a:focus-visible {
   vertical-align: middle;
 }
 
+/* In-content action link: » prefix, underlined. Buttons are reserved for
+   back-navigation chrome. */
+.text-link {
+  color: var(--cyan);
+  font-size: 20px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.text-link::before {
+  content: '\00BB';
+  color: var(--magenta);
+  margin-right: 6px;
+}
+
+.text-link:hover {
+  color: var(--magenta);
+  background: none;
+}
+
 /* Tech chips — a bracketed tag row reads denser than a "Tech:" sentence. */
 .chips {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .chip {

@@ -5,8 +5,8 @@
 
 .topSection {
   display: flex;
-  gap: 20px;
-  align-items: stretch;
+  gap: 24px;
+  align-items: center;
 }
 
 .contentWrapper {
@@ -26,8 +26,8 @@
     changing shape. */
 .mediaContainer {
   flex-shrink: 0;
-  width: 210px;
-  height: 210px;
+  width: 180px;
+  height: 180px;
   align-self: flex-start;
   display: flex;
   align-items: center;
@@ -37,8 +37,36 @@
   padding: 4px;
 }
 
-.actionButtons {
-  padding-top: 5px;
+ /* Actions as a link row: » prefix, separated by a dim divider. */
+.cardLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 16px;
+}
+
+.cardLink {
+  color: var(--cyan);
+  font-size: 20px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cardLink::before {
+  content: '\00BB';
+  color: var(--magenta);
+  margin-right: 6px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.cardLink:hover {
+  color: var(--magenta);
+  background: none;
+}
+
+.cardLink + .cardLink::after {
+  content: '';
 }
 
 .mediaContainer .retroMedia,
@@ -81,7 +109,7 @@
 
 
 .bookmarkletContainer {
-  margin: 20px 0;
+  margin: 4px 0 14px;
   padding: 15px;
   background: var(--panel-alt);
   border: 2px solid var(--border-dim);

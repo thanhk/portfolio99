@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Sidebar.module.css';
-import ThemeSwitcher from './ThemeSwitcher';
 
 const navItems = [
   { href: '/', label: 'home' },
@@ -58,8 +57,6 @@ export default function Sidebar() {
           </ul>
         </div>
       </nav>
-
-      <ThemeSwitcher />
 
       <div className={`${styles.box} ${styles.statusBox}`}>
         <div className={styles.boxHead}>status</div>
