@@ -59,7 +59,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="midnight">
+      <head>
+        {/* Applies the saved palette before paint, so there is no flash of the
+            default theme on load. Kept inline and tiny on purpose. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('thanhk-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body className={vt323.variable}>
         <AnimatedBackground />
         <div className="screen">

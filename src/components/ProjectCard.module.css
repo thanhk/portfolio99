@@ -21,10 +21,20 @@
   flex: 0 0 auto;
 }
 
+ /* A fixed square well. Landscape media letterboxes, portrait media pillarboxes,
+    so a phone-shot video can sit beside a wide screenshot without either card
+    changing shape. */
 .mediaContainer {
   flex-shrink: 0;
-  max-width: 200px;
+  width: 210px;
+  height: 210px;
   align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--border);
+  background: var(--panel-alt);
+  padding: 4px;
 }
 
 .actionButtons {
@@ -33,18 +43,17 @@
 
 .mediaContainer .retroMedia,
 .retroMedia {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 100%;
+  max-height: 100%;
   width: auto;
   height: auto;
   object-fit: contain;
-  border: 2px solid var(--border);
+  border: 0;
   display: block;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
   filter: contrast(1.2) brightness(0.9);
-  box-shadow: 0 0 15px rgba(0, 0, 128, 0.5);
 }
 
 /* Video controls styling */
@@ -57,12 +66,12 @@
 .retroMedia::-webkit-media-controls-volume-slider,
 .retroMedia::-webkit-media-controls-timeline {
   filter: none;
-  color: #FFFFFF;
+  color: var(--ink);
 }
 
 .retroMedia::-webkit-media-controls-current-time-display,
 .retroMedia::-webkit-media-controls-time-remaining-display {
-  color: #FFFFFF;
+  color: var(--ink);
 }
 
 .retroMedia::-webkit-media-controls-mute-button,
@@ -83,7 +92,7 @@
   display: inline-block;
   padding: 12px 24px;
   background: var(--magenta);
-  color: #000;
+  color: var(--on-accent);
   text-decoration: none;
   font-size: 20px;
   font-family: var(--font-vt323), monospace;
@@ -104,11 +113,9 @@
 }
 
 @media (max-width: 768px) {
-  .retroMedia {
-    max-width: 200px;
-    max-height: 200px;
-    width: auto;
-    height: auto;
+  .mediaContainer {
+    width: 170px;
+    height: 170px;
   }
 
   .bookmarkletLink {
