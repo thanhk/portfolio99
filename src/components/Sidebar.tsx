@@ -79,7 +79,7 @@ export default function Sidebar() {
               </span>
             </li>
             <li>
-              <span className={styles.key}>now:</span> building mise
+              <span className={styles.key}>now:</span> building raphael
             </li>
             <li>
               <span className={styles.key}>coke zero:</span> yes
