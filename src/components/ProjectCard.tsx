@@ -117,14 +117,25 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 </Link>
               )}
 
-              {project.url && (
+              {project.siteUrl && (
                 <a
-                  href={project.url}
+                  href={project.siteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.cardLink}
                 >
                   visit site
+                </a>
+              )}
+
+              {project.repoUrl && (
+                <a
+                  href={project.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.cardLink}
+                >
+                  source
                 </a>
               )}
             </div>

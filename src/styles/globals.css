@@ -923,6 +923,12 @@ a:focus-visible {
   margin: 0;
 }
 
+.entry-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+}
+
 .entry-lead {
   color: var(--ink);
   margin: 12px 0 12px;

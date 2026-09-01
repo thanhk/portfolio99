@@ -102,16 +102,28 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                 ))}
               </div>
             )}
-            {entry?.url && (
-              <a
-                className="text-link"
-                href={entry.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                visit site
-              </a>
-            )}
+            <div className="entry-links">
+              {entry?.siteUrl && (
+                <a
+                  className="text-link"
+                  href={entry.siteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  visit site
+                </a>
+              )}
+              {entry?.repoUrl && (
+                <a
+                  className="text-link"
+                  href={entry.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  source
+                </a>
+              )}
+            </div>
           </header>
 
           <div className="entry-body" dangerouslySetInnerHTML={{ __html: body }} />
