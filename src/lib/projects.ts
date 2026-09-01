@@ -19,7 +19,10 @@ export interface Project {
   status?: string;
   /** Short line for the home page list; falls back to `description`. */
   blurb?: string;
-  url?: string; // External link (e.g., GitHub repo)
+  /** The live thing, if there is one to visit. */
+  siteUrl?: string;
+  /** Public source, if the repo is open. */
+  repoUrl?: string;
 }
 
 /**
@@ -48,7 +51,7 @@ export const projects: Project[] = [
     imageUrl: "/assets/turnip-bakes-cake.png",
     detailSlug: "turnip-bakes",
     tag: "new!",
-    url: "https://turnipbakes.com",
+    siteUrl: "https://turnipbakes.com",
   },
   {
     name: "Mise",
@@ -59,7 +62,7 @@ export const projects: Project[] = [
     tech: "React Native, TypeScript, Supabase, Anthropic API",
     imageUrl: "/assets/mise-lockup.png",
     detailSlug: "mise",
-    url: "https://miseprep.app/",
+    siteUrl: "https://miseprep.app/",
   },
   {
     name: "IG_FOLLOW_CHECKER",
@@ -70,7 +73,7 @@ export const projects: Project[] = [
     bookmarkletCode: makeBookmarklet(igFollowCheckerSource),
     bookmarkletName: "IG_FOLLOW_CHECKER",
     detailSlug: "ig-follow-checker",
-    url: "https://github.com/thanhk/ig-follow-checker",
+    repoUrl: "https://github.com/thanhk/ig-follow-checker",
   },
   {
     name: "Target Stock Discord Hook",
@@ -78,7 +81,7 @@ export const projects: Project[] = [
     status: "done",
     description: "Used Target's RedSky API to get stock updates and send to a Discord channel. Built to fuel my Pokémon card addiction.",
     tech: "Python",
-    url: "https://github.com/thanhk/redsky_discordhook",
+    repoUrl: "https://github.com/thanhk/redsky_discordhook",
   },
   {
     name: "Rise of the Elements",
@@ -87,7 +90,7 @@ export const projects: Project[] = [
     description: "Top-down RPG game built with friends for a game jam. I mainly worked on implementing the inventory system, ability and movement mechanics.",
     tech: "C#, Unity",
     imageUrl: "/assets/rise-of-the-elements-demo.gif",
-    url: "https://github.com/thanhk/Rise-of-the-Elements",
+    repoUrl: "https://github.com/thanhk/Rise-of-the-Elements",
   },
   {
     name: "IoT Anomaly Detector",
@@ -97,6 +100,6 @@ export const projects: Project[] = [
     tech: "AWS, Python, Swift",
     videoUrl: "/assets/iot-anomaly-detector-demo.mp4",
     videoThumbnail: "/assets/iot-anomaly-detector-thumbnail.png",
-    url: "https://github.com/thanhk/IoT-Anomaly-Detector",
+    repoUrl: "https://github.com/thanhk/IoT-Anomaly-Detector",
   },
 ];
