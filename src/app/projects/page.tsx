@@ -89,7 +89,7 @@ export default function Projects() {
 
       {projects.length === 0 && (
         <div className="retro-card" style={{ textAlign: 'center' }}>
-          <p style={{ fontSize: '24px' }}>No projects yet. Check back soon!</p>
+          <p style={{ fontSize: '1.5rem' }}>No projects yet. Check back soon!</p>
         </div>
       )}
     </div>

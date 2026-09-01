@@ -8,22 +8,23 @@ tech: "React Native (Expo), TypeScript, Supabase, Anthropic API"
 
 *"Mise en place" — everything in its place.*
 
-Mise is an iOS app for home bakers and makers who sell at farmers markets, pop-ups, and private events. You describe an upcoming event out loud — "Cedar Park farmers market next Saturday, maybe 300 people, four other food vendors" — and the app produces a full plan: what to make, how many batches, what each item should cost, and what to charge for it.
+Mise is an iOS app for home bakers and makers who sell at farmers markets, pop-ups, and private events. You describe an upcoming event out loud — "Austin farmers market next Saturday, maybe 300 people, four other food vendors" — and the app produces a full plan: what to make, how many batches, what each item should cost, and what to charge for it.
 
-The problem it solves isn't baking, it's the math. Solo makers are running a small business in their spare time: ingredient costs, labor hours, batch yields, and pricing all have to line up, and almost nobody does that arithmetic honestly. Mise does it in the background and shows its work.
+I first tried to solve an accounting problem for my fiancée who is a home baker. However, that project quickly died as she never wanted to count and calculate her inventory in the first place! The goal here is to lower the barrier as much as possible, so that I can help her and other bakers to the fair market value of their items without doing all of that math.
 
-Every number the AI produces is editable. After the event, you log what actually sold, and that data feeds the next plan.
+To balance between ease of use and precision, everything is generated up front and can be edited or used as-is.
 
 
 ## Features
 
 - **Voice or text event planning** — describe an event naturally, get a batch-by-batch plan back
 - **Recipe library** with AI-estimated batch cost, yield, and bake time; each estimate is marked as an estimate until you confirm it
-- **Pricing that accounts for labor** — unit price suggestions built from ingredient cost plus your own hourly rate, not guesswork
+- **Pricing that accounts for labor** — unit price suggestions built from ingredient cost plus your own hourly rate
 - **Prep view** — the plan collapsed into an ordered bake-day checklist
 - **Post-event debrief** — log what sold, what didn't, and what you actually made
 - **Insights** — margins and sell-through across events, so the next plan starts from real numbers
 - **Offline-first** — everything is cached locally, so the app works in a market field with no signal
+- **Web search** — the AI is able to get current market price for ingredients and similar goods to give the most accurate estimates
 
 
 ## Tech Stack

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { VT323, Courier_Prime, Space_Mono } from "next/font/google";
+import { VT323, Courier_Prime } from "next/font/google";
 import "../styles/globals.css";
 import Sidebar from "@/components/Sidebar";
 import Ticker from "@/components/Ticker";
@@ -23,18 +23,11 @@ const courierPrime = Courier_Prime({
   display: "swap",
 });
 
-const spaceMono = Space_Mono({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  variable: "--font-space-mono",
-  display: "swap",
-});
-
 // These classes must sit on <html>, not <body>: the palette blocks declare
 // --font-body on :root, and a custom property's var() references resolve on the
 // element that declares it. On <body> the families would be invisible to :root
 // and every font would fall back.
-const fontVars = `${vt323.variable} ${courierPrime.variable} ${spaceMono.variable}`;
+const fontVars = `${vt323.variable} ${courierPrime.variable}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thanhk.com"),

@@ -45,7 +45,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div className="retro-card">
       <div className="panel-head">
-        <h2 style={{ fontSize: '22px', margin: 0, color: 'inherit', letterSpacing: 'inherit', fontFamily: 'inherit' }}>{project.name}</h2>
+        <h2 style={{ fontSize: '1.375rem', margin: 0, color: 'inherit', letterSpacing: 'inherit', fontFamily: 'inherit' }}>{project.name}</h2>
         <span className="right">
           {project.year && <span className="meta">[{project.year}]</span>}
           {project.status && <span style={{ marginLeft: '8px' }}>{project.status}</span>}
@@ -60,7 +60,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {/* Content - Always on left */}
           <div className={styles.contentWrapper}>
             <div className={styles.contentText}>
-              <p style={{ fontSize: '20px', marginBottom: '12px', color: 'var(--ink)' }}>
+              <p style={{ fontSize: '1.25rem', marginBottom: '12px', color: 'var(--ink)' }}>
                 {project.description}
               </p>
               <div className="chips">
@@ -72,7 +72,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {/* Bookmarklet */}
               {project.bookmarkletCode && (
                 <div className={styles.bookmarkletContainer}>
-                  <p style={{ fontSize: '18px', marginBottom: '12px', color: 'var(--ink-dim)' }}>
+                  <p style={{ fontSize: '1.125rem', marginBottom: '12px', color: 'var(--ink-dim)' }}>
                     drag to your bookmarks bar, then click it on instagram:
                   </p>
                   <a

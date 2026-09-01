@@ -105,7 +105,7 @@ export default function Home() {
                 <Link href={`/projects/${item.slug}`}>{item.name}</Link>{' '}
                 <span className="tag-new blink">new!</span>
                 <br />
-                <span style={{ color: 'var(--ink-dim)', fontSize: '18px' }}>{item.blurb}</span>
+                <span style={{ color: 'var(--ink-dim)', fontSize: '1.125rem' }}>{item.blurb}</span>
               </li>
             ))}
           </ul>
@@ -146,7 +146,7 @@ export default function Home() {
                   borderBottom: index === workExperience.length - 1 ? 'none' : '1px dashed var(--border-dim)',
                 }}
               >
-                <h3 style={{ fontSize: '28px', color: 'var(--magenta)', margin: '0 0 6px' }}>
+                <h3 style={{ fontSize: '1.75rem', color: 'var(--magenta)', margin: '0 0 6px' }}>
                   <span style={{ color: 'var(--cyan)' }}>&gt;</span> {job.title}
                 </h3>
                 <p style={{ marginBottom: '8px' }}>

@@ -65,7 +65,7 @@ export default function Links() {
               );
             })}
           </ul>
-          <p style={{ marginTop: '18px', marginBottom: 0, color: 'var(--ink-dim)', fontSize: '18px' }}>
+          <p style={{ marginTop: '18px', marginBottom: 0, color: 'var(--ink-dim)', fontSize: '1.125rem' }}>
             say hi — i read everything, i reply to most of it.
           </p>
         </div>
@@ -92,7 +92,7 @@ export default function Links() {
                 >
                   <a href={site.url} target="_blank" rel="noopener noreferrer">{site.name}</a>
                   <br />
-                  <span style={{ color: 'var(--ink-dim)', fontSize: '18px' }}>{site.note}</span>
+                  <span style={{ color: 'var(--ink-dim)', fontSize: '1.125rem' }}>{site.note}</span>
                 </li>
               ))}
             </ul>
