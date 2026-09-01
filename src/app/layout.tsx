@@ -28,10 +28,10 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   title: {
-    default: "Steven Khuu - Portfolio",
-    template: "%s | Steven Khuu"
+    default: "steven khuu",
+    template: "%s | steven khuu"
   },
-  description: "Steven Khuu (thanhk), a Software Engineer. Enjoys building and learning.",
+  description: "i work in tech full-time, and build things for people outside of that. projects, hobbies, interests, and ideas.",
   keywords: ["Steven Khuu", "thanhk", "Steven Khuu portfolio", "thanhk portfolio", "thanhk99", "software engineer", "backend developer", "Visa Inc", "UTD", "University of Texas at Dallas"],
   authors: [{ name: "Steven Khuu" }],
   creator: "Steven Khuu",
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://thanhk.com",
-    siteName: "Steven Khuu Portfolio",
-    title: "Steven Khuu - Portfolio",
-    description: "Steven Khuu (thanhk), a Software Engineer.",
+    siteName: "thanhk.com",
+    title: "steven khuu",
+    description: "i work in tech full-time, and build things for people outside of that. projects, hobbies, interests, and ideas.",
     images: [
       {
         url: "/og.png",
@@ -53,8 +53,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Steven Khuu - Portfolio",
-    description: "Steven Khuu (thanhk), a Software Engineer.",
+    title: "steven khuu",
+    description: "i work in tech full-time, and build things for people outside of that. projects, hobbies, interests, and ideas.",
     images: ["/og.png"],
   },
   robots: {
