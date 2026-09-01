@@ -40,8 +40,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     bookmarkletRef.current.setAttribute('href', project.bookmarkletCode);
   }, [project.bookmarkletCode]);
 
-  const hasAnyFeature = project.videoUrl || project.imageUrl || project.bookmarkletCode || project.detailSlug || project.url;
-
   const hasMedia = project.imageUrl || project.videoUrl;
 
   return (
@@ -62,7 +60,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {/* Content - Always on left */}
           <div className={styles.contentWrapper}>
             <div className={styles.contentText}>
-              <p style={{ fontSize: '20px', marginBottom: '10px', color: 'var(--ink)' }}>
+              <p style={{ fontSize: '20px', marginBottom: '12px', color: 'var(--ink)' }}>
                 {project.description}
               </p>
               <div className="chips">
@@ -73,7 +71,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
               {/* Bookmarklet */}
               {project.bookmarkletCode && (
-                <div className={styles.bookmarkletContainer} style={{ marginBottom: '20px' }}>
+                <div className={styles.bookmarkletContainer}>
                   <p style={{ fontSize: '18px', marginBottom: '12px', color: 'var(--ink-dim)' }}>
                     drag to your bookmarks bar, then click it on instagram:
                   </p>
@@ -92,14 +90,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               )}
             </div>
 
-            {/* Action Buttons - Inside content wrapper to fill dead space */}
-            <div className={styles.actionButtons} style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: hasAnyFeature ? '10px' : '0' }}>
+            {/* Actions read as links, not buttons — this is a page of entries,
+                not an app. */}
+            <div className={styles.cardLinks}>
               {project.detailSlug && (
-                <Link
-                  href={`/projects/${project.detailSlug}`}
-                  className="retro-button sm"
-                >
-                  &gt;&gt; view details
+                <Link href={`/projects/${project.detailSlug}`} className={styles.cardLink}>
+                  view details
                 </Link>
               )}
 
@@ -108,9 +104,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="retro-button sm"
+                  className={styles.cardLink}
                 >
-                  &gt;&gt; visit site
+                  visit site
                 </a>
               )}
             </div>
