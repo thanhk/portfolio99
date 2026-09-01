@@ -50,23 +50,23 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 ))}
               </div>
 
-              {/* Bookmarklet */}
+              {/* Bookmarklet: a drop target framing the draggable tag, so it
+                  reads as an object you pick up rather than a button. */}
               {project.bookmarkletCode && (
-                <div className={styles.bookmarkletContainer}>
-                  <p style={{ fontSize: '1.125rem', marginBottom: '12px', color: 'var(--ink-dim)' }}>
-                    drag to your bookmarks bar, then click it on instagram:
-                  </p>
+                <div className={styles.bookmarklet}>
+                  <span className={styles.bookmarkletLabel}>drag to your bookmarks bar</span>
                   <a
                     ref={bookmarkletRef}
-                    className={styles.bookmarkletLink}
+                    className={styles.bookmarkletTag}
                     draggable={true}
                     onDragStart={(e) => {
                       e.dataTransfer.setData('text/plain', project.bookmarkletCode || '');
                       e.dataTransfer.effectAllowed = 'copy';
                     }}
                   >
-                    &#9660; {project.bookmarkletName || project.name}
+                    {project.bookmarkletName || project.name}
                   </a>
+                  <span className={styles.bookmarkletHint}>then click it while on instagram</span>
                 </div>
               )}
             </div>

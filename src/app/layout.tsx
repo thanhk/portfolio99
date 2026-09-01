@@ -73,7 +73,6 @@ export default function RootLayout({
         <div className="screen">
           <header className="masthead">
             <Link href="/" className="wordmark">thanhk.com</Link>
-            <div className="sub">the personal site of steven khuu</div>
           </header>
           <Ticker />
           <div className="layout">

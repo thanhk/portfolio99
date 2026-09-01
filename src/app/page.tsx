@@ -77,12 +77,12 @@ export default function Home() {
             <span className="right">200% hand-tuned</span>
           </div>
           <p>
-            hi, i&apos;m steven. i build backend services by day and small useful
-            things the rest of the time. this is where i keep my projects, my
-            links, and the occasional write-up.
+            hi, i&apos;m steven. i work in tech full-time, but i also love building
+            software for people outside of that.
+            this is where i share my projects, hobbies, interests, and ideas.
           </p>
           <p style={{ marginBottom: 0 }}>
-            currently deep in <Link href="/projects/mise">mise</Link>, an ai
+            currently working on <Link href="/projects/mise">mise</Link>, an ai
             planning co-pilot for people who sell at farmers markets.
           </p>
         </div>
