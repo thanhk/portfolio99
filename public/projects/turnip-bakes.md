@@ -20,10 +20,11 @@ All of the assets and design were done by our friend @yeyuuxue!
 - **Menu** with carousels for baked goods and cake flavors
 - **Cart and checkout** for standard baked goods
 - **Custom cake request flow** — size, flavor, design details, and inspiration photo uploads
-- **One-week lead time enforced in the date picker**, so impossible pickup dates can't be selected
-- **Order emails** — every submission arrives as a formatted email with photos attached
+- **Blocked dates in the calendar**, so the baker can block vacations, booked dates, and enforce a 1 week order minimum. Updates via private calendar
+- **Order emails** — every submission arrives as a formatted email with photos attached via Resend
 - **How-to-order and FAQ pages** covering lead time, payment, pickup, and rush orders
 - **Fully responsive**, with a hand-drawn brand identity and a turnip-cat mascot
+- **Analytics**, to show when users drop off, and when/where traffic is coming from
 
 ![Turnip Bakes mascot](/assets/turnip-bakes-mascot.png)
 
@@ -37,6 +38,7 @@ All of the assets and design were done by our friend @yeyuuxue!
 | Email | Resend, with nodemailer for local SMTP testing |
 | Testing | Playwright — ordering flows, API contract, responsive layout, and live email |
 | Hosting | Vercel |
+| Analytics | PostHog |
 
 
 ## Technical Details
@@ -58,4 +60,6 @@ All of the assets and design were done by our friend @yeyuuxue!
 
 **Photo uploads without a storage bucket.** Inspiration photos are base64-encoded and attached directly to the order email, which keeps the whole system to one moving part — but it makes size limits a hard requirement rather than a nicety, enforced on both sides.
 
-**A brand, not a template.** The bakery has a real visual identity — hand-drawn lettering, a doily motif, the turnip-cat mascot. Most of the work here was layout: making illustrated assets and photography sit together cleanly at every viewport without the page reading as a stock theme.
+**Accurate date blocks.** The baker should not need to worry about orders during vacation or if a date is getting overbooked with orders. A workflow was implemented to sync a personal calendar with the booking dates to make date blocking seamless.
+
+**User experience is valuable.** Adding analytics to the page flow allows us to see if information is missing or a page is not intuitively designed. For example, we already diagnosed that the website did not have enough accessible links to the ordering screens. We went back and updated the design so that users would always be able quickly order items from any screen.

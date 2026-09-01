@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { VT323, Courier_Prime } from "next/font/google";
+import { VT323 } from "next/font/google";
 import "../styles/globals.css";
 import Sidebar from "@/components/Sidebar";
 import Ticker from "@/components/Ticker";
@@ -12,22 +12,15 @@ const vt323 = VT323({
   subsets: ["latin"],
   variable: "--font-vt323",
   display: "swap",
-});
-
-// Loaded for the font trial in the sidebar. Once a set is chosen, the unused
-// families come back out.
-const courierPrime = Courier_Prime({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  variable: "--font-courier-prime",
-  display: "swap",
+  // Times is the chosen stand-in while VT323 loads, or if it never does.
+  fallback: ["Times New Roman", "Times", "serif"],
 });
 
 // These classes must sit on <html>, not <body>: the palette blocks declare
 // --font-body on :root, and a custom property's var() references resolve on the
 // element that declares it. On <body> the families would be invisible to :root
 // and every font would fall back.
-const fontVars = `${vt323.variable} ${courierPrime.variable}`;
+const fontVars = vt323.variable;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://thanhk.com"),
@@ -75,15 +68,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={fontVars}>
-      <head>
-        {/* Applies the font set being trialled before paint. Goes away with the
-            picker once a set is chosen. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var f=localStorage.getItem('thanhk-font');if(f)document.documentElement.dataset.font=f;}catch(e){}})();`,
-          }}
-        />
-      </head>
       <body>
         <AnimatedBackground />
         <div className="screen">
