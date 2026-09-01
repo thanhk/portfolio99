@@ -118,11 +118,11 @@ export default async function BlogPost({ params }: BlogPostPageProps) {
             )}
             <Link href="/blog" className="post-nav-index">all posts</Link>
             {newer ? (
-              <Link href={`/blog/${newer.slug}`} className="post-nav-link right">
+              <Link href={`/blog/${newer.slug}`} className="post-nav-link">
                 {titleOf(newer)} &raquo;
               </Link>
             ) : (
-              <span className="post-nav-empty right">newest post &raquo;</span>
+              <span className="post-nav-empty">newest post &raquo;</span>
             )}
           </div>
         </footer>

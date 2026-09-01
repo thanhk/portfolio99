@@ -40,10 +40,10 @@
   --font-scale: 0.8;
 }
 
-/* daikonet: MS PGothic, the small crisp system sans, with pixel chrome. */
+/* daikonet: MS PGothic throughout, the way the site itself does it. */
 :root[data-font="daikonet"] {
-  --font-display: var(--font-vt323), 'MS PGothic', sans-serif;
-  --font-body: 'MS PGothic', 'MS Gothic', Meiryo, 'Hiragino Kaku Gothic ProN', sans-serif;
+  --font-display: 'MS PGothic', 'MS Gothic', Meiryo, 'Hiragino Kaku Gothic ProN', Tahoma, Verdana, sans-serif;
+  --font-body: 'MS PGothic', 'MS Gothic', Meiryo, 'Hiragino Kaku Gothic ProN', Tahoma, Verdana, sans-serif;
   --font-mono: 'Courier New', monospace;
   --font-scale: 0.8;
 }
@@ -899,12 +899,6 @@ a:focus-visible {
   margin: 0 8px;
 }
 
-/* One measured column for the whole entry, so the header rule, the prose and
-   the footer rule all share the same edge. */
-.post {
-  max-width: 68ch;
-}
-
 .post-body {
   line-height: 1.75;
 }
@@ -935,34 +929,31 @@ a:focus-visible {
   margin-bottom: 14px;
 }
 
+ /* Three columns rather than auto margins: the side cells share the leftover
+    space equally, so "all posts" stays centred no matter how long the
+    neighbouring post titles are. */
 .post-nav {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: baseline;
   gap: 10px 16px;
   font-size: 1.1875rem;
 }
 
-.post-nav-index {
-  margin: 0 auto;
+.post-nav > :last-child {
+  text-align: right;
 }
 
 .post-nav-empty {
   color: var(--ink-dim);
 }
 
-.post-nav .right {
-  margin-left: auto;
-  text-align: right;
-}
-
 @media (max-width: 560px) {
-  .post-nav-index {
-    margin: 0;
+  .post-nav {
+    grid-template-columns: 1fr;
   }
 
-  .post-nav .right {
-    margin-left: 0;
+  .post-nav > :last-child {
     text-align: left;
   }
 }
