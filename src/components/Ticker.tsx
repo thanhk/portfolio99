@@ -4,10 +4,11 @@
  * the copy is hidden from screen readers rather than read out twice.
  */
 const ITEMS = [
-  '★ welcome to my corner of the internet ★',
+  '★ welcome to my portfolio ★',
   'now building: mise — an ai planning co-pilot for market bakers',
+  '★ welcome to my ideas ★',
   'new: turnip bakes',
-  'best viewed with eyes',
+  '★ welcome to my thoughts ★',
   'last updated aug 2026',
 ];
 
