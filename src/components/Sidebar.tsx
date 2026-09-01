@@ -30,7 +30,7 @@ export default function Sidebar() {
             </span>
           </div>
           <p className={styles.tagline}>
-            software engineer. builds things, breaks things, writes them down.
+            software engineer. vibe coder and chill maxxer.
           </p>
         </div>
       </div>
@@ -72,7 +72,7 @@ export default function Sidebar() {
               <span className={styles.key}>now:</span> building mise
             </li>
             <li>
-              <span className={styles.key}>coffee:</span> yes
+              <span className={styles.key}>coke zero:</span> yes
             </li>
             <li>
               <span className={styles.key}>updated:</span> {LAST_UPDATED}
