@@ -11,6 +11,16 @@ const navItems = [
   { href: '/blog', label: 'blog' },
 ];
 
+/**
+ * 88x31 buttons. Each is icon + two lines of text, the layout nearly every real
+ * one used. `icon` names a swatch in the stylesheet; add a new one there.
+ */
+const BUTTONS: { icon: string; top: string; bottom: string; href?: string }[] = [
+  { icon: 'iconStar', top: 'thanhk', bottom: '.com' },
+  { icon: 'iconBlock', top: 'built with', bottom: 'next.js', href: 'https://nextjs.org' },
+  { icon: 'iconCode', top: 'code on', bottom: 'github', href: 'https://github.com/thanhk' },
+];
+
 /** Bumped by hand when the site changes — it's a vibe, not a build timestamp. */
 const LAST_UPDATED = 'aug 2026';
 
@@ -58,7 +68,7 @@ export default function Sidebar() {
         </div>
       </nav>
 
-      <div className={`${styles.box} ${styles.statusBox}`}>
+      <div className={styles.box}>
         <div className={styles.boxHead}>status</div>
         <div className={styles.boxBody}>
           <ul className={styles.statusList}>
@@ -81,33 +91,42 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div className={`${styles.box} ${styles.buttonsBox}`}>
+      <div className={styles.box}>
         <div className={styles.boxHead}>buttons</div>
         <div className={styles.boxBody}>
           <div className={styles.buttons}>
-            <span className={styles.badge}>thanhk.com ★</span>
-            <a
-              className={`${styles.badge} ${styles.badgeAlt}`}
-              href="https://nextjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              built with next.js
-            </a>
-            <a
-              className={styles.badge}
-              href="https://github.com/thanhk"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              code on github
-            </a>
-            <span className={`${styles.badge} ${styles.badgeAlt}`}>
-              best viewed with eyes
-            </span>
+            {BUTTONS.map((button) => {
+              const inner = (
+                <>
+                  <span className={`${styles.badgeIcon} ${styles[button.icon]}`} aria-hidden="true" />
+                  <span className={styles.badgeText}>
+                    <span>{button.top}</span>
+                    <span>{button.bottom}</span>
+                  </span>
+                </>
+              );
+
+              return button.href ? (
+                <a
+                  key={button.top}
+                  className={styles.badge}
+                  href={button.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={`${button.top} ${button.bottom}`}
+                >
+                  {inner}
+                </a>
+              ) : (
+                <span key={button.top} className={styles.badge} title={`${button.top} ${button.bottom}`}>
+                  {inner}
+                </span>
+              );
+            })}
           </div>
         </div>
       </div>
+
     </aside>
   );
 }
