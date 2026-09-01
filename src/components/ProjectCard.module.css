@@ -218,41 +218,41 @@
 }
 
 @media (max-width: 768px) {
+  /* Stack: text, then the media well centred at its own size, then the links.
+     display:contents flattens the wrapper so the three can be ordered. */
+  .topSection {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .contentWrapper {
+    display: contents;
+  }
+
+  .contentText {
+    order: 0;
+  }
+
   .mediaContainer {
-    width: 170px;
-    height: 170px;
+    order: 1;
+    width: min(200px, 60vw);
+    height: min(200px, 60vw);
+    align-self: center;
+    margin: 0;
+  }
+
+  .cardLinks {
+    order: 2;
+  }
+
+  .cardLink {
+    display: inline-block;
+    padding: 6px 0;
   }
 
   .bookmarkletTag {
     font-size: 1.125rem;
     padding: 6px 14px;
-  }
-
-  /* In mobile, change top section to column and reorder so media appears before action buttons */
-  .topSection {
-    flex-direction: column;
-  }
-
-  .contentWrapper {
-    width: 100%;
-    display: contents; /* Flatten so children can be reordered */
-  }
-
-  .contentText {
-    order: 0;
-    width: 100%;
-  }
-
-  .mediaContainer {
-    max-width: 100% !important;
-    align-self: flex-start;
-    width: 100%;
-    margin-bottom: 15px;
-    order: 1;
-  }
-
-  .cardLinks {
-    order: 2;
-    width: 100%;
   }
 }

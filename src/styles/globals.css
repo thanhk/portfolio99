@@ -16,6 +16,10 @@
  * text at a comparable reading size.
  */
 
+:root {
+  --card-pad: 20px;
+}
+
 :root,
 :root[data-font="terminal"] {
   --font-display: var(--font-vt323);
@@ -258,7 +262,7 @@ body {
    readers rather than read out as punctuation. */
 .page-title {
   font-family: var(--font-display);
-  font-size: 2.75rem;
+  font-size: clamp(1.9rem, 7vw, 2.75rem);
   text-align: center;
   margin-bottom: 26px;
   padding-bottom: 14px;
@@ -337,7 +341,7 @@ a:focus-visible {
   border: 2px solid var(--border);
   outline: 1px solid var(--border-dim);
   outline-offset: -5px;
-  padding: 20px;
+  padding: var(--card-pad);
   margin: 20px 0;
   box-shadow: 4px 4px 0 var(--shadow);
   color: var(--ink);
@@ -352,7 +356,7 @@ a:focus-visible {
   gap: 10px;
   background: var(--panel-alt);
   border-bottom: 2px solid var(--border);
-  margin: -20px -20px 20px;
+  margin: calc(var(--card-pad) * -1) calc(var(--card-pad) * -1) var(--card-pad);
   padding: 6px 14px;
   color: var(--magenta);
   font-size: 1.25rem;
@@ -673,9 +677,9 @@ a:focus-visible {
   font-family: var(--font-display);
   display: inline-block;
   color: var(--cyan);
-  font-size: 2.875rem;
+  font-size: clamp(1.9rem, 8vw, 2.875rem);
   line-height: 1;
-  letter-spacing: 8px;
+  letter-spacing: clamp(2px, 1.2vw, 8px);
   text-decoration: none;
   text-shadow: 0 0 10px var(--glow-a), 3px 3px 0 var(--shadow);
 }
@@ -762,7 +766,18 @@ a:focus-visible {
 
 @media (max-width: 900px) {
   .layout {
-    grid-template-columns: minmax(0, 1fr);
+    display: flex;
+    flex-direction: column;
+    /* The desktop rule sets align-items: start for the sticky sidebar; in a
+       column that would size every box to its own content, so the nav box came
+       out narrower than the rest. */
+    align-items: stretch;
+    gap: 16px;
+    padding-top: 16px;
+  }
+
+  .layout > main {
+    order: 3;
   }
 }
 
@@ -886,7 +901,7 @@ a:focus-visible {
 }
 
 .entry-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.7rem, 6vw, 2.5rem);
   line-height: 1.1;
   color: var(--magenta);
   font-family: var(--font-display);
@@ -968,6 +983,19 @@ a:focus-visible {
   color: var(--ink-dim);
 }
 
+/* A phone gives up some panel padding to give the text more width. */
+@media (max-width: 560px) {
+  :root {
+    --card-pad: 14px;
+  }
+
+  /* VT323 is wide for its size; a step down buys roughly six more characters
+     per line on a phone. */
+  body {
+    font-size: 1.125rem;
+  }
+}
+
 @media (max-width: 560px) {
   .entry-nav {
     grid-template-columns: 1fr;
@@ -1013,8 +1041,12 @@ a:focus-visible {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 768px) {
-  body {
-    font-size: 1.125rem;
+  /* Inline action links get vertical padding on touch, so the tap target is
+     taller than the text itself. */
+  .text-link,
+  .entry-nav a {
+    display: inline-block;
+    padding: 6px 0;
   }
 
   .retro-button {

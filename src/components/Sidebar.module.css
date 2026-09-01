@@ -9,24 +9,52 @@
 /* Below the two-column breakpoint the sidebar sits above the content, so it is
    packed into a compact header instead of four full-width boxes the reader has
    to scroll past to reach the page. */
+/* Below the two-column breakpoint the boxes join the page column directly, so
+   profile and nav sit above the content and status drops below it — the reader
+   reaches the page without scrolling past the whole sidebar. */
 @media (max-width: 900px) {
   .sidebar {
-    position: static;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    display: contents;
   }
 
   .identity,
-  .navBox {
-    grid-column: 1 / -1;
+  .navBox,
+  .statusBox {
+    margin: 0;
   }
 
+  .identity {
+    order: 1;
+  }
+
+  .navBox {
+    order: 2;
+  }
+
+  .statusBox {
+    order: 4;
+  }
+
+  /* Nav becomes a row of real tap targets. */
   .navList {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px 10px;
+    gap: 6px;
+  }
+
+  .navList li {
+    flex: 1 1 auto;
+    margin: 0;
+  }
+
+  .navLink {
+    padding: 11px 10px;
+    text-align: center;
+    border-color: var(--border-dim);
+  }
+
+  .navLink::before {
+    display: none;
   }
 
   .tagline {
@@ -173,83 +201,3 @@
   color: var(--lime);
   margin-right: 4px;
 }
-
-/* ---------- 88x31 buttons ---------- */
-
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center;
-}
-
-/* Real 88x31 dimensions, and the layout real ones used: a small graphic on the
-   left, two short lines of text on the right. Drawn in CSS — nothing to host,
-   nothing to go stale. The bevel is the era's outset border, done with two
-   inset shadows so it stays crisp. */
-.badge {
-  width: 88px;
-  height: 31px;
-  display: flex;
-  align-items: stretch;
-  overflow: hidden;
-  text-decoration: none;
-  background: var(--panel-alt);
-  border: 1px solid var(--ink);
-  box-shadow:
-    inset 1px 1px 0 var(--panel),
-    inset -1px -1px 0 var(--border-dim);
-}
-
-.badge:hover {
-  background: var(--cyan);
-  box-shadow:
-    inset 1px 1px 0 var(--border-dim),
-    inset -1px -1px 0 var(--panel);
-}
-
-.badgeIcon {
-  flex: 0 0 25px;
-  border-right: 1px solid var(--ink);
-  image-rendering: pixelated;
-}
-
-.badgeText {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0 2px;
-  font-family: var(--font-display);
-  font-size: 0.8125rem;
-  line-height: 1.05;
-  letter-spacing: 0;
-  color: var(--ink);
-  text-align: center;
-  white-space: nowrap;
-}
-
-.badge:hover .badgeText {
-  color: var(--on-accent);
-}
-
-/* Icon swatches: a few flat pixel motifs, each two colors on a ground. */
-.iconStar {
-  background:
-    radial-gradient(circle at 50% 45%, var(--amber) 0 22%, transparent 23%),
-    repeating-linear-gradient(45deg, var(--magenta) 0 3px, var(--panel) 3px 6px);
-}
-
-.iconBlock {
-  background:
-    linear-gradient(var(--cyan) 0 0) 0 0 / 100% 50% no-repeat,
-    linear-gradient(var(--ink) 0 0) 0 100% / 100% 50% no-repeat;
-}
-
-.iconCode {
-  background:
-    repeating-linear-gradient(0deg, var(--lime) 0 3px, transparent 3px 6px),
-    var(--ink);
-}
-
