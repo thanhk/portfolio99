@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import styles from './ProjectCard.module.css';
 import type { Project } from '@/lib/projects';
@@ -11,6 +11,23 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const bookmarkletRef = useRef<HTMLAnchorElement | null>(null);
+  const codeRef = useRef<HTMLTextAreaElement | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const copyCode = async () => {
+    const code = project.bookmarkletCode;
+    if (!code) return;
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch {
+      // No clipboard permission (or an insecure origin) — select it instead so
+      // the reader can copy by hand.
+      codeRef.current?.select();
+      return;
+    }
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1500);
+  };
 
   useEffect(() => {
     if (!project.bookmarkletCode) return;
@@ -50,26 +67,44 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 ))}
               </div>
 
-              {/* Bookmarklet: no wrapper box. A line of instruction and the
-                  tag itself, in the card's own voice — a panel inside a panel
-                  was the thing that looked bolted on. */}
+              {/* Bookmarklet: a little source window, the way these were
+                  handed out — the code is right there to read and copy, and
+                  the tag beside it is the drag-to-install path. */}
               {project.bookmarkletCode && (
-                <p className={styles.bookmarklet}>
-                  <a
-                    ref={bookmarkletRef}
-                    className={styles.bookmarkletTag}
-                    draggable={true}
-                    onDragStart={(e) => {
-                      e.dataTransfer.setData('text/plain', project.bookmarkletCode || '');
-                      e.dataTransfer.effectAllowed = 'copy';
-                    }}
-                  >
-                    {project.bookmarkletName || project.name}
-                  </a>
-                  <span className={styles.bookmarkletHint}>
-                    drag to your bookmarks bar, then click it on instagram
-                  </span>
-                </p>
+                <div className={styles.win}>
+                  <div className={styles.winBar}>
+                    <span>{(project.bookmarkletName || project.name).toLowerCase()}.js</span>
+                    <span className={styles.winBytes}>
+                      {(project.bookmarkletCode.length / 1024).toFixed(1)} kb
+                    </span>
+                  </div>
+                  <textarea
+                    ref={codeRef}
+                    className={styles.winCode}
+                    readOnly
+                    spellCheck={false}
+                    value={project.bookmarkletCode}
+                    onFocus={(e) => e.currentTarget.select()}
+                    aria-label={`${project.bookmarkletName || project.name} source`}
+                  />
+                  <div className={styles.winFoot}>
+                    <a
+                      ref={bookmarkletRef}
+                      className={styles.bookmarkletTag}
+                      draggable={true}
+                      onDragStart={(e) => {
+                        e.dataTransfer.setData('text/plain', project.bookmarkletCode || '');
+                        e.dataTransfer.effectAllowed = 'copy';
+                      }}
+                    >
+                      {project.bookmarkletName || project.name}
+                    </a>
+                    <button type="button" className={styles.winCopy} onClick={copyCode}>
+                      {copied ? 'copied!' : 'copy'}
+                    </button>
+                    <span className={styles.winHint}>drag the tag up to your bookmarks bar</span>
+                  </div>
+                </div>
               )}
             </div>
 
