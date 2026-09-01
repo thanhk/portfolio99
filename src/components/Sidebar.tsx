@@ -23,7 +23,8 @@ export default function Sidebar() {
         <div className={styles.boxHead}>profile</div>
         <div className={styles.boxBody}>
           <div className={styles.profileRow}>
-            <span className={styles.avatar} aria-hidden="true">SK</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className={styles.avatar} src="/assets/avatar.png" alt="" width={176} height={176} />
             <span>
               <span className={styles.name}>steven khuu</span>
               <span className={styles.handle}>@thanhk</span>
