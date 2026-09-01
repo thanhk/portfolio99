@@ -5,10 +5,11 @@ import styles from './Sidebar.module.css';
 
 const FONTS = [
   { id: 'terminal', label: 'terminal', note: 'vt323' },
-  { id: 'typewriter', label: 'typewriter', note: 'courier prime' },
+  { id: 'eggseed', label: 'eggseed', note: 'times' },
+  { id: 'falsedawn', label: 'false dawn', note: 'calibri' },
+  { id: 'daikonet', label: 'daikonet', note: 'pgothic' },
   { id: 'broadsheet', label: 'broadsheet', note: 'georgia' },
-  { id: 'classic', label: 'classic', note: 'times' },
-  { id: 'plotter', label: 'plotter', note: 'space mono' },
+  { id: 'typewriter', label: 'typewriter', note: 'courier' },
 ] as const;
 
 const DEFAULT_FONT = 'terminal';

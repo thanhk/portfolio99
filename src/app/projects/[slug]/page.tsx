@@ -63,12 +63,12 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           {name}
         </h1>
         {description && (
-          <p style={{ fontSize: '24px', marginBottom: '15px', color: 'var(--ink)' }}>
+          <p style={{ fontSize: '1.5rem', marginBottom: '15px', color: 'var(--ink)' }}>
             {description}
           </p>
         )}
         {tech && (
-          <p style={{ fontSize: '20px', marginBottom: '20px', color: 'var(--ink)' }}>
+          <p style={{ fontSize: '1.25rem', marginBottom: '20px', color: 'var(--ink)' }}>
             <strong>Tech:</strong> {tech}
           </p>
         )}
@@ -76,7 +76,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         <div
           dangerouslySetInnerHTML={{ __html: project.content }}
           style={{
-            fontSize: '20px',
+            fontSize: '1.25rem',
             lineHeight: '1.8',
           }}
         />

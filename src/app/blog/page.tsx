@@ -35,13 +35,13 @@ export default async function Blog() {
 
       {sortedPosts.length === 0 ? (
         <div className="retro-card" style={{ textAlign: 'center' }}>
-          <p style={{ fontSize: '24px', marginBottom: '15px' }}>
+          <p style={{ fontSize: '1.5rem', marginBottom: '15px' }}>
             nothing here yet. check back!
           </p>
-          <p style={{ fontSize: '20px', color: 'var(--ink)' }}>
+          <p style={{ fontSize: '1.25rem', color: 'var(--ink)' }}>
             Add Markdown files to the <code style={{ background: 'var(--panel-alt)', padding: '2px 6px' }}>public/blog/</code> folder to create posts.
           </p>
-          <p style={{ fontSize: '18px', marginTop: '15px', color: 'var(--ink)', fontStyle: 'italic' }}>
+          <p style={{ fontSize: '1.125rem', marginTop: '15px', color: 'var(--ink)', fontStyle: 'italic' }}>
             Filename format: <code style={{ background: 'var(--panel-alt)', padding: '2px 6px' }}>YYYY-MM-DD-title.md</code> or just <code style={{ background: 'var(--panel-alt)', padding: '2px 6px' }}>title.md</code>
           </p>
         </div>
@@ -82,7 +82,7 @@ export default async function Blog() {
                         {description && (
                           <>
                             <br />
-                            <span style={{ color: 'var(--ink-dim)', fontSize: '18px' }}>{description}</span>
+                            <span style={{ color: 'var(--ink-dim)', fontSize: '1.125rem' }}>{description}</span>
                           </>
                         )}
                       </td>

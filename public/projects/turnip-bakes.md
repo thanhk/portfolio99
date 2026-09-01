@@ -6,7 +6,7 @@ tech: "Next.js 16, React 19, TypeScript, Tailwind CSS 4, Resend, Playwright"
 
 ## Project Overview
 
-[Turnip Bakes](https://turnipbakes.com) is a home bakery specializing in Korean-style baked goods and custom cakes. Before this site, orders came in through Instagram DMs — which meant every order was a conversation, details got lost in the thread, and there was no single place to point a customer at.
+[Turnip Bakes](https://turnipbakes.com) is a home bakery specializing in Asian-style baked goods and custom cakes. Before this site, orders came in through Instagram DMs. This was unorganized, may have intimidated customers from ordering, and also took more work for the baker (my fiancée).
 
 The site is the storefront and the order desk: a menu, a custom cake request flow, a cart for baked goods, and an FAQ that answers the questions that used to eat up DMs. Orders land in the baker's inbox as a formatted email with all the details already collected.
 
