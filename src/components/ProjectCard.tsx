@@ -3,26 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import styles from './ProjectCard.module.css';
-
-export interface Project {
-  name: string;
-  description: string;
-  tech: string;
-  // Optional features - can combine multiple
-  videoUrl?: string;
-  videoThumbnail?: string;
-  imageUrl?: string; // For GIFs or static images
-  bookmarkletCode?: string;
-  bookmarkletName?: string;
-  detailSlug?: string;
-  /** Short tag shown in the card's title bar, e.g. "new". Blinks, on purpose. */
-  tag?: string;
-  /** Year the project was started. */
-  year?: string;
-  /** Where it stands now — "live", "beta", "done". */
-  status?: string;
-  url?: string; // External link (e.g., GitHub repo)
-}
+import type { Project } from '@/lib/projects';
 
 interface ProjectCardProps {
   project: Project;

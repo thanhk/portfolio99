@@ -863,15 +863,15 @@ a:focus-visible {
   margin: 15px 0;
 }
 
-/* ---------- Blog post ---------- */
+/* ---------- Entry pages (blog posts and project writeups) ---------- */
 
-.post-header {
+.entry-header {
   border-bottom: 2px solid var(--border-dim);
   padding-bottom: 14px;
   margin-bottom: 22px;
 }
 
-.post-title {
+.entry-title {
   font-size: 2.5rem;
   line-height: 1.1;
   color: var(--magenta);
@@ -879,42 +879,47 @@ a:focus-visible {
   margin: 0 0 8px;
 }
 
-.post-meta {
+.entry-meta {
   font-family: var(--font-display);
   color: var(--ink-dim);
   font-size: 1.125rem;
   margin: 0;
 }
 
-.post-meta .sep {
+.entry-lead {
+  color: var(--ink);
+  margin: 12px 0 12px;
+}
+
+.entry-meta .sep {
   color: var(--magenta);
   margin: 0 8px;
 }
 
-.post-body {
+.entry-body {
   line-height: 1.75;
 }
 
 /* Bare URLs are common in these posts; let them break instead of pushing the
    column wider than its measure. */
-.post-body a,
-.post-body code {
+.entry-body a,
+.entry-body code {
   overflow-wrap: anywhere;
 }
 
-.post-body > h2:first-child,
-.post-body > h3:first-child,
-.post-body > p:first-child {
+.entry-body > h2:first-child,
+.entry-body > h3:first-child,
+.entry-body > p:first-child {
   margin-top: 0;
 }
 
-.post-footer {
+.entry-footer {
   margin-top: 32px;
   border-top: 2px solid var(--border-dim);
   padding-top: 14px;
 }
 
-.post-end {
+.entry-end {
   text-align: center;
   color: var(--ink-dim);
   letter-spacing: 2px;
@@ -924,7 +929,7 @@ a:focus-visible {
  /* Three columns rather than auto margins: the side cells share the leftover
     space equally, so "all posts" stays centred no matter how long the
     neighbouring post titles are. */
-.post-nav {
+.entry-nav {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: baseline;
@@ -932,31 +937,31 @@ a:focus-visible {
   font-size: 1.1875rem;
 }
 
-.post-nav > :first-child {
+.entry-nav > :first-child {
   justify-self: start;
 }
 
-.post-nav > :nth-child(2) {
+.entry-nav > :nth-child(2) {
   justify-self: center;
 }
 
-.post-nav > :last-child {
+.entry-nav > :last-child {
   justify-self: end;
   text-align: right;
 }
 
-.post-nav-empty {
+.entry-nav-empty {
   color: var(--ink-dim);
 }
 
 @media (max-width: 560px) {
-  .post-nav {
+  .entry-nav {
     grid-template-columns: 1fr;
   }
 
-  .post-nav > :first-child,
-  .post-nav > :nth-child(2),
-  .post-nav > :last-child {
+  .entry-nav > :first-child,
+  .entry-nav > :nth-child(2),
+  .entry-nav > :last-child {
     justify-self: start;
     text-align: left;
   }
