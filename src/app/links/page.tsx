@@ -66,7 +66,7 @@ export default function Links() {
             })}
           </ul>
           <p style={{ marginTop: '18px', marginBottom: 0, color: 'var(--ink-dim)', fontSize: '1.125rem' }}>
-            say hi — i read everything, i reply to most of it.
+            say hi — i love talking about my interests, giving advice, and building ideas.
           </p>
         </div>
 

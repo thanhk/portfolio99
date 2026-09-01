@@ -81,8 +81,8 @@ export default function Home() {
             this is where i share my projects, hobbies, interests, and ideas.
           </p>
           <p style={{ marginBottom: 0 }}>
-            currently working on raphael, a personal assistant that sends me one
-            brief every morning.
+            currently working on raphael, a personal assistant that is tailored with
+            my personal goals.
           </p>
         </div>
 
