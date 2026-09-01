@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { projects } from '@/lib/projects';
 
 export default function Home() {
   const workExperience = [
@@ -22,10 +23,9 @@ export default function Home() {
     },
   ];
 
-  const featured = [
-    { slug: 'turnip-bakes', name: 'Turnip Bakes', blurb: 'storefront + ordering site for a home bakery' },
-    { slug: 'mise', name: 'Mise', blurb: 'ai planning co-pilot for market bakers' },
-  ];
+  // Taken from the project list rather than repeated here, so this can't drift
+  // out of order with the projects page.
+  const featured = projects.slice(0, 3);
 
   /** Site changelog. Newest first; add a line whenever the site changes. */
   const changelog = [
@@ -89,22 +89,28 @@ export default function Home() {
         <div className="retro-card col-half">
           <div className="panel-head">
             latest projects
-            <span className="right">2 new</span>
+            <span className="right">{projects.filter((item) => item.tag).length} new</span>
           </div>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {featured.map((item, index) => (
               <li
-                key={item.slug}
+                key={item.name}
                 style={{
                   marginBottom: '12px',
                   paddingBottom: '12px',
                   borderBottom: index === featured.length - 1 ? 'none' : '1px dashed var(--border-dim)',
                 }}
               >
-                <Link href={`/projects/${item.slug}`}>{item.name}</Link>{' '}
-                <span className="tag-new blink">new!</span>
+                {item.detailSlug ? (
+                  <Link href={`/projects/${item.detailSlug}`}>{item.name}</Link>
+                ) : (
+                  <span style={{ color: 'var(--cyan)' }}>{item.name}</span>
+                )}{' '}
+                {item.tag && <span className="tag-new blink">{item.tag}</span>}
                 <br />
-                <span style={{ color: 'var(--ink-dim)', fontSize: '1.125rem' }}>{item.blurb}</span>
+                <span style={{ color: 'var(--ink-dim)', fontSize: '1.125rem' }}>
+                  {item.blurb || item.description}
+                </span>
               </li>
             ))}
           </ul>
