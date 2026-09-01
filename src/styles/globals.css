@@ -260,22 +260,26 @@ body {
 
 /* Page heading: the marks are decoration, so they are hidden from screen
    readers rather than read out as punctuation. */
+ /* The heading carries its own rule: a line out to each margin, the way False
+    Dawn sets its headings. It replaces both the flanking marks and the separate
+    underline — the title is the divider. */
 .page-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
   font-family: var(--font-display);
   font-size: clamp(1.9rem, 7vw, 2.75rem);
   text-align: center;
   margin-bottom: 26px;
-  padding-bottom: 14px;
-  border-bottom: 2px dashed var(--border-dim);
 }
 
 .page-title::before,
 .page-title::after {
-  content: '\25AA\25AA';
-  color: var(--magenta);
-  font-size: 1.625rem;
-  vertical-align: middle;
-  margin: 0 14px;
+  content: '';
+  flex: 1 1 0;
+  min-width: 20px;
+  height: 0;
+  border-top: 2px solid var(--border-dim);
   animation: none;
 }
 
