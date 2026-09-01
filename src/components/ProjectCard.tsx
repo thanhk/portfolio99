@@ -50,11 +50,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 ))}
               </div>
 
-              {/* Bookmarklet: a drop target framing the draggable tag, so it
-                  reads as an object you pick up rather than a button. */}
+              {/* Bookmarklet: no wrapper box. A line of instruction and the
+                  tag itself, in the card's own voice — a panel inside a panel
+                  was the thing that looked bolted on. */}
               {project.bookmarkletCode && (
-                <div className={styles.bookmarklet}>
-                  <span className={styles.bookmarkletLabel}>drag to your bookmarks bar</span>
+                <p className={styles.bookmarklet}>
                   <a
                     ref={bookmarkletRef}
                     className={styles.bookmarkletTag}
@@ -66,8 +66,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                   >
                     {project.bookmarkletName || project.name}
                   </a>
-                  <span className={styles.bookmarkletHint}>then click it while on instagram</span>
-                </div>
+                  <span className={styles.bookmarkletHint}>
+                    drag to your bookmarks bar, then click it on instagram
+                  </span>
+                </p>
               )}
             </div>
 
