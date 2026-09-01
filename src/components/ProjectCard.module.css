@@ -108,113 +108,50 @@
 }
 
 
- /* The dashed frame reads as "this goes somewhere else" — a drop zone around
-    the tag rather than a panel around a button. */
+ /* Tag plus a line of instruction, sharing the card's spacing — no frame of
+    its own, since the card is already a frame. */
 .bookmarklet {
-  margin: 4px 0 14px;
-  padding: 14px 16px;
-  background: var(--panel-alt);
-  border: 2px dashed var(--border-dim);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 0 0 12px;
 }
 
-.bookmarkletLabel,
 .bookmarkletHint {
   color: var(--ink-dim);
   font-size: 1.0625rem;
-  letter-spacing: 1px;
 }
 
-.bookmarkletLabel {
-  text-transform: uppercase;
-  font-size: 0.9375rem;
-}
-
-/* The tag itself: a solid object sitting on its own shadow, which it loses as
+/* Built from the same parts as the site's buttons — solid border, offset
+   shadow — but it grabs rather than clicks, and it drops onto its shadow when
    you pick it up. */
 .bookmarkletTag {
   display: inline-block;
-  padding: 7px 18px;
-  background: var(--panel);
-  color: var(--magenta);
-  border: 2px solid var(--magenta);
+  padding: 5px 14px;
+  background: var(--panel-alt);
+  color: var(--cyan);
+  border: 2px solid var(--cyan);
   box-shadow: 3px 3px 0 var(--shadow);
   font-family: var(--font-display);
-  font-size: 1.25rem;
-  letter-spacing: 2px;
+  font-size: 1.125rem;
+  letter-spacing: 1px;
   text-decoration: none;
   cursor: grab;
   user-select: none;
 }
 
 .bookmarkletTag:hover {
-  background: var(--magenta);
+  background: var(--cyan);
   color: var(--on-accent);
+  border-color: var(--magenta);
+  box-shadow: 3px 3px 0 var(--magenta);
 }
 
 .bookmarkletTag:active {
   cursor: grabbing;
   transform: translate(3px, 3px);
   box-shadow: none;
-}
-
-/* Video controls styling */
-.retroMedia::-webkit-media-controls-panel {
-  background-color: transparent !important;
-  border: none;
-}
-
-.retroMedia::-webkit-media-controls-play-button,
-.retroMedia::-webkit-media-controls-volume-slider,
-.retroMedia::-webkit-media-controls-timeline {
-  filter: none;
-  color: var(--ink);
-}
-
-.retroMedia::-webkit-media-controls-current-time-display,
-.retroMedia::-webkit-media-controls-time-remaining-display {
-  color: var(--ink);
-}
-
-.retroMedia::-webkit-media-controls-mute-button,
-.retroMedia::-webkit-media-controls-fullscreen-button {
-  filter: brightness(0) invert(1);
-}
-
-
-.bookmarkletContainer {
-  margin: 4px 0 14px;
-  padding: 15px;
-  background: var(--panel-alt);
-  border: 2px solid var(--border-dim);
-  border-radius: 0;
-}
-
-.bookmarkletLink {
-  display: inline-block;
-  padding: 12px 24px;
-  background: var(--magenta);
-  color: var(--on-accent);
-  text-decoration: none;
-  font-size: 1.25rem;
-  font-family: var(--font-display);
-  border: 2px solid var(--cyan);
-  cursor: grab;
-  transition: all 0.2s ease;
-  user-select: none;
-}
-
-.bookmarkletLink:hover {
-  background: var(--cyan);
-  box-shadow: 3px 3px 0 var(--magenta);
-}
-
-.bookmarkletLink:active {
-  cursor: grabbing;
-  transform: translateY(0);
 }
 
 @media (max-width: 768px) {

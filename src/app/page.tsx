@@ -119,7 +119,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="retro-card col-half">
+        <div className="retro-card col-half mobile-last">
           <div className="panel-head">
             changelog
             <span className="right">{changelog.length} entries</span>

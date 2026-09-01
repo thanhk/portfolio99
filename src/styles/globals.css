@@ -746,6 +746,14 @@ a:focus-visible {
 .col-third { flex: 1 1 calc(33.333% - 14px); min-width: 240px; }
 .col-twothird { flex: 1 1 calc(66.666% - 10px); min-width: 300px; }
 
+/* Pushes a box to the end once the grid has collapsed to one column — the
+   changelog is context, not something to read before the page's own content. */
+@media (max-width: 900px) {
+  .grid > .mobile-last {
+    order: 1;
+  }
+}
+
 /* ---------- Layout ---------- */
 
 .container {

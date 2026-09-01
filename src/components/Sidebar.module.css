@@ -53,8 +53,15 @@
     border-color: var(--border-dim);
   }
 
+  /* The caret is dropped for inactive items to keep the row even, but the
+     active one keeps it — it's how the current page reads at a glance. */
   .navLink::before {
     display: none;
+  }
+
+  .active::before {
+    display: inline;
+    opacity: 1;
   }
 
   .tagline {
