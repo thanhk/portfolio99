@@ -4,9 +4,19 @@
  * Dark web-1.0 / Y2K palette. Everything is a flat color on a dark ground:
  * no gradients, no soft shadows — borders are hard, shadows are offset blocks.
  */
-:root {
+/*
+ * Palettes. Every color the site uses lives here; nothing downstream hardcodes
+ * one. A theme is picked by data-theme on <html> (see ThemeSwitcher); the
+ * default block is the fallback when no choice has been made.
+ *
+ * --on-accent is the text color that sits ON an accent fill (inverted buttons).
+ * --tint-1/2 are translucent accent washes for hovers.
+ */
+:root,
+:root[data-theme="midnight"] {
   --bg: #0A0A1F;
   --bg-tile: #101028;
+  --bg-frame: rgba(10, 10, 31, 0.82);
   --panel: #14142E;
   --panel-alt: #1D1D3E;
   --ink: #C9D2FF;
@@ -16,10 +26,125 @@
   --lime: #39FF14;
   --amber: #FFD700;
   --violet: #C08CFF;
-  --bg-frame: rgba(10, 10, 31, 0.82);
   --border: #00FFFF;
   --border-dim: #2E4A6E;
   --shadow: rgba(255, 0, 255, 0.45);
+  --on-accent: #000000;
+  --tint-1: rgba(0, 255, 255, 0.08);
+  --tint-2: rgba(255, 0, 255, 0.12);
+  --glow-a: rgba(0, 255, 255, 0.75);
+  --glow-b: rgba(255, 0, 255, 0.6);
+  --star-a: rgba(255, 255, 255, 0.85);
+  --star-b: rgba(0, 255, 255, 0.75);
+  --star-c: rgba(255, 0, 255, 0.55);
+}
+
+/* Cream paper, ink text, cherry accents — the warm end of the old web. */
+:root[data-theme="parchment"] {
+  --bg: #F2E8D5;
+  --bg-tile: #E7D9BE;
+  --bg-frame: rgba(253, 249, 240, 0.88);
+  --panel: #FDF9F0;
+  --panel-alt: #EFE2CA;
+  --ink: #3A2E22;
+  --ink-dim: #7C6A55;
+  --cyan: #1F6F6B;
+  --magenta: #B3325A;
+  --lime: #3E7D32;
+  --amber: #A9741A;
+  --violet: #7A4E9B;
+  --border: #3A2E22;
+  --border-dim: #C2AE8C;
+  --shadow: rgba(179, 50, 90, 0.35);
+  --on-accent: #FDF9F0;
+  --tint-1: rgba(31, 111, 107, 0.10);
+  --tint-2: rgba(179, 50, 90, 0.12);
+  --glow-a: rgba(179, 50, 90, 0.30);
+  --glow-b: rgba(169, 116, 26, 0.30);
+  --star-a: rgba(58, 46, 34, 0.28);
+  --star-b: rgba(31, 111, 107, 0.30);
+  --star-c: rgba(179, 50, 90, 0.22);
+}
+
+/* Pale sky and clouds, navy ink — closest to the eggseed end of neocities. */
+:root[data-theme="skyline"] {
+  --bg: #E3F1FB;
+  --bg-tile: #D2E6F6;
+  --bg-frame: rgba(255, 255, 255, 0.86);
+  --panel: #FFFFFF;
+  --panel-alt: #DCEBF8;
+  --ink: #1F3A5F;
+  --ink-dim: #6A87A8;
+  --cyan: #0F7BAE;
+  --magenta: #D4488E;
+  --lime: #2E8B57;
+  --amber: #C98A00;
+  --violet: #7C6BD6;
+  --border: #7FB4D9;
+  --border-dim: #B7D4EA;
+  --shadow: rgba(15, 123, 174, 0.28);
+  --on-accent: #FFFFFF;
+  --tint-1: rgba(15, 123, 174, 0.09);
+  --tint-2: rgba(212, 72, 142, 0.10);
+  --glow-a: rgba(15, 123, 174, 0.30);
+  --glow-b: rgba(212, 72, 142, 0.28);
+  --star-a: rgba(255, 255, 255, 0.95);
+  --star-b: rgba(15, 123, 174, 0.22);
+  --star-c: rgba(212, 72, 142, 0.18);
+}
+
+/* Soft pink and lavender, plum ink — the webcore/kawaii corner. */
+:root[data-theme="blossom"] {
+  --bg: #FBE9F3;
+  --bg-tile: #F5D9EA;
+  --bg-frame: rgba(255, 252, 254, 0.88);
+  --panel: #FFFCFE;
+  --panel-alt: #F7E2EF;
+  --ink: #4A2740;
+  --ink-dim: #8C6A85;
+  --cyan: #2F8F86;
+  --magenta: #D6308C;
+  --lime: #4E9B4A;
+  --amber: #C2851C;
+  --violet: #8A5CD1;
+  --border: #E2A7CC;
+  --border-dim: #EFCEE2;
+  --shadow: rgba(214, 48, 140, 0.28);
+  --on-accent: #FFFCFE;
+  --tint-1: rgba(47, 143, 134, 0.09);
+  --tint-2: rgba(214, 48, 140, 0.10);
+  --glow-a: rgba(214, 48, 140, 0.30);
+  --glow-b: rgba(138, 92, 209, 0.28);
+  --star-a: rgba(255, 255, 255, 0.95);
+  --star-b: rgba(214, 48, 140, 0.20);
+  --star-c: rgba(138, 92, 209, 0.18);
+}
+
+/* Grey system chrome, blue links, purple visited — literally 1999. */
+:root[data-theme="system"] {
+  --bg: #C0C0C0;
+  --bg-tile: #B4B4B4;
+  --bg-frame: rgba(240, 240, 240, 0.94);
+  --panel: #FFFFFF;
+  --panel-alt: #E4E4E4;
+  --ink: #1A1A1A;
+  --ink-dim: #5E5E5E;
+  --cyan: #0000EE;
+  --magenta: #000080;
+  --lime: #008000;
+  --amber: #7A4B00;
+  --violet: #551A8B;
+  --border: #1A1A1A;
+  --border-dim: #9A9A9A;
+  --shadow: rgba(0, 0, 0, 0.35);
+  --on-accent: #FFFFFF;
+  --tint-1: rgba(0, 0, 238, 0.07);
+  --tint-2: rgba(0, 0, 128, 0.09);
+  --glow-a: rgba(0, 0, 238, 0.22);
+  --glow-b: rgba(0, 0, 128, 0.20);
+  --star-a: rgba(255, 255, 255, 0.9);
+  --star-b: rgba(0, 0, 0, 0.16);
+  --star-c: rgba(0, 0, 128, 0.14);
 }
 
 @theme inline {
@@ -40,9 +165,9 @@ body {
      All CSS — no image request, and it tiles cleanly at any viewport size. */
   background-color: var(--bg);
   background-image:
-    radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.85) 50%, transparent 50%),
-    radial-gradient(1px 1px at 90px 120px, rgba(0, 255, 255, 0.75) 50%, transparent 50%),
-    radial-gradient(2px 2px at 160px 60px, rgba(255, 0, 255, 0.55) 50%, transparent 50%),
+    radial-gradient(1px 1px at 20px 30px, var(--star-a) 50%, transparent 50%),
+    radial-gradient(1px 1px at 90px 120px, var(--star-b) 50%, transparent 50%),
+    radial-gradient(2px 2px at 160px 60px, var(--star-c) 50%, transparent 50%),
     linear-gradient(var(--bg-tile) 1px, transparent 1px),
     linear-gradient(90deg, var(--bg-tile) 1px, transparent 1px);
   background-size: 200px 200px, 220px 180px, 260px 240px, 40px 40px, 40px 40px;
@@ -56,7 +181,7 @@ body {
 
 ::selection {
   background: var(--magenta);
-  color: #000;
+  color: var(--on-accent);
 }
 
 /* ---------- Text effects ---------- */
@@ -67,8 +192,8 @@ body {
 }
 
 @keyframes glow {
-  0%, 100% { text-shadow: 0 0 4px var(--cyan), 0 0 12px rgba(0, 255, 255, 0.6); }
-  50% { text-shadow: 0 0 8px var(--cyan), 0 0 22px rgba(0, 255, 255, 0.9), 0 0 34px rgba(255, 0, 255, 0.5); }
+  0%, 100% { text-shadow: 0 0 4px var(--glow-a), 0 0 12px var(--glow-a); }
+  50% { text-shadow: 0 0 8px var(--glow-a), 0 0 22px var(--glow-a), 0 0 34px var(--glow-b); }
 }
 
 .blink {
@@ -114,7 +239,7 @@ a:visited {
 
 a:hover {
   color: var(--magenta);
-  background: rgba(255, 0, 255, 0.12);
+  background: var(--tint-2);
 }
 
 a:focus-visible {
@@ -144,7 +269,7 @@ a:focus-visible {
 
 .retro-button:hover {
   background: var(--cyan);
-  color: #000;
+  color: var(--on-accent);
   border-color: var(--magenta);
   box-shadow: 3px 3px 0 var(--magenta);
 }
@@ -192,21 +317,6 @@ a:focus-visible {
   color: var(--ink-dim);
 }
 
-/* Decorative window control. Not a button — there is nothing to close.
-   It sits hard right on its own, or just after the .right slot when there is one. */
-.panel-head::after {
-  content: '\00D7';
-  margin-left: 10px;
-  padding: 0 5px;
-  border: 1px solid var(--border-dim);
-  color: var(--ink-dim);
-  font-size: 16px;
-  line-height: 1.1;
-}
-
-.panel-head:not(:has(.right))::after {
-  margin-left: auto;
-}
 
 /* ---------- Marquee ticker ---------- */
 
@@ -273,7 +383,7 @@ a:focus-visible {
 }
 
 .tag-new {
-  color: #000;
+  color: var(--on-accent);
   background: var(--magenta);
   padding: 0 6px;
   font-size: 16px;
@@ -328,7 +438,7 @@ a:focus-visible {
 }
 
 .index-table tr:hover td {
-  background: rgba(0, 255, 255, 0.06);
+  background: var(--tint-1);
 }
 
 .index-table td.num {
@@ -380,7 +490,7 @@ a:focus-visible {
 }
 
 .leader-row:hover {
-  background: rgba(0, 255, 255, 0.08);
+  background: var(--tint-1);
   border-color: var(--border-dim);
 }
 
@@ -436,7 +546,7 @@ a:focus-visible {
 .link-row:hover {
   background: var(--cyan);
   border-color: var(--magenta);
-  color: #000;
+  color: var(--on-accent);
 }
 
 .link-row .arrow {
@@ -445,7 +555,7 @@ a:focus-visible {
 }
 
 .link-row:hover .arrow {
-  color: #000;
+  color: var(--on-accent);
 }
 
 /* ---------- The page frame ---------- */
@@ -455,7 +565,7 @@ a:focus-visible {
   margin: 24px auto 40px;
   border: 2px solid var(--cyan);
   background: var(--bg-frame);
-  box-shadow: 6px 6px 0 var(--shadow), 0 0 40px rgba(0, 255, 255, 0.12);
+  box-shadow: 6px 6px 0 var(--shadow), 0 0 40px var(--tint-1);
 }
 
 /* Keep the frame as long as there is room for it to read as a frame; only a
@@ -478,7 +588,7 @@ a:focus-visible {
   background-color: var(--panel-alt);
   background-image: repeating-linear-gradient(
     45deg,
-    rgba(0, 255, 255, 0.05) 0 2px,
+    var(--tint-1) 0 2px,
     transparent 2px 6px
   );
   padding: 14px 20px 10px;
@@ -492,13 +602,13 @@ a:focus-visible {
   line-height: 1;
   letter-spacing: 8px;
   text-decoration: none;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 3px 3px 0 rgba(255, 0, 255, 0.55);
+  text-shadow: 0 0 10px var(--glow-a), 3px 3px 0 var(--shadow);
 }
 
 .masthead .wordmark:hover {
   background: none;
   color: var(--magenta);
-  text-shadow: 0 0 10px rgba(255, 0, 255, 0.8), 3px 3px 0 rgba(0, 255, 255, 0.55);
+  text-shadow: 0 0 10px var(--glow-b), 3px 3px 0 var(--glow-a);
 }
 
 .masthead .sub {

@@ -76,7 +76,7 @@
   color: var(--cyan);
   font-size: 24px;
   letter-spacing: 2px;
-  text-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+  text-shadow: 0 0 8px var(--glow-a);
 }
 
 .name {
@@ -128,7 +128,7 @@
 }
 
 .navLink:hover {
-  background: rgba(0, 255, 255, 0.1);
+  background: var(--tint-1);
   border-color: var(--border-dim);
   color: var(--magenta);
 }
@@ -203,7 +203,7 @@
 
 .badge:hover {
   background: var(--cyan);
-  color: #000;
+  color: var(--on-accent);
 }
 
 .badgeAlt {
@@ -213,5 +213,54 @@
 
 .badgeAlt:hover {
   background: var(--magenta);
-  color: #000;
+  color: var(--on-accent);
 }
+
+/* ---------- Theme picker ---------- */
+
+.themeList {
+  display: grid;
+  gap: 4px;
+}
+
+.themeButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 3px 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--cyan);
+  font-family: inherit;
+  font-size: 19px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.themeButton:hover {
+  background: var(--tint-1);
+  border-color: var(--border-dim);
+  color: var(--magenta);
+}
+
+.themeActive {
+  background: var(--panel-alt);
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+
+/* Each swatch shows its palette's own ground and accent, so the list previews
+   the themes rather than just naming them. */
+.swatch {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 14px;
+  border: 1px solid var(--border-dim);
+}
+
+.swatch-midnight { background: linear-gradient(90deg, #0A0A1F 50%, #00FFFF 50%); }
+.swatch-parchment { background: linear-gradient(90deg, #F2E8D5 50%, #B3325A 50%); }
+.swatch-skyline { background: linear-gradient(90deg, #E3F1FB 50%, #0F7BAE 50%); }
+.swatch-blossom { background: linear-gradient(90deg, #FBE9F3 50%, #D6308C 50%); }
+.swatch-system { background: linear-gradient(90deg, #C0C0C0 50%, #0000EE 50%); }
