@@ -5,7 +5,7 @@
  */
 const ITEMS = [
   '★ welcome to my portfolio ★',
-  'now building: raphael — a personal assistant that briefs you every morning',
+  'now building: raphael — a personal assistant that aggregates all of my life',
   '★ welcome to my ideas ★',
   'new: turnip bakes',
   '★ welcome to my thoughts ★',
